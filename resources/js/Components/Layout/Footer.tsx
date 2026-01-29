@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
             {/* Main Footer */}
             <div 
                 style={{
-                    backgroundColor: '#59658c',
+                    backgroundColor: '#667BA3',
                     color: '#fdfdfe',
                     padding: '24px 32px 20px',
                 }}
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
             {/* Bottom Bar */}
             <div
                 style={{
-                    backgroundColor: '#4d608c',
+                    backgroundColor: '#526086',
                     color: '#fdfdfe',
                     padding: '14px 32px',
                 }}

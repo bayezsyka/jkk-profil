@@ -91,7 +91,7 @@ const AboutSection: React.FC = () => {
                                     width: '72px',
                                     height: '72px',
                                     borderRadius: '16px',
-                                    background: 'linear-gradient(135deg, #0B2B5A 0%, #0D3A7A 100%)',
+                                    background: 'linear-gradient(135deg, #526086 0%, #667BA3 100%)',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',

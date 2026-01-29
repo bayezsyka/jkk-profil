@@ -10,17 +10,21 @@ export default {
     theme: {
         extend: {
             colors: {
-                // JKK Brand Colors
+                // JKK Brand Colors - diambil dari logo
                 'jkk': {
-                    'primary': '#59658c',      // Biru keabuan - warna utama
+                    'primary': '#667BA3',      // Biru keabuan terang - warna batang logo
+                    'primary-dark': '#526086', // Biru keabuan gelap - variasi
+                    'primary-darker': '#4A5678', // Biru keabuan lebih gelap
+                    'accent': '#3D3532',       // Coklat gelap - swoosh logo
                     'light': '#fdfdfe',        // Putih bersih - background
-                    'dark': '#322c2b',         // Coklat gelap - text
-                    'secondary': '#003366',    // Biru gelap - accent
+                    'dark': '#2D2926',         // Coklat sangat gelap - text
                 },
                 // Alias untuk kemudahan penggunaan
-                'primary': '#59658c',
-                'secondary': '#003366',
-                'dark': '#322c2b',
+                'primary': '#667BA3',
+                'primary-dark': '#526086',
+                'secondary': '#4A5678',
+                'accent': '#3D3532',
+                'dark': '#2D2926',
                 'light': '#fdfdfe',
             },
             fontFamily: {

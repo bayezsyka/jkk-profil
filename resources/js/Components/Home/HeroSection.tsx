@@ -22,11 +22,11 @@ const HeroSection: React.FC = () => {
                 style={{
                     position: 'absolute',
                     inset: 0,
-                    backgroundImage: 'url(/images/hero.webp), linear-gradient(135deg, #0B2B5A 0%, #0D3A7A 50%, #071F42 100%)',
+                    backgroundImage: 'url(/images/hero.webp), linear-gradient(135deg, #526086 0%, #667BA3 50%, #4A5678 100%)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    backgroundColor: '#0B2B5A',
+                    backgroundColor: '#526086',
                 }}
             />
 
@@ -35,7 +35,7 @@ const HeroSection: React.FC = () => {
                 style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'linear-gradient(135deg, rgba(11, 43, 90, 0.92) 0%, rgba(13, 58, 122, 0.88) 50%, rgba(5, 26, 58, 0.95) 100%)',
+                    background: 'linear-gradient(135deg, rgba(82, 96, 134, 0.92) 0%, rgba(102, 123, 163, 0.88) 50%, rgba(74, 86, 120, 0.95) 100%)',
                 }}
             />
 
@@ -94,7 +94,7 @@ const HeroSection: React.FC = () => {
                         style={{
                             padding: '16px 32px',
                             backgroundColor: 'white',
-                            color: '#0B2B5A',
+                            color: '#526086',
                             borderRadius: '9999px',
                             textDecoration: 'none',
                             fontWeight: 600,

@@ -62,21 +62,21 @@ const ContactSection: React.FC = () => {
                             alignItems: 'center',
                             gap: '12px',
                             padding: '16px 32px',
-                            backgroundColor: '#0B2B5A',
+                            backgroundColor: '#526086',
                             color: 'white',
                             borderRadius: '9999px',
                             textDecoration: 'none',
                             fontWeight: 600,
                             fontSize: '16px',
                             transition: 'all 0.3s ease',
-                            boxShadow: '0 4px 20px rgba(11, 43, 90, 0.3)',
+                            boxShadow: '0 4px 20px rgba(82, 96, 134, 0.3)',
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#0D3A7A';
+                            e.currentTarget.style.backgroundColor = '#667BA3';
                             e.currentTarget.style.transform = 'translateY(-2px)';
                         }}
                         onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = '#0B2B5A';
+                            e.currentTarget.style.backgroundColor = '#526086';
                             e.currentTarget.style.transform = 'translateY(0)';
                         }}
                     >
@@ -95,22 +95,22 @@ const ContactSection: React.FC = () => {
                             gap: '12px',
                             padding: '16px 32px',
                             backgroundColor: 'white',
-                            color: '#0B2B5A',
+                            color: '#526086',
                             borderRadius: '9999px',
                             textDecoration: 'none',
                             fontWeight: 600,
                             fontSize: '16px',
-                            border: '2px solid #0B2B5A',
+                            border: '2px solid #526086',
                             transition: 'all 0.3s ease',
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#0B2B5A';
+                            e.currentTarget.style.backgroundColor = '#526086';
                             e.currentTarget.style.color = 'white';
                             e.currentTarget.style.transform = 'translateY(-2px)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.backgroundColor = 'white';
-                            e.currentTarget.style.color = '#0B2B5A';
+                            e.currentTarget.style.color = '#526086';
                             e.currentTarget.style.transform = 'translateY(0)';
                         }}
                     >
@@ -163,22 +163,22 @@ const ContactSection: React.FC = () => {
                             gap: '12px',
                             padding: '16px 32px',
                             backgroundColor: 'white',
-                            color: '#0B2B5A',
+                            color: '#526086',
                             borderRadius: '9999px',
                             textDecoration: 'none',
                             fontWeight: 600,
                             fontSize: '16px',
-                            border: '2px solid #0B2B5A',
+                            border: '2px solid #526086',
                             transition: 'all 0.3s ease',
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = '#0B2B5A';
+                            e.currentTarget.style.backgroundColor = '#526086';
                             e.currentTarget.style.color = 'white';
                             e.currentTarget.style.transform = 'translateY(-2px)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.backgroundColor = 'white';
-                            e.currentTarget.style.color = '#0B2B5A';
+                            e.currentTarget.style.color = '#526086';
                             e.currentTarget.style.transform = 'translateY(0)';
                         }}
                     >

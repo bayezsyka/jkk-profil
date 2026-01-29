@@ -1,0 +1,44 @@
+{
+    "nav": {
+        "home": "Beranda",
+        "about": "Tentang Kami",
+        "services": "Layanan",
+        "projects": "Proyek",
+        "contact": "Kontak"
+    },
+    "hero": {
+        "title": "Membangun Masa Depan Indonesia dengan Konstruksi Berkualitas",
+        "subtitle": "General Contractor, Batching Plant, & Asphalt Mixing Plant Terpercaya di Brebes.",
+        "cta": {
+            "learn": "Pelajari Layanan",
+            "contact": "Hubungi Kami"
+        }
+    },
+    "about": {
+        "title": "Mengapa Memilih JKK?",
+        "construction": {
+            "title": "General Contractor",
+            "desc": "Spesialis konstruksi Jalan Raya, Jembatan, Saluran, dan Gedung dengan tenaga ahli berpengalaman."
+        },
+        "infrastructure": {
+            "title": "Batching Plant",
+            "desc": "Produksi beton ready mix berkualitas tinggi dengan sistem Dry Mix dan dukungan Laboratorium Beton lengkap."
+        },
+        "energy": {
+            "title": "Asphalt Mixing Plant",
+            "desc": "Penyediaan aspal hotmix dengan peralatan modern untuk proyek pengaspalan jalan yang presisi."
+        }
+    },
+    "stats": {
+        "years": "Tahun Pengalaman",
+        "projects": "Proyek Selesai",
+        "clients": "Klien Puas"
+    },
+    "contact": {
+        "title": "Hubungi Kami",
+        "office": "Kantor Pusat",
+        "basecamp": "Basecamp / Pabrik",
+        "phone": "Telepon",
+        "email": "Email"
+    }
+}

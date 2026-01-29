@@ -15,7 +15,7 @@ const StatsSection: React.FC = () => {
         <section
             style={{
                 padding: '80px 24px',
-                backgroundColor: '#003366',
+                backgroundColor: '#526086',
             }}
         >
             <div

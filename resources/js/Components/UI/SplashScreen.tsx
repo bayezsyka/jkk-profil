@@ -38,7 +38,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'linear-gradient(135deg, #0B2B5A 0%, #0D3A7A 50%, #051A3A 100%)',
+                background: 'linear-gradient(135deg, #526086 0%, #667BA3 50%, #4A5678 100%)',
                 transition: 'opacity 0.5s ease-out',
                 opacity: fadeOut ? 0 : 1,
             }}

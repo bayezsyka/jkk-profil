@@ -72,7 +72,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                             width: '28px',
                             height: '28px',
                             borderRadius: '50%',
-                            backgroundColor: '#0B2B5A',
+                            backgroundColor: '#526086',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -104,7 +104,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                         width: '36px',
                         height: '36px',
                         borderRadius: '50%',
-                        backgroundColor: '#0B2B5A',
+                        backgroundColor: '#526086',
                         border: 'none',
                         display: 'flex',
                         alignItems: 'center',
@@ -138,7 +138,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                             padding: '4px 8px',
                             fontSize: '14px',
                             fontWeight: language === 'id' ? 700 : 400,
-                            color: language === 'id' ? '#0B2B5A' : '#6b7280',
+                            color: language === 'id' ? '#526086' : '#6b7280',
                             cursor: 'pointer',
                             position: 'relative',
                             transition: 'color 0.2s',
@@ -154,7 +154,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                                     transform: 'translateX(-50%)',
                                     width: '16px',
                                     height: '2px',
-                                    backgroundColor: '#0B2B5A',
+                                    backgroundColor: '#526086',
                                 }}
                             />
                         )}
@@ -168,7 +168,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                             padding: '4px 8px',
                             fontSize: '14px',
                             fontWeight: language === 'en' ? 700 : 400,
-                            color: language === 'en' ? '#0B2B5A' : '#6b7280',
+                            color: language === 'en' ? '#526086' : '#6b7280',
                             cursor: 'pointer',
                             position: 'relative',
                             transition: 'color 0.2s',
@@ -184,7 +184,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                                     transform: 'translateX(-50%)',
                                     width: '20px',
                                     height: '2px',
-                                    backgroundColor: '#0B2B5A',
+                                    backgroundColor: '#526086',
                                 }}
                             />
                         )}
@@ -222,7 +222,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                                 fontSize: '14px',
                                 transition: 'border-color 0.2s',
                             }}
-                            onFocus={(e) => (e.target.style.borderColor = '#0B2B5A')}
+                            onFocus={(e) => (e.target.style.borderColor = '#526086')}
                             onBlur={(e) => (e.target.style.borderColor = 'rgba(0,0,0,0.1)')}
                             autoFocus
                         />
@@ -231,7 +231,7 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                             style={{
                                 padding: '10px 24px',
                                 borderRadius: '9999px',
-                                backgroundColor: '#0B2B5A',
+                                backgroundColor: '#526086',
                                 color: 'white',
                                 border: 'none',
                                 fontSize: '14px',

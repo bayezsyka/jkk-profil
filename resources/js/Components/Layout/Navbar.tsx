@@ -101,7 +101,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, topBarVisible }) => {
                     }} 
                 />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <span style={{ fontWeight: 700, fontSize: '14px', color: '#0B2B5A', lineHeight: 1.2 }}>JKK</span>
+                    <span style={{ fontWeight: 700, fontSize: '14px', color: '#526086', lineHeight: 1.2 }}>JKK</span>
                     <span style={{ fontSize: '10px', color: '#6b7280', letterSpacing: '0.5px' }}>COMPANY PROFILE</span>
                 </div>
             </a>
@@ -178,7 +178,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled, topBarVisible }) => {
                                         }}
                                         onMouseEnter={(e) => {
                                             e.currentTarget.style.backgroundColor = '#f9fafb';
-                                            e.currentTarget.style.color = '#0B2B5A';
+                                            e.currentTarget.style.color = '#526086';
                                         }}
                                         onMouseLeave={(e) => {
                                             e.currentTarget.style.backgroundColor = 'transparent';

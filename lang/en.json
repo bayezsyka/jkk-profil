@@ -1,0 +1,44 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "services": "Services",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Building Indonesia's Future with Quality Construction",
+        "subtitle": "Trusted General Contractor, Batching Plant, & Asphalt Mixing Plant in Brebes.",
+        "cta": {
+            "learn": "Our Services",
+            "contact": "Contact Us"
+        }
+    },
+    "about": {
+        "title": "Why Choose JKK?",
+        "construction": {
+            "title": "General Contractor",
+            "desc": "Specialists in Highway, Bridge, Drainage, and Building construction with experienced experts."
+        },
+        "infrastructure": {
+            "title": "Batching Plant",
+            "desc": "High-quality ready mix concrete production with Dry Mix systems and complete Concrete Laboratory support."
+        },
+        "energy": {
+            "title": "Asphalt Mixing Plant",
+            "desc": "Providing hotmix asphalt with modern equipment for precise road paving projects."
+        }
+    },
+    "stats": {
+        "years": "Years Experience",
+        "projects": "Completed Projects",
+        "clients": "Happy Clients"
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "office": "Head Office",
+        "basecamp": "Basecamp / Plant",
+        "phone": "Phone",
+        "email": "Email"
+    }
+}

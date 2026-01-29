@@ -9,10 +9,12 @@
 
 /* CSS Custom Properties (CSS Variables) */
 :root {
-    --color-primary: #59658c;
-    --color-secondary: #4d608c;
+    --color-primary: #667BA3;
+    --color-primary-dark: #526086;
+    --color-secondary: #4A5678;
+    --color-accent: #3D3532;
     --color-light: #fdfdfe;
-    --color-dark: #322c2b;
+    --color-dark: #2D2926;
 }
 
 /* CSS Reset & Base Styles */
@@ -63,7 +65,7 @@ body {
 .splash-bg-circle-1 {
     width: 300px;
     height: 300px;
-    background: #4a90d9;
+    background: #7A8DB8;
     top: -100px;
     right: -100px;
 }
@@ -71,7 +73,7 @@ body {
 .splash-bg-circle-2 {
     width: 400px;
     height: 400px;
-    background: #1e5aac;
+    background: #526086;
     bottom: -150px;
     left: -150px;
     animation-delay: 1s;
@@ -80,7 +82,7 @@ body {
 .splash-bg-circle-3 {
     width: 200px;
     height: 200px;
-    background: #3b7bc7;
+    background: #667BA3;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -161,7 +163,7 @@ body {
 .hero-bg-circle-1 {
     width: 500px;
     height: 500px;
-    background: #4a90d9;
+    background: #7A8DB8;
     top: -200px;
     right: -100px;
 }
@@ -169,7 +171,7 @@ body {
 .hero-bg-circle-2 {
     width: 600px;
     height: 600px;
-    background: #1e5aac;
+    background: #526086;
     bottom: -200px;
     left: -200px;
     animation-delay: 2s;
@@ -331,13 +333,13 @@ html {
 
 /* Focus visible styles */
 :focus-visible {
-    outline: 2px solid #0b2b5a;
+    outline: 2px solid #526086;
     outline-offset: 2px;
 }
 
 /* Selection styles */
 ::selection {
-    background-color: #0b2b5a;
+    background-color: #526086;
     color: white;
 }
 
@@ -351,10 +353,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #0b2b5a;
+    background: #526086;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0d3a7a;
+    background: #667BA3;
 }
