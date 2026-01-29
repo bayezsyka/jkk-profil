@@ -2,13 +2,48 @@
     "nav": {
         "home": "Beranda",
         "about": "Tentang Kami",
-        "services": "Layanan",
+        "about_profile": "Profil Perusahaan",
+        "about_vision": "Visi & Misi",
+        "about_structure": "Struktur Organisasi",
+        "about_certification": "Sertifikasi",
+        "services": "Layanan Kami",
+        "services_construction": "Konstruksi Bangunan",
+        "services_infrastructure": "Infrastruktur",
+        "services_renovation": "Renovasi",
+        "services_consultation": "Konsultasi",
         "projects": "Proyek",
+        "projects_ongoing": "Proyek Berjalan",
+        "projects_completed": "Proyek Selesai",
+        "projects_portfolio": "Portfolio",
         "contact": "Kontak"
     },
+    "topbar": {
+        "contact": "Hubungi Kami",
+        "search": "Cari...",
+        "searchBtn": "Cari"
+    },
+    "splash": {
+        "tagline": "Membangun Masa Depan Indonesia"
+    },
     "hero": {
-        "title": "Membangun Masa Depan Indonesia dengan Konstruksi Berkualitas",
-        "subtitle": "General Contractor, Batching Plant, & Asphalt Mixing Plant Terpercaya di Brebes.",
+        "title": "Jasa Konstruksi, Batching Plant & Asphalt Mixing Plant Terpercaya",
+        "subtitle": "Mitra strategis pembangunan infrastruktur Indonesia. Menghadirkan beton ready mix berkualitas dan layanan pengaspalan presisi dengan teknologi terkini.",
+        "description": "Jasa Konstruksi, Batching Plant, & Asphalt Mixing Plant Terpercaya di Brebes",
+        "slides": {
+            "0": {
+                "title": "Jasa Konstruksi Terpercaya",
+                "subtitle": "Mitra strategis pembangunan infrastruktur Indonesia. Spesialis Gedung, Jalan, dan Jembatan."
+            },
+            "1": {
+                "title": "Batching Plant Berkualitas Tinggi",
+                "subtitle": "Menghadirkan beton ready mix berkualitas dengan sistem Dry Mix dan dukungan laboratorium lengkap."
+            },
+            "2": {
+                "title": "Asphalt Mixing Plant Presisi",
+                "subtitle": "Layanan pengaspalan presisi dengan teknologi terkini untuk jalan yang tahan lama."
+            }
+        },
+
         "cta": {
             "learn": "Pelajari Layanan",
             "contact": "Hubungi Kami"
@@ -16,6 +51,7 @@
     },
     "about": {
         "title": "Mengapa Memilih JKK?",
+        "description": "PT. Jaya Karya Kontruksi adalah perusahaan konstruksi terpercaya yang bergerak di bidang General Contractor, Batching Plant, dan Asphalt Mixing Plant.",
         "construction": {
             "title": "General Contractor",
             "desc": "Spesialis konstruksi Jalan Raya, Jembatan, Saluran, dan Gedung dengan tenaga ahli berpengalaman."
@@ -31,14 +67,66 @@
     },
     "stats": {
         "years": "Tahun Pengalaman",
+        "years_value": "15+",
         "projects": "Proyek Selesai",
-        "clients": "Klien Puas"
+        "projects_value": "500+",
+        "employees": "Karyawan",
+        "employees_value": "200+",
+        "clients": "Klien Puas",
+        "clients_value": "100+",
+        "provinces": "Provinsi"
+    },
+    "services": {
+        "title": "Layanan Kami",
+        "description": "Kami menyediakan berbagai layanan konstruksi berkualitas tinggi",
+        "contractor": {
+            "title": "General Contractor",
+            "desc": "Konstruksi jalan raya, jembatan, saluran air, dan bangunan gedung dengan standar kualitas tinggi."
+        },
+        "batching": {
+            "title": "Batching Plant",
+            "desc": "Produksi beton ready mix dengan sistem Dry Mix modern dan dilengkapi Laboratorium Beton."
+        },
+        "asphalt": {
+            "title": "Asphalt Mixing Plant",
+            "desc": "Produksi aspal hotmix berkualitas untuk proyek pengaspalan jalan."
+        }
     },
     "contact": {
         "title": "Hubungi Kami",
+        "description": "Siap membantu mewujudkan proyek konstruksi Anda. Hubungi kami untuk konsultasi gratis.",
         "office": "Kantor Pusat",
         "basecamp": "Basecamp / Pabrik",
         "phone": "Telepon",
-        "email": "Email"
+        "email": "Email",
+        "address": "Alamat",
+        "form": {
+            "name": "Nama Lengkap",
+            "email": "Alamat Email",
+            "phone": "Nomor Telepon",
+            "subject": "Subjek",
+            "message": "Pesan",
+            "submit": "Kirim Pesan"
+        }
+    },
+    "footer": {
+        "company": "PT. Jaya Karya Kontruksi",
+        "description": "Perusahaan konstruksi terpercaya yang bergerak di bidang General Contractor, Batching Plant, dan Asphalt Mixing Plant.",
+        "quickLinks": "Tautan Cepat",
+        "services": "Layanan",
+        "contactInfo": "Informasi Kontak",
+        "copyright": "© 2026 PT. Jaya Karya Kontruksi. Hak Cipta Dilindungi.",
+        "followUs": "Ikuti Kami"
+    },
+    "toast": {
+        "langChanged": "Bahasa diubah ke Indonesia"
+    },
+    "common": {
+        "readMore": "Baca Selengkapnya",
+        "viewAll": "Lihat Semua",
+        "loading": "Memuat...",
+        "error": "Terjadi kesalahan",
+        "success": "Berhasil",
+        "close": "Tutup"
     }
 }

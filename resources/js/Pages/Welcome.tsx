@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Head } from '@inertiajs/react';
 
-// Contexts
-import { LanguageProvider } from '@/contexts/LanguageContext';
-
 // Layout Components
 import { TopBar, Navbar, Footer } from '@/Components/Layout';
 
@@ -87,7 +84,7 @@ const WelcomeContent: React.FC = () => {
 
 export default function Welcome() {
     return (
-        <LanguageProvider>
+        <>
             <Head>
                 <title>JKK - Jaya Karya Kontruksi</title>
                 <meta name="description" content="Website Resmi JKK - Jaya Karya Kontruksi. Membangun Masa Depan Indonesia dengan konstruksi berkualitas tinggi." />
@@ -99,6 +96,7 @@ export default function Welcome() {
             <div className="jkk-website">
                 <WelcomeContent />
             </div>
-        </LanguageProvider>
+        </>
     );
 }
+

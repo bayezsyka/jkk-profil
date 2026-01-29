@@ -2,13 +2,48 @@
     "nav": {
         "home": "Home",
         "about": "About Us",
-        "services": "Services",
+        "about_profile": "Company Profile",
+        "about_vision": "Vision & Mission",
+        "about_structure": "Organization Structure",
+        "about_certification": "Certifications",
+        "services": "Our Services",
+        "services_construction": "Building Construction",
+        "services_infrastructure": "Infrastructure",
+        "services_renovation": "Renovation",
+        "services_consultation": "Consultation",
         "projects": "Projects",
+        "projects_ongoing": "Ongoing Projects",
+        "projects_completed": "Completed Projects",
+        "projects_portfolio": "Portfolio",
         "contact": "Contact"
     },
+    "topbar": {
+        "contact": "Contact Us",
+        "search": "Search...",
+        "searchBtn": "Search"
+    },
+    "splash": {
+        "tagline": "Building the Future of Indonesia"
+    },
     "hero": {
-        "title": "Building Indonesia's Future with Quality Construction",
-        "subtitle": "Trusted General Contractor, Batching Plant, & Asphalt Mixing Plant in Brebes.",
+        "title": "Trusted Construction Services, Batching Plant & Asphalt Mixing Plant",
+        "subtitle": "Strategic partner for Indonesia infrastructure development. Delivering quality ready-mix concrete and precision asphalt paving with modern technology.",
+        "description": "Trusted Construction Services, Batching Plant, & Asphalt Mixing Plant in Brebes",
+        "slides": {
+            "0": {
+                "title": "Trusted Construction Services",
+                "subtitle": "Strategic partner for Indonesia infrastructure development. Specialists in Buildings, Roads, and Bridges."
+            },
+            "1": {
+                "title": "High Quality Batching Plant",
+                "subtitle": "Delivering quality ready-mix concrete with Dry Mix system and complete laboratory support."
+            },
+            "2": {
+                "title": "Precision Asphalt Mixing Plant",
+                "subtitle": "Precision asphalt paving services with modern technology for durable roads."
+            }
+        },
+
         "cta": {
             "learn": "Our Services",
             "contact": "Contact Us"
@@ -16,6 +51,7 @@
     },
     "about": {
         "title": "Why Choose JKK?",
+        "description": "PT. Jaya Karya Kontruksi is a trusted construction company engaged in General Contractor, Batching Plant, and Asphalt Mixing Plant services.",
         "construction": {
             "title": "General Contractor",
             "desc": "Specialists in Highway, Bridge, Drainage, and Building construction with experienced experts."
@@ -31,14 +67,66 @@
     },
     "stats": {
         "years": "Years Experience",
+        "years_value": "15+",
         "projects": "Completed Projects",
-        "clients": "Happy Clients"
+        "projects_value": "500+",
+        "employees": "Employees",
+        "employees_value": "200+",
+        "clients": "Happy Clients",
+        "clients_value": "100+",
+        "provinces": "Provinces"
+    },
+    "services": {
+        "title": "Our Services",
+        "description": "We provide various high-quality construction services",
+        "contractor": {
+            "title": "General Contractor",
+            "desc": "Highway, bridge, drainage, and building construction with high quality standards."
+        },
+        "batching": {
+            "title": "Batching Plant",
+            "desc": "Ready mix concrete production with modern Dry Mix system and equipped with Concrete Laboratory."
+        },
+        "asphalt": {
+            "title": "Asphalt Mixing Plant",
+            "desc": "Quality hotmix asphalt production for road paving projects."
+        }
     },
     "contact": {
         "title": "Get in Touch",
+        "description": "Ready to help realize your construction project. Contact us for a free consultation.",
         "office": "Head Office",
         "basecamp": "Basecamp / Plant",
         "phone": "Phone",
-        "email": "Email"
+        "email": "Email",
+        "address": "Address",
+        "form": {
+            "name": "Full Name",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "subject": "Subject",
+            "message": "Message",
+            "submit": "Send Message"
+        }
+    },
+    "footer": {
+        "company": "PT. Jaya Karya Kontruksi",
+        "description": "A trusted construction company engaged in General Contractor, Batching Plant, and Asphalt Mixing Plant services.",
+        "quickLinks": "Quick Links",
+        "services": "Services",
+        "contactInfo": "Contact Info",
+        "copyright": "© 2026 PT. Jaya Karya Kontruksi. All Rights Reserved.",
+        "followUs": "Follow Us"
+    },
+    "toast": {
+        "langChanged": "Language changed to English"
+    },
+    "common": {
+        "readMore": "Read More",
+        "viewAll": "View All",
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "success": "Success",
+        "close": "Close"
     }
 }

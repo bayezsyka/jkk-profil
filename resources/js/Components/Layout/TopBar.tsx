@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage, Locale } from '@/hooks/useLanguage';
 
 interface TopBarProps {
     isVisible: boolean;
@@ -7,17 +7,19 @@ interface TopBarProps {
 }
 
 const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
-    const { language, setLanguage, t } = useLanguage();
+    const { locale, setLanguage, t } = useLanguage();
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
-    const handleLanguageChange = (lang: 'id' | 'en') => {
-        if (lang !== language) {
-            setLanguage(lang);
+    const handleLanguageChange = (lang: Locale) => {
+        if (lang !== locale) {
+            // Show toast before navigation (will redirect)
             onShowToast(
                 lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English',
                 'info'
             );
+            // Navigate to language switch route
+            setLanguage(lang);
         }
     };
 
@@ -137,15 +139,15 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                             border: 'none',
                             padding: '4px 8px',
                             fontSize: '14px',
-                            fontWeight: language === 'id' ? 700 : 400,
-                            color: language === 'id' ? '#526086' : '#6b7280',
+                            fontWeight: locale === 'id' ? 700 : 400,
+                            color: locale === 'id' ? '#526086' : '#6b7280',
                             cursor: 'pointer',
                             position: 'relative',
                             transition: 'color 0.2s',
                         }}
                     >
                         ID
-                        {language === 'id' && (
+                        {locale === 'id' && (
                             <span
                                 style={{
                                     position: 'absolute',
@@ -167,15 +169,15 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
                             border: 'none',
                             padding: '4px 8px',
                             fontSize: '14px',
-                            fontWeight: language === 'en' ? 700 : 400,
-                            color: language === 'en' ? '#526086' : '#6b7280',
+                            fontWeight: locale === 'en' ? 700 : 400,
+                            color: locale === 'en' ? '#526086' : '#6b7280',
                             cursor: 'pointer',
                             position: 'relative',
                             transition: 'color 0.2s',
                         }}
                     >
                         ENG
-                        {language === 'en' && (
+                        {locale === 'en' && (
                             <span
                                 style={{
                                     position: 'absolute',
