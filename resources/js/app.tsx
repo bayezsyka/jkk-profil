@@ -10,7 +10,7 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true });
-        return pages[`./Pages/${name}.tsx`];
+        return pages[`./Pages/${name}.tsx`] || pages[`./Pages/${name}/Index.tsx`];
     },
     setup({ el, App, props }) {
         const root = createRoot(el);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Head } from '@inertiajs/react';
 
-// Layout Components
-import { Navbar, Footer } from '@/Components/Layout';
+// Navigation Components
+import { Navbar, Footer } from '@/Components/Navigation';
 
 // Home Section Components
-import { HeroSection, AboutSection, ContactSection } from '@/Components/Home';
+import { HeroSection, AboutSection, ContactSection } from './Sections';
 
 // UI Components
 import { SplashScreen, Toast } from '@/Components/UI';

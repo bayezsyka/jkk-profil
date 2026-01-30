@@ -1,10 +1,9 @@
 // Components Index - Re-export all components from subdirectories
 
-// Layout Components
-export * from './Layout';
+// Navigation Components
+export * from './Navigation';
 
-// Home Page Sections
-export * from './Home';
+
 
 // UI Components
 export * from './UI';

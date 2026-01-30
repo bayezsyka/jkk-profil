@@ -1,8 +1,8 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode, PropsWithChildren } from 'react';
 import { Head } from '@inertiajs/react';
 
-// Layout Components
-import { Navbar, Footer } from '@/Components/Layout';
+// Navigation Components
+import { Navbar, Footer } from '@/Components/Navigation';
 import { PageHeader } from '@/Components/Common';
 import { Toast } from '@/Components/UI';
 
@@ -16,23 +16,22 @@ interface ToastData {
     type: 'success' | 'info' | 'error';
 }
 
-interface PublicLayoutProps {
-    children: ReactNode;
+type PublicLayoutProps = PropsWithChildren<{
     title?: string;
     headerTitle?: string;
     breadcrumbs?: BreadcrumbItem[];
     headerImage?: string;
     transparentHeader?: boolean;
-}
+}>;
 
-const PublicLayout: React.FC<PublicLayoutProps> = ({
+export default function PublicLayout({
     children,
     title = 'JKK - Jaya Karya Kontruksi', // Default title
     headerTitle,
     breadcrumbs = [],
     headerImage,
     transparentHeader = false
-}) => {
+}: PublicLayoutProps) {
     // Note: Navbar/TopBar now handle their own scroll state, 
     // but we might need scroll here for other effects if needed.
     // Keeping it simple for now and letting components be autonomous.
@@ -115,6 +114,4 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({
             </div>
         </>
     );
-};
-
-export default PublicLayout;
+}

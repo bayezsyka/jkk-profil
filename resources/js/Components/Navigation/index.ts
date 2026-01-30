@@ -1,4 +1,4 @@
-// Layout Components
-export { default as TopBar } from './TopBar';
+// Navigation Components
 export { default as Navbar } from './Navbar';
 export { default as Footer } from './Footer';
+export { default as TopBar } from './TopBar';
