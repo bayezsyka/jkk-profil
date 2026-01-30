@@ -14,23 +14,29 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/language/{locale}', function (string $locale) {
-    // Only allow valid locales
-    $allowedLocales = ['id', 'en'];
-
-    if (in_array($locale, $allowedLocales)) {
-        session(['locale' => $locale]);
-        App::setLocale($locale);
-    }
-
-    return redirect()->back();
-})->name('language.switch');
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
 Route::get('/', function () {
-    return Inertia::render('Welcome');
+    return redirect('/id');
 });
+
+Route::prefix('{locale}')
+    ->where(['locale' => 'id|en'])
+    ->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('Welcome');
+        })->name('home');
+
+        Route::get('/tentang-kami/struktur', function () {
+            return Inertia::render('About/Structure');
+        })->name('about.structure');
+
+        Route::get('/kontak-kami', function () {
+            return Inertia::render('Contact/Index');
+        })->name('contact');
+    });

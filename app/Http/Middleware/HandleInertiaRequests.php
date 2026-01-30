@@ -31,13 +31,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        // Get locale from session, default to 'id'
-        $locale = session('locale', 'id');
-
-        // Set the application locale
-        App::setLocale($locale);
-
-        // Read translations from JSON file
+        $locale = App::getLocale();
         $translations = $this->getTranslations($locale);
 
         return [

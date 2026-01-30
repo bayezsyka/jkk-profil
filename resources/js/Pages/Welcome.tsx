@@ -59,14 +59,13 @@ const WelcomeContent: React.FC = () => {
 
     return (
         <>
-            <TopBar isVisible={topBarVisible} onShowToast={showToast} />
-            <Navbar isScrolled={isScrolled} topBarVisible={topBarVisible} />
+            {/* TopBar functionality merged into Navbar */}
+            <Navbar isScrolled={isScrolled} isTransparent={true} onShowToast={showToast} />
             
             <main>
                 <HeroSection />
                 <AboutSection />
                 <StatsSection />
-                <ContactSection />
             </main>
             
             <Footer />

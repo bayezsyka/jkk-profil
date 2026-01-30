@@ -10,3 +10,4 @@ export { default as PrimaryButton } from './PrimaryButton';
 export { default as ResponsiveNavLink } from './ResponsiveNavLink';
 export { default as SecondaryButton } from './SecondaryButton';
 export { default as TextInput } from './TextInput';
+export { default as PageHeader } from './PageHeader';

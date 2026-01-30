@@ -1,4 +1,4 @@
-import { usePage } from '@inertiajs/react';
+import { usePage, router } from '@inertiajs/react';
 
 // =============================================================================
 // Type Definitions
@@ -219,9 +219,19 @@ export const useLanguage = (): UseLanguageReturn => {
      * @param lang - Target locale ('id' or 'en')
      */
     const setLanguage = (lang: Locale): void => {
-        // Navigate to Laravel language switch route
-        // This will update the session and redirect back with new translations
-        window.location.href = `/language/${lang}`;
+        const { pathname, search, hash } = window.location;
+        const segments = pathname.split('/').filter(Boolean);
+
+        // Check if first segment is a locale
+        if (segments.length > 0 && ['id', 'en'].includes(segments[0])) {
+            segments[0] = lang;
+        } else {
+            // If no locale in URL (shouldn't happen with new routing but safe to handle), prepend it
+            segments.unshift(lang);
+        }
+
+        const newPath = '/' + segments.join('/');
+        router.visit(newPath + search + hash);
     };
 
     return {
