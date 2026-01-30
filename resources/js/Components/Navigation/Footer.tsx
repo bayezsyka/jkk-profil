@@ -5,7 +5,7 @@ import { PageProps } from '@/types';
 
 const Footer: React.FC = () => {
     const { company } = usePage<PageProps>().props;
-    const { locale } = useLanguage();
+    const { locale, t } = useLanguage();
     const currentYear = new Date().getFullYear();
 
     return (
@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
                                     '0 12px 26px rgba(0,0,0,0.18)';
                             }}
                         >
-                            Hubungi Kami
+                            {t('topbar.contact')}
                             <svg
                                 width="18"
                                 height="18"

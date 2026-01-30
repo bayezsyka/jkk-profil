@@ -107,7 +107,20 @@
             "subject": "Subjek",
             "message": "Pesan",
             "submit": "Kirim Pesan"
-        }
+        },
+        "location": {
+            "title": "Lokasi",
+            "subtitle": "Kantor Utama & Basecamp",
+            "office_label": "Kantor Utama",
+            "basecamp_label": "Basecamp",
+            "office_map_title": "Lokasi Kantor Utama",
+            "basecamp_map_title": "Lokasi Basecamp"
+        },
+        "other": {
+            "title": "Kontak Lainnya"
+        },
+        "website": "Website",
+        "address_not_set": "Alamat Perusahaan belum diatur."
     },
     "footer": {
         "company": "PT. Jaya Karya Kontruksi",

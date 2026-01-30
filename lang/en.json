@@ -107,7 +107,20 @@
             "subject": "Subject",
             "message": "Message",
             "submit": "Send Message"
-        }
+        },
+        "location": {
+            "title": "Location",
+            "subtitle": "Head Office & Basecamp",
+            "office_label": "Head Office",
+            "basecamp_label": "Basecamp",
+            "office_map_title": "Head Office Location",
+            "basecamp_map_title": "Basecamp Location"
+        },
+        "other": {
+            "title": "Other Contacts"
+        },
+        "website": "Website",
+        "address_not_set": "Company address not set."
     },
     "footer": {
         "company": "PT. Jaya Karya Kontruksi",

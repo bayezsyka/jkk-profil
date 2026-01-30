@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
     const { t } = useLanguage();
     const { company } = usePage<ContactPageProps>().props;
 
-    const breadcrumbs = [{ label: 'Home', href: '/' }, { label: t('nav.contact') }];
+    const breadcrumbs = [{ label: t('nav.home'), href: '/' }, { label: t('nav.contact') }];
 
     // Kantor Utama: 6°52'38.8"S 109°04'22.5"E => -6.877444, 109.072917
     // Basecamp    : 6°56'34.7"S 108°55'04.6"E => -6.942972, 108.917944
@@ -30,8 +30,8 @@ const Contact: React.FC = () => {
                         <div className="space-y-3">
                             <div className="flex items-end justify-between gap-4">
                                 <div>
-                                    <h3 className="text-lg font-bold text-gray-900">Lokasi</h3>
-                                    <p className="text-sm text-gray-500">Kantor Utama & Basecamp</p>
+                                    <h3 className="text-lg font-bold text-gray-900">{t('contact.location.title')}</h3>
+                                    <p className="text-sm text-gray-500">{t('contact.location.subtitle')}</p>
                                 </div>
                             </div>
 
@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
                                 {/* Kantor Utama */}
                                 <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
                                     <div className="px-5 py-4 border-b border-gray-200 bg-gray-50">
-                                        <p className="text-sm font-bold text-gray-800">Kantor Utama</p>
+                                        <p className="text-sm font-bold text-gray-800">{t('contact.location.office_label')}</p>
                                         <p className="text-[11px] text-gray-500 mt-1">
                                             6°52&apos;38.8&quot;S 109°04&apos;22.5&quot;E
                                         </p>
@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
                                             allowFullScreen
                                             loading="lazy"
                                             referrerPolicy="no-referrer-when-downgrade"
-                                            title="Lokasi Kantor Utama"
+                                            title={t('contact.location.office_map_title')}
                                         />
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
                                 {/* Basecamp */}
                                 <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
                                     <div className="px-5 py-4 border-b border-gray-200 bg-gray-50">
-                                        <p className="text-sm font-bold text-gray-800">Basecamp</p>
+                                        <p className="text-sm font-bold text-gray-800">{t('contact.location.basecamp_label')}</p>
                                         <p className="text-[11px] text-gray-500 mt-1">
                                             6°56&apos;34.7&quot;S 108°55&apos;04.6&quot;E
                                         </p>
@@ -75,7 +75,7 @@ const Contact: React.FC = () => {
                                             allowFullScreen
                                             loading="lazy"
                                             referrerPolicy="no-referrer-when-downgrade"
-                                            title="Lokasi Basecamp"
+                                            title={t('contact.location.basecamp_map_title')}
                                         />
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@ const Contact: React.FC = () => {
                         {/* KONTAK LAINNYA */}
                         <div className="bg-blue-50/50 p-8 md:p-10 rounded-2xl border border-blue-100">
                             <div className="flex items-center justify-between gap-4 flex-wrap">
-                                <h3 className="text-xl font-bold text-[#1e3a8a]">Kontak Lainnya</h3>
+                                <h3 className="text-xl font-bold text-[#1e3a8a]">{t('contact.other.title')}</h3>
                                 <a
                                     href="https://jayakaryakontruksi.com"
                                     target="_blank"
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
                                     <div>
                                         <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.office')}</p>
                                         <p className="text-gray-600 leading-relaxed text-sm">
-                                            {company?.address || 'Alamat Perusahaan belum diatur.'}
+                                            {company?.address || t('contact.address_not_set')}
                                         </p>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@ const Contact: React.FC = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <p className="text-sm font-semibold text-gray-900 mb-1">Website</p>
+                                        <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.website')}</p>
                                         <a
                                             href="https://jayakaryakontruksi.com"
                                             target="_blank"
