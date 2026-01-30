@@ -1,5 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useLanguage, Locale } from '@/hooks/useLanguage';
+import React, { useState, useEffect } from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
+import { usePage } from '@inertiajs/react';
+import ApplicationLogo from '@/Components/Common/ApplicationLogo';
+import TopBar from './TopBar'; // Pastikan path import benar
 
 interface MenuItem {
     label: string;
@@ -8,321 +11,241 @@ interface MenuItem {
 }
 
 interface NavbarProps {
-    isScrolled: boolean;
-    // topBarVisible no longer needed as logic is internal
     onShowToast?: (message: string, type: 'success' | 'info' | 'error') => void;
+    className?: string;
+    style?: React.CSSProperties;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isScrolled, onShowToast }) => {
-    const { t, locale, setLanguage } = useLanguage();
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
+const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style }) => {
+    const { t, locale } = useLanguage();
+    const { url } = usePage();
+
+    const [isScrolled, setIsScrolled] = useState(false);
     const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
-    const [showSearch, setShowSearch] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
-    const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // --- Language & Search Logic (Merged from TopBar) ---
-    const handleLanguageChange = (lang: Locale) => {
-        if (lang !== locale) {
-            if (onShowToast) {
-                onShowToast(
-                    lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English',
-                    'info'
-                );
-            }
-            setLanguage(lang);
-        }
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 0);
+        };
+        window.addEventListener('scroll', handleScroll);
+        // Initial check
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (searchQuery.trim()) {
-            console.log('Searching for:', searchQuery);
-            setSearchQuery('');
-            setShowSearch(false);
-        }
-    };
-    // ----------------------------------------------------
+    // Logic Transparansi
+    const isHomepage = ['/', '/id', '/en'].includes(url) || url === '/';
+    // Transparent hanya jika di homepage DAN belum discroll
+    const isTransparent = isHomepage && !isScrolled;
+
+    // Warna Teks: Putih jika transparan, Gelap jika solid/scrolled
+    const textColor = isTransparent ? 'white' : '#1f2937';
+    // Warna Teks TopBar: Putih jika transparan, agak gelap/muted jika solid
+    const topBarColor = isTransparent ? 'rgba(255,255,255,0.9)' : '#526086';
 
     const menuItems: MenuItem[] = [
         {
             label: t('nav.about'),
             children: [
-                { label: t('nav.about.profile'), href: '/tentang-kami/profil' },
-                { label: t('nav.about.vision'), href: '/tentang-kami/visi-misi' },
-                { label: t('nav.about.structure'), href: '/tentang-kami/struktur' },
-                { label: t('nav.about.certification'), href: '/tentang-kami/sertifikasi' },
+                { label: t('nav.about.profile'), href: `/${locale}/tentang-kami/profil` },
+                { label: t('nav.about.vision'), href: `/${locale}/tentang-kami/visi-misi` },
+                { label: t('nav.about.structure'), href: `/${locale}/tentang-kami/struktur` },
+                { label: t('nav.about.certification'), href: `/${locale}/tentang-kami/sertifikasi` },
             ],
         },
         {
             label: t('nav.services'),
             children: [
-                { label: t('nav.services.construction'), href: '/layanan/konstruksi' },
-                { label: t('nav.services.infrastructure'), href: '/layanan/infrastruktur' },
-                { label: t('nav.services.renovation'), href: '/layanan/renovasi' },
-                { label: t('nav.services.consultation'), href: '/layanan/konsultasi' },
+                { label: t('nav.services.construction'), href: `/${locale}/layanan/konstruksi` },
+                { label: t('nav.services.infrastructure'), href: `/${locale}/layanan/infrastruktur` },
+                { label: t('nav.services.renovation'), href: `/${locale}/layanan/renovasi` },
+                { label: t('nav.services.consultation'), href: `/${locale}/layanan/konsultasi` },
             ],
         },
         {
             label: t('nav.projects'),
             children: [
-                { label: t('nav.projects.ongoing'), href: '/projek/berjalan' },
-                { label: t('nav.projects.completed'), href: '/projek/selesai' },
-                { label: t('nav.projects.portfolio'), href: '/projek/portfolio' },
+                { label: t('nav.projects.ongoing'), href: `/${locale}/projek/berjalan` },
+                { label: t('nav.projects.completed'), href: `/${locale}/projek/selesai` },
+                { label: t('nav.projects.portfolio'), href: `/${locale}/projek/portfolio` },
             ],
         },
     ];
 
-    const handleMouseEnter = (label: string) => {
-        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-        setHoveredMenu(label);
-    };
-
-    const handleMouseLeave = () => {
-        hoverTimeoutRef.current = setTimeout(() => {
-            setHoveredMenu(null);
-        }, 150);
-    };
-
     return (
-        <nav
-            className={`navbar-container ${isScrolled ? 'scrolled' : ''}`}
+        <header
+            className={`fixed w-full z-50 transition-all duration-300 ${className || ''}`}
             style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                zIndex: 40,
-                // Top: Transparent to blend with Hero. Scrolled: White compact.
-                backgroundColor: isScrolled ? 'white' : 'transparent', 
-                backdropFilter: isScrolled ? 'none' : 'none', // Remove blur on top to be clean
-                boxShadow: isScrolled ? '0 2px 12px rgba(0,0,0,0.1)' : 'none',
-                // Reduced padding for minimal look
-                padding: isScrolled ? '8px 24px' : '16px 32px', 
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                display: 'grid',
-                gridTemplateColumns: 'auto 1fr',
-                gridTemplateRows: isScrolled ? 'auto' : 'auto auto',
-                gap: isScrolled ? '0' : '4px', // Reduced gap
-                alignItems: 'center',
+                backgroundColor: isTransparent ? 'transparent' : 'rgba(255, 255, 255, 0.98)',
+                backdropFilter: isTransparent ? 'none' : 'blur(10px)',
+                boxShadow: isTransparent ? 'none' : '0 4px 20px rgba(0,0,0,0.05)',
+                padding: isScrolled ? '10px 32px' : '10px 32px 10px 32px',
+                ...style
             }}
         >
-            {/* AREA 1: LOGO */}
             <div
                 style={{
-                    gridArea: isScrolled ? '1 / 1 / 2 / 2' : '1 / 1 / 3 / 2',
-                    display: 'flex',
+                    display: 'grid',
+                    // Grid Logic: Kolom 1 (Auto untuk Logo), Kolom 2 (1fr untuk konten kanan)
+                    gridTemplateColumns: 'auto 1fr',
+                    // Grid Rows: Baris 1 (TopBar), Baris 2 (Navbar)
+                    // Jika scrolled, tinggi baris 1 jadi 0px (hilang)
+                    gridTemplateRows: isScrolled ? '0px auto' : 'auto auto',
+                    gap: isScrolled ? '0px' : '0px 32px', // Hilangkan gap row saat scrolled
                     alignItems: 'center',
                     transition: 'all 0.4s ease',
-                    textDecoration: 'none',
-                    // Removed paddingRight and borderRight
                 }}
             >
-                <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                    <img 
-                        src="/images/logo.png" 
-                        alt="Logo" 
-                        style={{ 
-                            // Adjusted size
-                            width: isScrolled ? '40px' : '60px', 
-                            height: isScrolled ? '40px' : '60px', 
-                            objectFit: 'contain',
-                            transition: 'all 0.4s ease',
-                            filter: isScrolled ? 'none' : 'brightness(0) invert(1)' // Optional: Make logo white on dark hero? Assuming Logo works on dark. If not, remove filter. 
-                            // Let's assume standard logo for now. 
-                        }} 
-                    />
-                    {/* Text Removed as requested */}
-                </a>
-            </div>
-
-            {/* AREA 2: TOP BAR ACTIONS (Info Removed) */}
-            <div
-                style={{
-                    gridArea: '1 / 2 / 2 / 3',
-                    justifySelf: 'end',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '20px',
-                    opacity: isScrolled ? 0 : 1,
-                    height: isScrolled ? 0 : 'auto',
-                    overflow: 'hidden',
-                    transform: isScrolled ? 'translateY(-10px)' : 'translateY(0)',
-                    transition: 'all 0.3s ease',
-                    visibility: isScrolled ? 'hidden' : 'visible',
-                    paddingBottom: isScrolled ? 0 : '8px',
-                    width: '100%',
-                    justifyContent: 'flex-end',
-                }}
-            >
-                {/* Actions */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <button 
-                         onClick={() => setShowSearch(!showSearch)}
-                         style={{ 
-                             background: 'none', border: 'none', cursor: 'pointer', padding: '4px',
-                             display: 'flex', alignItems: 'center', color: 'white' // White icon on top
-                         }}
-                    >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    </button>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', fontWeight: 600 }}>
-                        <button onClick={() => handleLanguageChange('id')} style={{ color: locale === 'id' ? 'white' : 'rgba(255,255,255,0.6)', border: 'none', background: 'none', cursor: 'pointer' }}>ID</button>
-                        <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
-                        <button onClick={() => handleLanguageChange('en')} style={{ color: locale === 'en' ? 'white' : 'rgba(255,255,255,0.6)', border: 'none', background: 'none', cursor: 'pointer' }}>EN</button>
-                    </div>
+                {/* GRID 1: LOGO 
+                  Row Span 2 (mengisi tinggi TopBar + Navbar saat di atas)
+                */}
+                {/* GRID 1: LOGO 
+                  Row Span 2 (mengisi tinggi TopBar + Navbar saat di atas)
+                */}
+                <div 
+                    style={{ 
+                        gridRow: '1 / span 2', 
+                        display: 'flex', 
+                        alignItems: 'center',
+                        height: '100%',
+                        paddingRight: '20px',
+                        // borderRight removed as requested
+                    }}
+                >
+                    <a href={`/${locale}`} style={{ display: 'block', transition: 'transform 0.3s' }}>
+                        <ApplicationLogo 
+                            className="transition-all duration-300"
+                            // Logo membesar saat di top (layout grid), mengecil saat scroll
+                            style={{ 
+                                width: isScrolled ? '45px' : '70px', 
+                                height: isScrolled ? '45px' : '70px' 
+                            }} 
+                        />
+                    </a>
                 </div>
-            </div>
 
-            {/* AREA 3: NAVBAR MENU */}
-            {/* Grid position: Scrolled (Row 1 Col 2) / Top (Row 2 Col 2) */}
-            <div
-                style={{
-                    gridArea: isScrolled ? '1 / 2 / 2 / 3' : '2 / 2 / 3 / 3',
-                    justifySelf: 'end',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: isScrolled ? '24px' : '32px',
-                    transition: 'all 0.4s ease',
-                    width: '100%',
-                    justifyContent: 'flex-end',
-                }}
-            >
-                 {menuItems.map((item) => (
-                    <div
-                        key={item.label}
-                        onMouseEnter={() => handleMouseEnter(item.label)}
-                        onMouseLeave={handleMouseLeave}
-                        style={{ position: 'relative' }}
-                    >
-                        <button
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '4px',
-                                padding: '8px 0',
-                                background: 'none',
-                                border: 'none',
-                                // Text color needs to adapt: White on Top (implied dark bg from Hero), Dark on Scrolled
-                                color: isScrolled ? '#171717' : 'rgba(255,255,255,0.95)',
-                                fontSize: isScrolled ? '14px' : '15px',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                transition: 'color 0.2s',
-                            }}
-                        >
-                            {/* Hover color logic handling via style injection or simpler hover class if CSS allowed, but sticking to inline styles */}
-                            {item.label}
-                            {item.children && (
-                                <svg
-                                    className="w-3 h-3"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
+                {/* GRID 2: TOP BAR 
+                  Grid Column start 2
+                */}
+                <div 
+                    style={{ 
+                        gridColumn: '2', 
+                        overflow: 'hidden', // Penting agar hilang mulus saat height 0
+                        opacity: isScrolled ? 0 : 1, // Fade out saat scroll
+                        transform: isScrolled ? 'translateY(-10px)' : 'translateY(0)',
+                        transition: 'all 0.3s ease',
+                    }}
+                >
+                   <TopBar 
+                        onShowToast={onShowToast} 
+                        isTransparent={isTransparent}
+                        style={{ color: topBarColor }}
+                   />
+                   {/* Divider line removed as requested */}
+                </div>
+
+                {/* GRID 3: NAVBAR MENU 
+                  Grid Column start 2
+                */}
+                <div 
+                    style={{ 
+                        gridColumn: '2',
+                        display: 'flex',
+                        justifyContent: 'flex-end', // Menu rata kanan
+                        paddingTop: isScrolled ? '0' : '8px', // Sedikit jarak dari TopBar jika tidak scroll
+                        transition: 'padding 0.3s ease'
+                    }}
+                >
+                    <div style={{ display: 'flex', gap: '32px' }}>
+                        {menuItems.map((item) => (
+                            <div
+                                key={item.label}
+                                onMouseEnter={() => setHoveredMenu(item.label)}
+                                onMouseLeave={() => setHoveredMenu(null)}
+                                style={{ position: 'relative' }}
+                            >
+                                <button
                                     style={{
-                                        transition: 'transform 0.2s',
-                                        transform: hoveredMenu === item.label ? 'rotate(180deg)' : 'rotate(0)',
-                                        marginTop: '2px',
-                                        opacity: 0.8
+                                        background: 'none',
+                                        border: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '6px',
+                                        padding: '8px 0',
+                                        fontSize: '15px',
+                                        fontWeight: 600,
+                                        cursor: 'pointer',
+                                        color: textColor,
+                                        transition: 'color 0.2s',
                                     }}
                                 >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            )}
-                        </button>
-                        
-                        {/* Dropdown Menu (Consistent) */}
-                         {item.children && hoveredMenu === item.label && (
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    top: '100%',
-                                    right: 0, // Align right for cleaner look on right side
-                                    backgroundColor: 'white',
-                                    borderRadius: '8px',
-                                    boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
-                                    border: '1px solid rgba(0,0,0,0.05)',
-                                    padding: '8px 0',
-                                    minWidth: '220px',
-                                    paddingTop: '8px',
-                                    zIndex: 100,
-                                }}
-                            >
-                                {item.children.map((child) => (
-                                    <a
-                                        key={child.href}
-                                        href={child.href}
+                                    {item.label}
+                                    {item.children && (
+                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ marginTop: '2px' }}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    )}
+                                </button>
+
+                                {/* Dropdown */}
+                                {item.children && hoveredMenu === item.label && (
+                                    <div
                                         style={{
-                                            display: 'block',
-                                            padding: '10px 20px',
-                                            color: '#4b5563',
-                                            textDecoration: 'none',
-                                            fontSize: '14px',
-                                            fontWeight: 500,
-                                            transition: 'all 0.2s',
-                                        }}
-                                        onMouseEnter={(e) => {
-                                            e.currentTarget.style.backgroundColor = '#f3f4f6';
-                                            e.currentTarget.style.color = '#526086';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget.style.backgroundColor = 'transparent';
-                                            e.currentTarget.style.color = '#4b5563';
+                                            position: 'absolute',
+                                            top: '100%',
+                                            right: 0, // Align right agar rapi
+                                            backgroundColor: 'white',
+                                            borderRadius: '8px',
+                                            boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                                            padding: '8px 0',
+                                            minWidth: '220px',
+                                            zIndex: 100,
+                                            animation: 'fadeIn 0.2s ease-in-out'
                                         }}
                                     >
-                                        {child.label}
-                                    </a>
-                                ))}
+                                        {item.children.map((child) => (
+                                            <a
+                                                key={child.href}
+                                                href={child.href}
+                                                style={{
+                                                    display: 'block',
+                                                    padding: '10px 20px',
+                                                    color: '#4b5563',
+                                                    textDecoration: 'none',
+                                                    fontSize: '14px',
+                                                    fontWeight: 500,
+                                                    transition: 'all 0.2s',
+                                                }}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.backgroundColor = '#f3f4f6';
+                                                    e.currentTarget.style.color = '#1f2937';
+                                                    e.currentTarget.style.paddingLeft = '24px'; // Efek geser dikit
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.backgroundColor = 'transparent';
+                                                    e.currentTarget.style.color = '#4b5563';
+                                                    e.currentTarget.style.paddingLeft = '20px';
+                                                }}
+                                            >
+                                                {child.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
-                        )}
-                    </div>
-                 ))}
-
-                 <a 
-                    href={`/${locale}/kontak-kami`}
-                    style={{
-                        padding: isScrolled ? '8px 20px' : '10px 24px',
-                        backgroundColor: '#526086',
-                        color: 'white',
-                        borderRadius: '9999px',
-                        textDecoration: 'none',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 10px rgba(82, 96, 134, 0.2)',
-                    }}
-                 >
-                    {t('nav.contact')}
-                 </a>
-            </div>
-
-            {/* Mobile Toggle (Simple position absolute for now, or grid managed) */}
-            <div className="mobile-toggle" style={{ display: 'none' }}> {/* Add media query logic via CSS or window width hook later if needed, mostly desktop focus now based on grid request */} </div>
-            
-            {/* Search Overlay */}
-            {showSearch && (
-                <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 100 }} onClick={() => setShowSearch(false)}>
-                    <div 
-                        style={{ position: 'absolute', top: 0, left: 0, right: 0, background: 'white', padding: '20px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}
-                        onClick={e => e.stopPropagation()}
-                    >
-                        <form onSubmit={handleSearch} style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', gap: '10px' }}>
-                             <input
-                                  type="text"
-                                  value={searchQuery}
-                                  onChange={(e) => setSearchQuery(e.target.value)}
-                                  placeholder={t('topbar.search')}
-                                  style={{ flex: 1, padding: '12px 20px', borderRadius: '8px', border: '1px solid #e5e7eb', outline: 'none' }}
-                                  autoFocus
-                             />
-                             <button type="submit" style={{ padding: '12px 24px', background: '#526086', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600 }}>Cari</button>
-                        </form>
+                        ))}
                     </div>
                 </div>
-            )}
-        </nav>
+            </div>
+            
+            {/* Style untuk animasi fadeIn dropdown */}
+            <style>{`
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(5px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
+        </header>
     );
 };
 

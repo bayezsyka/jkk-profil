@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
-import { usePage } from '@inertiajs/react';
+import { usePage, useForm } from '@inertiajs/react'; // Tambahkan useForm
 import { PageProps } from '@/types';
-import { PageHeader } from '@/Components/Common';
 
-interface CompanyInfo {
-    address: string;
-    phone: string;
-    email_1: string;
-    email_2?: string;
-    maps_url?: string;
-}
+// PageProps sudah menyertakan definisi Company yang benar (dari types/index.d.ts)
+interface ContactPageProps extends PageProps {}
 
 const Contact: React.FC = () => {
     const { t } = useLanguage();
-    // Assuming company data is shared globally or I can hardcode fallback for now until I check props
-    const { company } = usePage<PageProps>().props as any; 
+    // Gunakan generic yang sudah diperbaiki
+    const { company } = usePage<ContactPageProps>().props;
 
-    // Form State
-    const [formData, setFormData] = useState({
+    // Gunakan useForm dari Inertia untuk handling form yang lebih powerful
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
         subject: '',
         message: '',
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Implement submission logic later (Inertia post or fetch)
-        alert('Form submission logic to be implemented.');
+        // Ganti route('contact.send') dengan nama route yang sesuai di backend Anda
+        // preserveScroll: true agar halaman tidak loncat ke atas saat ada error
+        post('/contact-submit', { // Atau gunakan route('...')
+            preserveScroll: true,
+            onSuccess: () => {
+                reset();
+                alert('Pesan berhasil dikirim!'); // Bisa diganti dengan Flash Message/Toast
+            },
+        });
     };
 
     const breadcrumbs = [
         { label: 'Home', href: '/' },
         { label: t('nav.contact') }
     ];
+
+    // Fallback URL peta jika di database kosong (Contoh: Monas Jakarta)
+    // Ganti src ini dengan Embed Link dari Google Maps lokasi kantor asli Anda
+    const defaultMapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.08660317371!2d106.729707!3d-6.284027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Special%20Capital%20Region%20of%20Jakarta!5e0!3m2!1sen!2sid!4v1611646278912!5m2!1sen!2sid";
+    
+    // Gunakan URL dari database jika ada, jika tidak gunakan default
+    const mapSrc = company?.maps_embed_url || defaultMapUrl;
 
     return (
         <PublicLayout
@@ -56,14 +60,14 @@ const Contact: React.FC = () => {
                             {/* Map Section */}
                             <div className="w-full h-[300px] bg-gray-100 rounded-xl overflow-hidden shadow-sm border border-gray-200 relative z-0">
                                 <iframe 
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.08660851608!2d106.789158!3d-6.2293867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Special%20Capital%20Region%20of%20Jakarta!5e0!3m2!1sen!2sid!4v1652763276324!5m2!1sen!2sid" 
+                                    src={mapSrc}
                                     width="100%" 
                                     height="100%" 
                                     style={{ border: 0 }} 
                                     allowFullScreen 
                                     loading="lazy" 
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    title="Google Map"
+                                    title="Lokasi Kantor"
                                 ></iframe>
                             </div>
 
@@ -74,6 +78,7 @@ const Contact: React.FC = () => {
                                 </h3>
                                 
                                 <div className="space-y-6">
+                                    {/* Alamat */}
                                     <div className="flex items-start gap-4">
                                         <div className="mt-1 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,6 +94,7 @@ const Contact: React.FC = () => {
                                         </div>
                                     </div>
 
+                                    {/* Telepon */}
                                     <div className="flex items-start gap-4">
                                         <div className="mt-1 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -101,6 +107,7 @@ const Contact: React.FC = () => {
                                         </div>
                                     </div>
 
+                                    {/* Email */}
                                     <div className="flex items-start gap-4">
                                         <div className="mt-1 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -115,7 +122,8 @@ const Contact: React.FC = () => {
                                         </div>
                                     </div>
                                     
-                                     <div className="flex items-start gap-4">
+                                    {/* Website */}
+                                    <div className="flex items-start gap-4">
                                         <div className="mt-1 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -145,12 +153,14 @@ const Contact: React.FC = () => {
                                             type="text"
                                             id="name"
                                             name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400"
+                                            value={data.name}
+                                            onChange={(e) => setData('name', e.target.value)}
+                                            className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400 ${
+                                                errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                                            }`}
                                             placeholder={t('contact.form.name')}
-                                            required
                                         />
+                                        {errors.name && <div className="text-red-500 text-xs mt-1">{errors.name}</div>}
                                     </div>
 
                                     {/* Email */}
@@ -162,12 +172,14 @@ const Contact: React.FC = () => {
                                             type="email"
                                             id="email"
                                             name="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400"
+                                            value={data.email}
+                                            onChange={(e) => setData('email', e.target.value)}
+                                            className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400 ${
+                                                errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                                            }`}
                                             placeholder={t('contact.form.email')}
-                                            required
                                         />
+                                        {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
                                     </div>
 
                                     {/* Subject */}
@@ -179,46 +191,59 @@ const Contact: React.FC = () => {
                                             type="text"
                                             id="subject"
                                             name="subject"
-                                            value={formData.subject}
-                                            onChange={handleChange}
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400"
+                                            value={data.subject}
+                                            onChange={(e) => setData('subject', e.target.value)}
+                                            className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400 ${
+                                                errors.subject ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                                            }`}
                                             placeholder={t('contact.form.subject')}
-                                            required
                                         />
+                                        {errors.subject && <div className="text-red-500 text-xs mt-1">{errors.subject}</div>}
                                     </div>
 
                                     {/* Message */}
                                     <div className="space-y-2">
                                          <label htmlFor="message" className="text-sm font-bold text-gray-700">
-                                            Pertanyaan <span className="text-red-500">*</span>
+                                            {/* Konsistensi penggunaan t() atau hardcode bahasa Indonesia */}
+                                            {t('contact.form.message') || 'Pesan / Pertanyaan'} <span className="text-red-500">*</span>
                                         </label>
                                         <textarea
                                             id="message"
                                             name="message"
-                                            value={formData.message}
-                                            onChange={handleChange}
+                                            value={data.message}
+                                            onChange={(e) => setData('message', e.target.value)}
                                             rows={5}
-                                            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400 resize-none"
-                                            placeholder="Masukan Pertanyaan"
-                                            required
+                                            className={`w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-gray-400 resize-none ${
+                                                errors.message ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'
+                                            }`}
+                                            placeholder={t('contact.form.message_placeholder') || 'Tulis pesan Anda disini...'}
                                         />
+                                        {errors.message && <div className="text-red-500 text-xs mt-1">{errors.message}</div>}
                                     </div>
 
-                                    {/* ReCAPTCHA Placeholder */}
-                                    <div className="border border-gray-300 bg-gray-50 rounded p-4 flex items-center justify-center w-full max-w-xs">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-6 h-6 border-2 border-gray-400 rounded-sm"></div>
-                                            <span className="text-sm text-gray-600">I'm not a robot</span>
+                                    {/* ReCAPTCHA Placeholder - Dibuat sedikit lebih rapi */}
+                                    <div className="p-1 bg-gray-50 rounded-md inline-block">
+                                        <div className="border border-gray-300 bg-white rounded p-3 flex items-center gap-3 shadow-sm min-w-[240px]">
+                                            <div className="w-6 h-6 border-2 border-gray-300 rounded-sm bg-gray-50"></div>
+                                            <span className="text-sm text-gray-600 font-medium">I'm not a robot</span>
+                                            <div className="ml-auto flex flex-col items-center">
+                                                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="captcha" className="w-5 opacity-50"/>
+                                                <span className="text-[8px] text-gray-400">reCAPTCHA</span>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    {/* Submit Button */}
+                                    {/* Submit Button - Diaktifkan */}
                                     <button
                                         type="submit"
-                                        className="w-full bg-[#E5E7EB] hover:bg-[#D1D5DB] text-gray-500 font-bold py-3 px-6 rounded-lg transition-colors cursor-not-allowed" // Disabled style for now
-                                        disabled
+                                        disabled={processing}
+                                        className={`w-full font-bold py-3 px-6 rounded-lg transition-colors flex justify-center items-center ${
+                                            processing 
+                                            ? 'bg-blue-300 text-white cursor-wait' 
+                                            : 'bg-blue-900 hover:bg-blue-800 text-white shadow-lg hover:shadow-blue-900/30'
+                                        }`}
                                     >
-                                        {t('contact.form.submit') || 'Kirim'}
+                                        {processing ? 'Mengirim...' : (t('contact.form.submit') || 'Kirim Pesan')}
                                     </button>
                                 </form>
                             </div>

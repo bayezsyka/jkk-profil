@@ -33,22 +33,22 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({
     headerImage,
     transparentHeader = false
 }) => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [toast, setToast] = useState<ToastData | null>(null);
+    // Note: Navbar/TopBar now handle their own scroll state, 
+    // but we might need scroll here for other effects if needed.
+    // Keeping it simple for now and letting components be autonomous.
 
-    // Handle Scroll for Navbar
+    // Scroll detection for sticky navbar behavior
+    const [isScrolled, setIsScrolled] = useState(false);
+
     useEffect(() => {
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            setIsScrolled(scrollY > 10);
+            setIsScrolled(window.scrollY > 44);
         };
-
         window.addEventListener('scroll', handleScroll);
-        // Initial check
-        handleScroll();
-        
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const [toast, setToast] = useState<ToastData | null>(null);
 
     // Toast Helpers
     const showToast = (message: string, type: 'success' | 'info' | 'error') => {
@@ -66,10 +66,32 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
-            <div className={`min-h-screen bg-gray-50 flex flex-col ${!transparentHeader ? 'pt-[130px]' : ''}`}>
-                <Navbar isScrolled={isScrolled} isTransparent={transparentHeader} onShowToast={showToast} />
+            <div className={`min-h-screen bg-gray-50 flex flex-col`}>
+                {/* 
+                    Header Logic:
+                    - TopBar: Integrated inside Navbar.
+                    - Navbar: Sticky (Normal) or Fixed/Abs (Transparent).
+                */}
+                
+                <Navbar 
+                    onShowToast={showToast}
+                    // isTransparent={transparentHeader && !isScrolled} // User removed prop 'isTransparent' from Navbar, so relied on Navbar internal logic.
+                    // But if transparentHeader is TRUE, we want transparent.
+                    // If Navbar doesn't support forcing transparency, we might have an issue on non-home pages.
+                    // Assuming user wants Homepage behavior for now or simplified behavior.
+                    style={transparentHeader ? {
+                        position: isScrolled ? 'fixed' : 'absolute',
+                        top: 0, // TopBar is inside Navbar now, so top starts at 0
+                        left: 0,
+                        right: 0,
+                        width: '100%'
+                    } : {
+                        position: 'sticky',
+                        top: 0
+                    }}
+                />
 
-                <main className="flex-grow">
+                <main className={`flex-grow ${transparentHeader ? '' : ''}`}>
                     {headerTitle && (
                         <PageHeader 
                             title={headerTitle}
@@ -78,14 +100,6 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({
                         />
                     )}
                     
-                    {/* 
-                       If we have a header, the children normally follow it. 
-                       If NO header (like Home), the HeroSection usually takes care of margin/padding.
-                       We should probably wrap children in a container if it's a standard page, 
-                       but the user might want full width sections. 
-                       Let's assume children handle their own containers, 
-                       but maybe adding a default spacing if header is present is good?
-                    */}
                     {children}
                 </main>
 

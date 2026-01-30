@@ -9,8 +9,9 @@ export interface Company {
     phone: string;
     whatsapp: string;
     email_1: string;
-    email_2: string;
+    email_2?: string;
     address: string;
+    maps_embed_url?: string;
 }
 
 export type PageProps<

@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage, Locale } from '@/hooks/useLanguage';
+import { usePage } from '@inertiajs/react';
 
 interface TopBarProps {
-    isVisible: boolean;
-    onShowToast: (message: string, type: 'success' | 'info' | 'error') => void;
+    onShowToast?: (message: string, type: 'success' | 'info' | 'error') => void;
+    className?: string;
+    style?: React.CSSProperties;
+    // Kita buat prop ini opsional karena logic warna akan dihandle parent (Navbar)
+    isTransparent?: boolean; 
 }
 
-const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
+const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransparent = false }) => {
     const { locale, setLanguage, t } = useLanguage();
+    
+    // State search lokal
     const [showSearch, setShowSearch] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleLanguageChange = (lang: Locale) => {
         if (lang !== locale) {
-            // Show toast before navigation (will redirect)
-            onShowToast(
-                lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English',
-                'info'
-            );
-            // Navigate to language switch route
             setLanguage(lang);
+            if (onShowToast) {
+                 onShowToast(
+                    lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English',
+                    'info'
+                );
+            }
         }
     };
 
@@ -33,221 +39,121 @@ const TopBar: React.FC<TopBarProps> = ({ isVisible, onShowToast }) => {
     };
 
     return (
-        <>
-            <div
-                className="top-bar"
+        <div
+            className={`top-bar ${className || ''}`}
+            style={{
+                height: '40px', // Sedikit diperkecil agar proporsional
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                padding: '0', // Padding dihandle oleh Grid parent
+                color: 'white', // Default text putih (untuk mode transparan)
+                fontSize: '0.85rem',
+                ...style
+            }}
+        >
+            {/* Contact Link */}
+            <a
+                href={`/${locale}/kontak-kami`}
                 style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '44px',
-                    backgroundColor: 'white',
-                    borderBottom: '1px solid rgba(0,0,0,0.1)',
-                    zIndex: 50,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'flex-end',
-                    padding: '0 24px',
-                    transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-                    opacity: isVisible ? 1 : 0,
-                    transition: 'transform 0.3s ease, opacity 0.3s ease',
+                    gap: '6px',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: 500,
+                    marginRight: '20px',
+                    transition: 'opacity 0.2s',
+                }}
+                className="hover:opacity-80"
+            >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                {t('nav.contact')}
+            </a>
+
+            {/* Separator */}
+            <div style={{ width: '1px', height: '12px', backgroundColor: 'currentColor', opacity: 0.3, marginRight: '20px' }} />
+
+            {/* Search Toggle */}
+            <button
+                onClick={() => setShowSearch(!showSearch)}
+                style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'inherit',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginRight: '20px',
                 }}
             >
-                {/* Contact Link - Hidden on mobile */}
-                <a
-                    href="#contact"
-                    className="topbar-contact-link"
-                    style={{
-                        display: 'none',
-                        alignItems: 'center',
-                        gap: '8px',
-                        color: '#171717',
-                        textDecoration: 'none',
-                        fontSize: '14px',
-                        fontWeight: 500,
-                        transition: 'color 0.2s',
-                    }}
-                >
-                    <span
-                        style={{
-                            width: '28px',
-                            height: '28px',
-                            borderRadius: '50%',
-                            backgroundColor: '#526086',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <svg className="w-3 h-3" fill="white" viewBox="0 0 24 24">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-                        </svg>
-                    </span>
-                    {t('topbar.contact')}
-                </a>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </button>
 
-                {/* Divider - Hidden on mobile */}
-                <div
-                    className="topbar-divider"
-                    style={{
-                        display: 'none',
-                        width: '1px',
-                        height: '20px',
-                        backgroundColor: 'rgba(0,0,0,0.2)',
-                        margin: '0 16px',
-                    }}
-                />
-
-                {/* Search Button */}
+            {/* Language Switcher */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <button
-                    onClick={() => setShowSearch(!showSearch)}
+                    onClick={() => handleLanguageChange('id')}
                     style={{
-                        width: '36px',
-                        height: '36px',
-                        borderRadius: '50%',
-                        backgroundColor: '#526086',
+                        background: 'none',
                         border: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        color: 'inherit',
+                        fontWeight: locale === 'id' ? 700 : 400,
+                        opacity: locale === 'id' ? 1 : 0.6,
                         cursor: 'pointer',
-                        transition: 'background-color 0.2s',
+                        fontSize: 'inherit'
                     }}
                 >
-                    <svg className="w-4 h-4" fill="white" viewBox="0 0 24 24">
-                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                    </svg>
+                    ID
                 </button>
-
-                {/* Divider */}
-                <div
+                <span style={{ opacity: 0.4 }}>|</span>
+                <button
+                    onClick={() => handleLanguageChange('en')}
                     style={{
-                        width: '1px',
-                        height: '20px',
-                        backgroundColor: 'rgba(0,0,0,0.2)',
-                        margin: '0 16px',
+                        background: 'none',
+                        border: 'none',
+                        color: 'inherit',
+                        fontWeight: locale === 'en' ? 700 : 400,
+                        opacity: locale === 'en' ? 1 : 0.6,
+                        cursor: 'pointer',
+                        fontSize: 'inherit'
                     }}
-                />
-
-                {/* Language Toggle */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <button
-                        onClick={() => handleLanguageChange('id')}
-                        style={{
-                            background: 'none',
-                            border: 'none',
-                            padding: '4px 8px',
-                            fontSize: '14px',
-                            fontWeight: locale === 'id' ? 700 : 400,
-                            color: locale === 'id' ? '#526086' : '#6b7280',
-                            cursor: 'pointer',
-                            position: 'relative',
-                            transition: 'color 0.2s',
-                        }}
-                    >
-                        ID
-                        {locale === 'id' && (
-                            <span
-                                style={{
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: '50%',
-                                    transform: 'translateX(-50%)',
-                                    width: '16px',
-                                    height: '2px',
-                                    backgroundColor: '#526086',
-                                }}
-                            />
-                        )}
-                    </button>
-                    <span style={{ color: '#6b7280' }}>|</span>
-                    <button
-                        onClick={() => handleLanguageChange('en')}
-                        style={{
-                            background: 'none',
-                            border: 'none',
-                            padding: '4px 8px',
-                            fontSize: '14px',
-                            fontWeight: locale === 'en' ? 700 : 400,
-                            color: locale === 'en' ? '#526086' : '#6b7280',
-                            cursor: 'pointer',
-                            position: 'relative',
-                            transition: 'color 0.2s',
-                        }}
-                    >
-                        ENG
-                        {locale === 'en' && (
-                            <span
-                                style={{
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: '50%',
-                                    transform: 'translateX(-50%)',
-                                    width: '20px',
-                                    height: '2px',
-                                    backgroundColor: '#526086',
-                                }}
-                            />
-                        )}
-                    </button>
-                </div>
+                >
+                    EN
+                </button>
             </div>
 
-            {/* Search Dropdown */}
+            {/* Search Dropdown Overlay */}
             {showSearch && (
-                <div
-                    style={{
-                        position: 'fixed',
-                        top: '44px',
-                        left: 0,
-                        right: 0,
-                        backgroundColor: 'white',
-                        borderBottom: '1px solid rgba(0,0,0,0.1)',
-                        zIndex: 49,
-                        padding: '12px 24px',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                    }}
-                >
-                    <form onSubmit={handleSearch} style={{ display: 'flex', gap: '12px', maxWidth: '600px', margin: '0 auto' }}>
+                <div style={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: 0,
+                    backgroundColor: 'white',
+                    padding: '10px',
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '0 0 8px 8px',
+                    zIndex: 60,
+                    color: '#374151'
+                }}>
+                    <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px' }}>
                         <input
                             type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder={t('topbar.search')}
-                            style={{
-                                flex: 1,
-                                padding: '10px 20px',
-                                borderRadius: '9999px',
-                                border: '2px solid rgba(0,0,0,0.1)',
-                                outline: 'none',
-                                fontSize: '14px',
-                                transition: 'border-color 0.2s',
-                            }}
-                            onFocus={(e) => (e.target.style.borderColor = '#526086')}
-                            onBlur={(e) => (e.target.style.borderColor = 'rgba(0,0,0,0.1)')}
+                            className="text-sm border rounded px-2 py-1 outline-none focus:border-blue-500"
                             autoFocus
                         />
-                        <button
-                            type="submit"
-                            style={{
-                                padding: '10px 24px',
-                                borderRadius: '9999px',
-                                backgroundColor: '#526086',
-                                color: 'white',
-                                border: 'none',
-                                fontSize: '14px',
-                                fontWeight: 600,
-                                cursor: 'pointer',
-                                transition: 'background-color 0.2s',
-                            }}
-                        >
-                            {t('topbar.searchBtn')}
-                        </button>
+                        <button type="submit" className="bg-blue-900 text-white text-xs px-3 py-1 rounded">GO</button>
                     </form>
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

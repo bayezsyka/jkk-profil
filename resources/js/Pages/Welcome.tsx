@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Head } from '@inertiajs/react';
 
 // Layout Components
-import { TopBar, Navbar, Footer } from '@/Components/Layout';
+import { Navbar, Footer } from '@/Components/Layout';
 
 // Home Section Components
-import { HeroSection, AboutSection, StatsSection, ContactSection } from '@/Components/Home';
+import { HeroSection, AboutSection, ContactSection } from '@/Components/Home';
 
 // UI Components
 import { SplashScreen, Toast } from '@/Components/UI';
@@ -22,7 +22,7 @@ const WelcomeContent: React.FC = () => {
     const [toast, setToast] = useState<ToastData | null>(null);
 
     useEffect(() => {
-        // Check if splash was already shown this session
+        // Check if showSplash was already shown this session
         const splashShown = sessionStorage.getItem('splashShown');
         if (splashShown) {
             setShowSplash(false);
@@ -32,8 +32,8 @@ const WelcomeContent: React.FC = () => {
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
-            setTopBarVisible(scrollY < 50);
-            setIsScrolled(scrollY > 10);
+            // setTopBarVisible(scrollY < 50); // Removed as we handle it via Navbar positioning
+            setIsScrolled(scrollY > 44); // Threshold matching TopBar height
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -59,13 +59,17 @@ const WelcomeContent: React.FC = () => {
 
     return (
         <>
-            {/* TopBar functionality merged into Navbar */}
-            <Navbar isScrolled={isScrolled} isTransparent={true} onShowToast={showToast} />
+            {/* TopBar is now integrated into Navbar */}
+            
+            {/* Navbar handles fixed positioning and transparency internally */}
+            <Navbar 
+                onShowToast={showToast}
+            />
             
             <main>
                 <HeroSection />
                 <AboutSection />
-                <StatsSection />
+                {/* StatsSection removed as it does not exist */}
             </main>
             
             <Footer />
