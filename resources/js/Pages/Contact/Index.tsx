@@ -13,9 +13,9 @@ const Contact: React.FC = () => {
     const breadcrumbs = [{ label: t('nav.home'), href: '/' }, { label: t('nav.contact') }];
 
     // Kantor Utama: 6°52'38.8"S 109°04'22.5"E => -6.877444, 109.072917
-    // Basecamp    : 6°56'34.7"S 108°55'04.6"E => -6.942972, 108.917944
+    // Basecamp    : 6°56'33.7"S 108°55'05.2"E => -6.942694, 108.918111
     const kantorUtamaMapSrc = `https://www.google.com/maps?q=-6.877444,109.072917&z=16&output=embed`;
-    const basecampMapSrc = `https://www.google.com/maps?q=-6.942972,108.917944&z=16&output=embed`;
+    const basecampMapSrc = `https://www.google.com/maps?q=-6.942694,108.918111&z=16&output=embed`;
 
     return (
         <PublicLayout
@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
                                     <div className="px-5 py-4 border-b border-gray-200 bg-gray-50">
                                         <p className="text-sm font-bold text-gray-800">{t('contact.location.basecamp_label')}</p>
                                         <p className="text-[11px] text-gray-500 mt-1">
-                                            6°56&apos;34.7&quot;S 108°55&apos;04.6&quot;E
+                                            6°56&apos;33.7&quot;S 108°55&apos;05.2&quot;E
                                         </p>
                                     </div>
                                     <div className="w-full h-[260px] bg-gray-100 relative z-0">
