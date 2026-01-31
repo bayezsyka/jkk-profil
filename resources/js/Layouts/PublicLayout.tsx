@@ -58,6 +58,15 @@ export default function PublicLayout({
         setToast(null);
     };
 
+    // Automatic Header Logic
+    // If headerTitle is not provided, try to derive it from the page title
+    const effectiveHeaderTitle = headerTitle || title.replace(/ - JKK.*| - Jaya Karya Kontruksi.*/, '');
+    
+    // If breadcrumbs are not provided, create a default one based on the title
+    const effectiveBreadcrumbs = breadcrumbs.length > 0 
+        ? breadcrumbs 
+        : [{ label: effectiveHeaderTitle }];
+
     return (
         <>
             <Head>
@@ -74,27 +83,22 @@ export default function PublicLayout({
                 
                 <Navbar 
                     onShowToast={showToast}
-                    // isTransparent={transparentHeader && !isScrolled} // User removed prop 'isTransparent' from Navbar, so relied on Navbar internal logic.
-                    // But if transparentHeader is TRUE, we want transparent.
-                    // If Navbar doesn't support forcing transparency, we might have an issue on non-home pages.
-                    // Assuming user wants Homepage behavior for now or simplified behavior.
-                    style={transparentHeader ? {
-                        position: isScrolled ? 'fixed' : 'absolute',
-                        top: 0, // TopBar is inside Navbar now, so top starts at 0
+                    forceTransparent={!!effectiveHeaderTitle || transparentHeader}
+                    style={{
+                        position: (effectiveHeaderTitle || transparentHeader) ? 'fixed' : 'sticky',
+                        top: 0,
                         left: 0,
                         right: 0,
-                        width: '100%'
-                    } : {
-                        position: 'sticky',
-                        top: 0
+                        width: '100%',
+                        zIndex: 50
                     }}
                 />
 
                 <main className={`flex-grow ${transparentHeader ? '' : ''}`}>
-                    {headerTitle && (
+                    {effectiveHeaderTitle && (
                         <PageHeader 
-                            title={headerTitle}
-                            breadcrumbs={breadcrumbs}
+                            title={effectiveHeaderTitle}
+                            breadcrumbs={effectiveBreadcrumbs}
                             backgroundImage={headerImage}
                         />
                     )}

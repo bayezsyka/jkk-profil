@@ -5,7 +5,7 @@ import { Head } from '@inertiajs/react';
 import { Navbar, Footer } from '@/Components/Navigation';
 
 // Home Section Components
-import { HeroSection, AboutSection, ContactSection } from './Sections';
+import { HeroSection, Services} from './Sections';
 
 // UI Components
 import { SplashScreen, Toast } from '@/Components/UI';
@@ -68,7 +68,8 @@ const WelcomeContent: React.FC = () => {
             
             <main>
                 <HeroSection />
-                <AboutSection />
+                <Services/>
+                {/* <AboutSection /> */}
                 {/* StatsSection removed as it does not exist */}
             </main>
             

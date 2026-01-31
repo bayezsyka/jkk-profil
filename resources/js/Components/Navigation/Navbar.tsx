@@ -13,6 +13,7 @@ interface NavbarProps {
     onShowToast?: (message: string, type: 'success' | 'info' | 'error') => void;
     className?: string;
     style?: React.CSSProperties;
+    forceTransparent?: boolean;
 }
 
 interface TopBarProps {
@@ -189,7 +190,7 @@ const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransp
     );
 };
 
-const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style }) => {
+const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTransparent }) => {
     const { t, locale, setLanguage } = useLanguage();
     const { url } = usePage();
 
@@ -245,7 +246,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style }) => {
     }, [mobileOpen, isMobile]);
 
     const isHomepage = ['/', '/id', '/en'].includes(url) || url === '/';
-    const isTransparent = isHomepage && !isScrolled;
+    const isTransparent = (forceTransparent || isHomepage) && !isScrolled;
 
     const textColor = isTransparent ? 'white' : '#1f2937';
     const topBarColor = isTransparent ? 'rgba(255,255,255,0.9)' : '#526086';
@@ -254,21 +255,19 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style }) => {
         () => [
             {
                 label: t('nav.about'),
-                children: [
-                    { label: t('nav.about.profile'), href: `/${locale}/tentang-kami/profil` },
-                    { label: t('nav.about.vision'), href: `/${locale}/tentang-kami/visi-misi` },
-                    { label: t('nav.about.structure'), href: `/${locale}/tentang-kami/struktur` },
-                    { label: t('nav.about.certification'), href: `/${locale}/tentang-kami/sertifikasi` },
-                ],
+                href: `/${locale}/tentang-kami`,
             },
             {
-                label: t('nav.services'),
-                children: [
-                    { label: t('nav.services.construction'), href: `/${locale}/layanan/konstruksi` },
-                    { label: t('nav.services.infrastructure'), href: `/${locale}/layanan/infrastruktur` },
-                    { label: t('nav.services.renovation'), href: `/${locale}/layanan/renovasi` },
-                    { label: t('nav.services.consultation'), href: `/${locale}/layanan/konsultasi` },
-                ],
+                label: locale === 'en' ? 'Batching Plant' : 'Batching Plant',
+                href: `/${locale}/services/batching-plant`,
+            },
+            {
+                label: locale === 'en' ? 'Construction Services' : 'Jasa Konstruksi',
+                href: `/${locale}/services/construction`,
+            },
+            {
+                label: locale === 'en' ? 'Asphalt Mixing Plant' : 'Asphalt Mixing Plant',
+                href: `/${locale}/services/asphalt-mixing-plant`,
             },
             {
                 label: t('nav.projects'),
@@ -367,34 +366,53 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style }) => {
                                         onMouseLeave={() => setHoveredMenu(null)}
                                         style={{ position: 'relative' }}
                                     >
-                                        <button
-                                            style={{
-                                                background: 'none',
-                                                border: 'none',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: '6px',
-                                                padding: '8px 0',
-                                                fontSize: '15px',
-                                                fontWeight: 600,
-                                                cursor: 'pointer',
-                                                color: textColor,
-                                                transition: 'color 0.2s',
-                                            }}
-                                        >
-                                            {item.label}
-                                            {item.children && (
-                                                <svg
-                                                    className="w-3 h-3"
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
-                                                    style={{ marginTop: '2px' }}
-                                                >
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                </svg>
-                                            )}
-                                        </button>
+                                        {item.href ? (
+                                            <a
+                                                href={item.href}
+                                                style={{
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    padding: '8px 0',
+                                                    fontSize: '15px',
+                                                    fontWeight: 600,
+                                                    textDecoration: 'none',
+                                                    color: url === item.href ? '#3B82F6' : textColor,
+                                                    transition: 'color 0.2s',
+                                                }}
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ) : (
+                                            <button
+                                                style={{
+                                                    background: 'none',
+                                                    border: 'none',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '6px',
+                                                    padding: '8px 0',
+                                                    fontSize: '15px',
+                                                    fontWeight: 600,
+                                                    cursor: 'pointer',
+                                                    color: textColor,
+                                                    transition: 'color 0.2s',
+                                                }}
+                                            >
+                                                {item.label}
+                                                {item.children && (
+                                                    <svg
+                                                        className="w-3 h-3"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        style={{ marginTop: '2px' }}
+                                                    >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                )}
+                                            </button>
+                                        )}
 
                                         {item.children && hoveredMenu === item.label && (
                                             <div

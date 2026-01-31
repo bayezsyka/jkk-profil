@@ -32,6 +32,10 @@ Route::prefix('{locale}')
             return Inertia::render('Welcome');
         })->name('home');
 
+        Route::get('/tentang-kami', function () {
+            return Inertia::render('About/Info');
+        })->name('about');
+
         Route::get('/tentang-kami/struktur', function () {
             return Inertia::render('About/Structure');
         })->name('about.structure');
@@ -39,4 +43,17 @@ Route::prefix('{locale}')
         Route::get('/kontak-kami', function () {
             return Inertia::render('Contact/Index');
         })->name('contact');
+
+        // Services Routes
+        Route::get('/services/batching-plant', function () {
+            return Inertia::render('Services/BatchingPlant');
+        })->name('services.batching');
+
+        Route::get('/services/construction', function () {
+            return Inertia::render('Services/Konstruki');
+        })->name('services.construction');
+
+        Route::get('/services/asphalt-mixing-plant', function () {
+            return Inertia::render('Services/AshpaltMixPlant');
+        })->name('services.asphalt');
     });
