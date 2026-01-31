@@ -50,10 +50,10 @@ Route::prefix('{locale}')
         })->name('services.batching');
 
         Route::get('/services/construction', function () {
-            return Inertia::render('Services/Konstruki');
+            return Inertia::render('Services/Construction');
         })->name('services.construction');
 
         Route::get('/services/asphalt-mixing-plant', function () {
-            return Inertia::render('Services/AshpaltMixPlant');
+            return Inertia::render('Services/AsphaltMixPlant');
         })->name('services.asphalt');
     });

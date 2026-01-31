@@ -1,16 +1,19 @@
 import React from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const ManagementSection: React.FC<{ id: string }> = ({ id }) => {
+    const { t } = useLanguage();
+
     const managers = [
-        { name: 'Ir. H. Sudirman', role: 'Direktur Utama', img: 'https://i.pravatar.cc/300?img=11' },
-        { name: 'Agung Wijaya, S.T.', role: 'Direktur Operasional', img: 'https://i.pravatar.cc/300?img=12' },
-        { name: 'Sari Permata, M.M.', role: 'Direktur Keuangan', img: 'https://i.pravatar.cc/300?img=5' }
+        { name: 'Ir. H. Sudirman', role: t('about.management.roles.ceo'), img: 'https://i.pravatar.cc/300?img=11' },
+        { name: 'Agung Wijaya, S.T.', role: t('about.management.roles.coo'), img: 'https://i.pravatar.cc/300?img=12' },
+        { name: 'Sari Permata, M.M.', role: t('about.management.roles.cfo'), img: 'https://i.pravatar.cc/300?img=5' }
     ];
 
     return (
         <section id={id} className="scroll-mt-32">
             <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f]">Manajemen Kami</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f]">{t('about.management.title')}</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {managers.map((person, idx) => (

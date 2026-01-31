@@ -63,6 +63,55 @@
         "energy": {
             "title": "Asphalt Mixing Plant",
             "desc": "Providing hotmix asphalt with modern equipment for precise road paving projects."
+        },
+        "profile": {
+            "title": "Company Profile",
+            "content1": "PT. Jaya Karya Kontruksi is a construction company dedicated to providing the best infrastructure solutions in Indonesia. Founded with a vision to be a leader in the construction industry, we focus on quality, innovation, and sustainability.",
+            "content2": "With years of experience in managing large-scale projects, we have built a strong reputation in General Contractor, Batching Plant, and Asphalt Mixing Plant services."
+        },
+        "history": {
+            "title": "Brief History",
+            "desc": "Our journey began from a determination to contribute to regional development until now reaching national strategic projects.",
+            "items": {
+                "0": { "year": "2010", "event": "Established as a small CV in the field of civil works." },
+                "1": { "year": "2015", "event": "Transformed into a PT and expanded into concrete material procurement services." },
+                "2": { "year": "2018", "event": "Inaugurated the first modern high-capacity Batching Plant unit." },
+                "3": { "year": "2022", "event": "Acquired the latest Asphalt Mixing Plant unit to support road paving projects." }
+            }
+        },
+        "vision": {
+            "title": "Vision & Mission",
+            "vision_title": "Vision",
+            "vision_content": "To be a leading construction and concrete/asphalt manufacturing company in Indonesia that prioritizes quality, speed, and customer satisfaction through technological innovation.",
+            "mission_title": "Mission",
+            "mission_items": {
+                "0": "Provide high-quality construction services with international standards.",
+                "1": "Provide the best concrete and asphalt materials to support national infrastructure.",
+                "2": "Increase human resource competency and utilize the latest technology.",
+                "3": "Committed to work safety and environmental sustainability."
+            }
+        },
+        "values": {
+            "title": "Company Values",
+            "subtitle": "The main pillars of success for PT. Jaya Karya Kontruksi",
+            "items": {
+                "0": { "title": "Integrity", "desc": "We uphold honesty and professional ethics in every aspect of our business.", "icon": "🛡️" },
+                "1": { "title": "Quality", "desc": "Delivering work results that exceed industry standards is our unwavering commitment.", "icon": "⭐" },
+                "2": { "title": "Cooperation", "desc": "We believe that the power of team synergy and strategic partnerships is the key to success.", "icon": "🤝" }
+            }
+        },
+        "structure": {
+            "title": "Organization Structure",
+            "p1": "Our organization is professionally managed with clear division of duties to ensure efficiency in every project operation.",
+            "click_zoom": "Click to enlarge Organization Chart"
+        },
+        "management": {
+            "title": "Our Management",
+            "roles": {
+                "ceo": "President Director",
+                "coo": "Operational Director",
+                "cfo": "Financial Director"
+            }
         }
     },
     "stats": {
@@ -80,16 +129,43 @@
         "title": "Our Services",
         "description": "We provide various high-quality construction services",
         "contractor": {
-            "title": "General Contractor",
-            "desc": "Highway, bridge, drainage, and building construction with high quality standards."
+            "title": "Construction Services",
+            "desc": "Highway, bridge, drainage, and building construction with high quality standards.",
+            "page_desc": "Trusted general contractor for building, infrastructure, and road construction with the highest safety and quality standards.",
+            "scope_title": "Service Scope",
+            "items": {
+                "building": {
+                    "title": "High-Rise Buildings",
+                    "desc": "Construction of office buildings, apartments, and commercial areas."
+                },
+                "infrastructure": {
+                    "title": "Infrastructure",
+                    "desc": "Roads, bridges, drainage, and other public facilities."
+                },
+                "renovation": {
+                    "title": "Renovation",
+                    "desc": "Building repair and quality improvement services."
+                }
+            }
         },
         "batching": {
             "title": "Batching Plant",
-            "desc": "Ready mix concrete production with modern Dry Mix system and equipped with Concrete Laboratory."
+            "desc": "Ready mix concrete production with modern Dry Mix systems and equipped with a Concrete Laboratory.",
+            "page_desc": "High-quality ready-mix concrete services for your construction needs.",
+            "strengths_title": "Our Strengths",
+            "strengths": {
+                "0": "Guaranteed concrete quality according to SNI standards",
+                "1": "Timely delivery",
+                "2": "Large production capacity",
+                "3": "Supported by a sufficient fleet of mixer trucks"
+            }
         },
         "asphalt": {
             "title": "Asphalt Mixing Plant",
-            "desc": "Quality hotmix asphalt production for road paving projects."
+            "desc": "Quality hotmix asphalt production for road paving projects.",
+            "page_desc": "High-quality hotmix asphalt production for road and infrastructure development.",
+            "services_title": "Our Services",
+            "content": "We provide various types of asphalt mixtures such as AC-WC, AC-BC, AC-Base, and HRS with the best quality. Supported by the latest technology equipment and an experienced team of experts to ensure every product meets road technical standards."
         }
     },
     "contact": {
@@ -131,15 +207,13 @@
         "copyright": "© 2026 PT. Jaya Karya Kontruksi. All Rights Reserved.",
         "followUs": "Follow Us"
     },
-    "toast": {
-        "langChanged": "Language changed to English"
-    },
     "common": {
         "readMore": "Read More",
         "viewAll": "View All",
         "loading": "Loading...",
         "error": "An error occurred",
         "success": "Success",
-        "close": "Close"
+        "close": "Close",
+        "lang_changed": "Language changed to English"
     }
 }

@@ -20,12 +20,12 @@ const AboutInfo: React.FC = () => {
     // Dynamic Sections Configuration
     // To add a new section, just add it to this array
     const sectionsConfig = [
-        { id: 'profil', label: 'Profil', Component: ProfileSection },
-        { id: 'visi-misi', label: 'Visi & Misi', Component: VisionMissionSection },
-        { id: 'nilai', label: 'Nilai Perusahaan', Component: ValuesSection },
-        { id: 'sejarah', label: 'Sejarah', Component: HistorySection },
-        { id: 'struktur', label: 'Struktur Organisasi', Component: StructureSection },
-        { id: 'manajemen', label: 'Manajemen', Component: ManagementSection },
+        { id: 'profil', label: t('about.profile.title'), Component: ProfileSection },
+        { id: 'visi-misi', label: t('about.vision.title'), Component: VisionMissionSection },
+        { id: 'nilai', label: t('about.values.title'), Component: ValuesSection },
+        { id: 'sejarah', label: t('about.history.title'), Component: HistorySection },
+        { id: 'struktur', label: t('nav.about_structure'), Component: StructureSection },
+        { id: 'manajemen', label: 'Manajemen', Component: ManagementSection }, // TODO: Add Manajemen to JSON if needed
     ];
 
     const breadcrumbs = [

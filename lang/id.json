@@ -63,6 +63,55 @@
         "energy": {
             "title": "Asphalt Mixing Plant",
             "desc": "Penyediaan aspal hotmix dengan peralatan modern untuk proyek pengaspalan jalan yang presisi."
+        },
+        "profile": {
+            "title": "Profil Perusahaan",
+            "content1": "PT. Jaya Karya Kontruksi adalah perusahaan konstruksi yang berdedikasi untuk memberikan solusi infrastruktur terbaik di Indonesia. Berdiri dengan visi untuk menjadi pemimpin dalam industri konstruksi, kami fokus pada kualitas, inovasi, dan keberlanjutan.",
+            "content2": "Dengan pengalaman bertahun-tahun dalam mengelola proyek berskala besar, kami telah membangun reputasi yang kuat dalam General Contractor, Batching Plant, dan Asphalt Mixing Plant."
+        },
+        "history": {
+            "title": "Sejarah Singkat",
+            "desc": "Perjalanan kami dimulai dari tekad untuk berkontribusi dalam pembangunan daerah hingga kini menjangkau proyek-proyek strategis nasional.",
+            "items": {
+                "0": { "year": "2010", "event": "Pendirian perusahaan sebagai CV kecil di bidang pekerjaan sipil." },
+                "1": { "year": "2015", "event": "Transformasi menjadi PT dan ekspansi ke layanan pengadaan material beton." },
+                "2": { "year": "2018", "event": "Peresmian unit Batching Plant modern pertama dengan kapasitas besar." },
+                "3": { "year": "2022", "event": "Akuisisi unit Asphalt Mixing Plant terbaru untuk mendukung proyek perkerasan jalan." }
+            }
+        },
+        "vision": {
+            "title": "Visi & Misi",
+            "vision_title": "Visi",
+            "vision_content": "Menjadi perusahaan konstruksi dan manufaktur beton/aspal terkemuka di Indonesia yang mengedepankan kualitas, kecepatan, dan kepuasan pelanggan melalui inovasi teknologi.",
+            "mission_title": "Misi",
+            "mission_items": {
+                "0": "Memberikan layanan konstruksi berkualitas tinggi dengan standar internasional.",
+                "1": "Menyediakan material beton dan aspal terbaik untuk mendukung infrastruktur nasional.",
+                "2": "Meningkatkan kompetensi sumber daya manusia dan pemanfaatan teknologi terkini.",
+                "3": "Berkomitmen pada keselamatan kerja dan kelestarian lingkungan."
+            }
+        },
+        "values": {
+            "title": "Nilai Perusahaan",
+            "subtitle": "Pilar utama kesuksesan PT. Jaya Karya Kontruksi",
+            "items": {
+                "0": { "title": "Integritas", "desc": "Kami menjunjung tinggi kejujuran dan etika profesional dalam setiap aspek bisnis kami.", "icon": "🛡️" },
+                "1": { "title": "Kualitas", "desc": "Memberikan hasil kerja yang melampaui standar industri adalah komitmen tak tergoyahkan kami.", "icon": "⭐" },
+                "2": { "title": "Kerjasama", "desc": "Kami percaya kekuatan sinergi tim dan kemitraan strategis adalah kunci keberhasilan.", "icon": "🤝" }
+            }
+        },
+        "structure": {
+            "title": "Struktur Organisasi",
+            "p1": "Organisasi kami dikelola secara profesional dengan pembagian tugas yang jelas untuk memastikan efisiensi dalam setiap operasional proyek.",
+            "click_zoom": "Klik untuk memperbesar Bagan Struktur Organisasi"
+        },
+        "management": {
+            "title": "Manajemen Kami",
+            "roles": {
+                "ceo": "Direktur Utama",
+                "coo": "Direktur Operasional",
+                "cfo": "Direktur Keuangan"
+            }
         }
     },
     "stats": {
@@ -80,16 +129,43 @@
         "title": "Layanan Kami",
         "description": "Kami menyediakan berbagai layanan konstruksi berkualitas tinggi",
         "contractor": {
-            "title": "General Contractor",
-            "desc": "Konstruksi jalan raya, jembatan, saluran air, dan bangunan gedung dengan standar kualitas tinggi."
+            "title": "Jasa Konstruksi",
+            "desc": "Konstruksi jalan raya, jembatan, saluran air, dan bangunan gedung dengan standar kualitas tinggi.",
+            "page_desc": "Kontraktor umum terpercaya untuk pembangunan gedung, infrastruktur, dan jalan dengan standar keselamatan dan kualitas tertinggi.",
+            "scope_title": "Lingkup Layanan",
+            "items": {
+                "building": {
+                    "title": "Gedung Bertingkat",
+                    "desc": "Pembangunan gedung perkantoran, apartemen, dan komersial."
+                },
+                "infrastructure": {
+                    "title": "Infrastruktur",
+                    "desc": "Jalan, jembatan, saluran air, dan fasilitas umum lainnya."
+                },
+                "renovation": {
+                    "title": "Renovasi",
+                    "desc": "Layanan perbaikan dan peningkatan kualitas bangunan."
+                }
+            }
         },
         "batching": {
             "title": "Batching Plant",
-            "desc": "Produksi beton ready mix dengan sistem Dry Mix modern dan dilengkapi Laboratorium Beton."
+            "desc": "Produksi beton ready mix dengan sistem Dry Mix modern dan dilengkapi Laboratorium Beton.",
+            "page_desc": "Layanan beton siap pakai (Readymix) berkualitas tinggi untuk kebutuhan konstruksi Anda.",
+            "strengths_title": "Keunggulan Kami",
+            "strengths": {
+                "0": "Kualitas beton terjamin sesuai standar SNI",
+                "1": "Pengiriman tepat waktu",
+                "2": "Kapasitas produksi besar",
+                "3": "Didukung armada truck mixer yang memadai"
+            }
         },
         "asphalt": {
             "title": "Asphalt Mixing Plant",
-            "desc": "Produksi aspal hotmix berkualitas untuk proyek pengaspalan jalan."
+            "desc": "Produksi aspal hotmix berkualitas untuk proyek pengaspalan jalan.",
+            "page_desc": "Produksi aspal hotmix berkualitas tinggi untuk pembangunan jalan dan infrastruktur.",
+            "services_title": "Layanan Kami",
+            "content": "Kami menyediakan berbagai jenis campuran aspal seperti AC-WC, AC-BC, AC-Base, dan HRS dengan kualitas terbaik. Didukung oleh peralatan teknologi terkini dan tim ahli berpengalaman untuk memastikan setiap produk memenuhi standar teknis jalan raya."
         }
     },
     "contact": {
@@ -131,15 +207,13 @@
         "copyright": "© 2026 PT. Jaya Karya Kontruksi. Hak Cipta Dilindungi.",
         "followUs": "Ikuti Kami"
     },
-    "toast": {
-        "langChanged": "Bahasa diubah ke Indonesia"
-    },
     "common": {
         "readMore": "Baca Selengkapnya",
         "viewAll": "Lihat Semua",
         "loading": "Memuat...",
         "error": "Terjadi kesalahan",
         "success": "Berhasil",
-        "close": "Tutup"
+        "close": "Tutup",
+        "lang_changed": "Bahasa diubah ke Indonesia"
     }
 }

@@ -1,16 +1,19 @@
 import React from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const ProfileSection: React.FC<{ id: string }> = ({ id }) => {
+    const { t } = useLanguage();
+
     return (
         <section id={id} className="scroll-mt-32">
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-6">Profil Perusahaan</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-6">{t('about.profile.title')}</h2>
                     <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                        PT. Jaya Karya Kontruksi adalah perusahaan konstruksi yang berdedikasi untuk memberikan solusi infrastruktur terbaik di Indonesia. Berdiri dengan visi untuk menjadi pemimpin dalam industri konstruksi, kami fokus pada kualitas, inovasi, dan keberlanjutan.
+                        {t('about.profile.content1')}
                     </p>
                     <p className="text-gray-600 text-lg leading-relaxed">
-                        Dengan pengalaman bertahun-tahun dalam mengelola proyek berskala besar, kami telah membangun reputasi yang kuat dalam General Contractor, Batching Plant, dan Asphalt Mixing Plant.
+                        {t('about.profile.content2')}
                     </p>
                 </div>
                 <div className="relative group overflow-hidden rounded-2xl shadow-xl">

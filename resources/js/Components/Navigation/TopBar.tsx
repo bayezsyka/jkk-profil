@@ -21,10 +21,7 @@ const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransp
         if (lang !== locale) {
             setLanguage(lang);
             if (onShowToast) {
-                 onShowToast(
-                    lang === 'id' ? 'Bahasa diubah ke Indonesia' : 'Language changed to English',
-                    'info'
-                );
+                 onShowToast(t('common.lang_changed'), 'info');
             }
         }
     };

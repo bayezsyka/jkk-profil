@@ -258,15 +258,15 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                 href: `/${locale}/tentang-kami`,
             },
             {
-                label: locale === 'en' ? 'Batching Plant' : 'Batching Plant',
+                label: t('services.batching.title'),
                 href: `/${locale}/services/batching-plant`,
             },
             {
-                label: locale === 'en' ? 'Construction Services' : 'Jasa Konstruksi',
+                label: t('services.contractor.title'),
                 href: `/${locale}/services/construction`,
             },
             {
-                label: locale === 'en' ? 'Asphalt Mixing Plant' : 'Asphalt Mixing Plant',
+                label: t('services.asphalt.title'),
                 href: `/${locale}/services/asphalt-mixing-plant`,
             },
             {
@@ -302,12 +302,13 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                     backgroundColor: isTransparent ? 'transparent' : 'rgba(255, 255, 255, 0.98)',
                     backdropFilter: isTransparent ? 'none' : 'blur(10px)',
                     boxShadow: isTransparent ? 'none' : '0 4px 20px rgba(0,0,0,0.05)',
-                    padding: isMobile ? '10px 16px' : isScrolled ? '10px 32px' : '10px 32px 10px 32px',
+                    padding: isMobile ? '10px 16px' : '10px 0',
                     ...style,
                 }}
             >
                 {!isMobile ? (
                     <div
+                        className="container mx-auto px-4 sm:px-6 lg:px-8"
                         style={{
                             display: 'grid',
                             gridTemplateColumns: 'auto 1fr',
@@ -582,7 +583,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                 >
                     <div
                         style={{
-                            padding: '14px 16px',
+                            padding: '10px 16px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'space-between',
@@ -590,17 +591,17 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                             borderBottom: '1px solid rgba(15, 23, 42, 0.08)',
                         }}
                     >
-                        <a href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: '10px' }} aria-label="Home">
-                            <ApplicationLogo style={{ width: '46px', height: '46px' }} />
+                        <a href={`/${locale}`} style={{ display: 'flex', alignItems: 'center', gap: '8px' }} aria-label="Home">
+                            <ApplicationLogo style={{ width: '40px', height: '40px' }} />
                         </a>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <button
                                 onClick={() => setMobileSearchOpen((v) => !v)}
                                 style={{
-                                    width: '44px',
-                                    height: '44px',
-                                    borderRadius: '10px',
+                                    width: '38px',
+                                    height: '38px',
+                                    borderRadius: '8px',
                                     border: 'none',
                                     cursor: 'pointer',
                                     background: '#0B2D5C',
@@ -611,7 +612,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                                 }}
                                 aria-label="Search"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
@@ -624,10 +625,10 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                             <button
                                 onClick={() => setMobileOpen(false)}
                                 style={{
-                                    width: '52px',
-                                    height: '52px',
+                                    width: '44px',
+                                    height: '44px',
                                     borderRadius: '999px',
-                                    border: '3px solid #0B2D5C',
+                                    border: '2px solid #0B2D5C',
                                     cursor: 'pointer',
                                     background: '#3B82F6',
                                     color: 'white',
@@ -637,7 +638,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                                 }}
                                 aria-label="Close menu"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
@@ -707,34 +708,36 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                                             background: 'none',
                                             border: 'none',
                                             textAlign: 'left',
-                                            padding: '18px 18px',
+                                            padding: '14px 18px',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'space-between',
-                                            fontSize: '26px',
+                                            fontSize: '20px',
                                             letterSpacing: '0.5px',
-                                            fontWeight: 400,
+                                            fontWeight: 500,
                                             color: '#0f172a',
                                             cursor: 'pointer',
                                         }}
                                     >
                                         <span>{item.label}</span>
-                                        <span style={{ display: 'flex', alignItems: 'center' }}>
-                                            <svg
-                                                width="22"
-                                                height="22"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="#0f172a"
-                                                style={{
-                                                    transform: item.children && expanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                                                    transition: 'transform 0.2s ease',
-                                                    opacity: 0.9,
-                                                }}
-                                            >
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </span>
+                                        {item.children && (
+                                            <span style={{ display: 'flex', alignItems: 'center' }}>
+                                                <svg
+                                                    width="20"
+                                                    height="20"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="#0f172a"
+                                                    style={{
+                                                        transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                                                        transition: 'transform 0.2s ease',
+                                                        opacity: 0.9,
+                                                    }}
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </span>
+                                        )}
                                     </button>
 
                                     {item.children && (
