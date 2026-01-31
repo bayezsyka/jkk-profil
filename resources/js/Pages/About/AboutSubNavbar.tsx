@@ -21,7 +21,7 @@ const AboutSubNavbar: React.FC<AboutSubNavbarProps> = ({
     return (
         <div className="relative z-40 py-4 md:py-8 flex justify-center w-full">
             <div 
-                className={`transition-all duration-500 ease-in-out ${
+                className={`about-subnavbar transition-all duration-500 ease-in-out ${
                     isMenuSticky 
                         ? 'fixed top-[100px] bg-white/90 backdrop-blur-md shadow-2xl rounded-2xl border border-gray-100 py-1.5 px-2' 
                         : 'bg-gray-100/60 rounded-2xl py-1.5 px-2'
@@ -60,7 +60,7 @@ const AboutSubNavbar: React.FC<AboutSubNavbarProps> = ({
                     scrollbar-width: none;
                 }
                 @media (max-width: 768px) {
-                    .fixed {
+                    .about-subnavbar.fixed {
                         top: 75px !important; /* Adjust for mobile navbar height if needed */
                     }
                 }
