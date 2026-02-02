@@ -11,6 +11,10 @@
         "services_infrastructure": "Infrastruktur",
         "services_renovation": "Renovasi",
         "services_consultation": "Konsultasi",
+        "others": "Lainnya",
+        "nav_gallery": "Galeri",
+        "nav_projects": "Proyek",
+        "nav_articles": "Artikel",
         "projects": "Proyek",
         "projects_ongoing": "Proyek Berjalan",
         "projects_completed": "Proyek Selesai",
@@ -66,8 +70,8 @@
         },
         "profile": {
             "title": "Profil Perusahaan",
-            "content1": "PT. Jaya Karya Kontruksi adalah perusahaan konstruksi yang berdedikasi untuk memberikan solusi infrastruktur terbaik di Indonesia. Berdiri dengan visi untuk menjadi pemimpin dalam industri konstruksi, kami fokus pada kualitas, inovasi, dan keberlanjutan.",
-            "content2": "Dengan pengalaman bertahun-tahun dalam mengelola proyek berskala besar, kami telah membangun reputasi yang kuat dalam General Contractor, Batching Plant, dan Asphalt Mixing Plant."
+            "content1": "PT. Jaya Karya Kontruksi adalah perusahaan General Contractor yang bergerak di bidang konstruksi jalan raya, jembatan, saluran, dan gedung, termasuk pekerjaan pendukung seperti urugan dan pematangan lahan. Sejak berdiri, kami telah dipercaya menangani berbagai proyek konstruksi dengan mengutamakan tanggung jawab, ketepatan pelaksanaan, serta kepatuhan pada syarat dan ketentuan kerja bersama pemberi tugas. Didukung tim profesional yang berpengalaman, kami berkomitmen menjaga kualitas pekerjaan sekaligus menjunjung tinggi kepercayaan relasi maupun klien.",
+            "content2": "Untuk mendukung kebutuhan proyek infrastruktur modern, PT. Jaya Karya Kontruksi mengembangkan lini produksi material melalui Batching Plant dengan dua tipe, yaitu Wet Mix dan Dry Mix, guna memenuhi kebutuhan beton ready mix secara fleksibel sesuai karakter proyek. Selain itu, kami juga memiliki Asphalt Mixing Plant (AMP) untuk produksi aspal hotmix, sehingga mampu memberikan layanan yang lebih terintegrasi—mulai dari penyediaan material hingga pelaksanaan pekerjaan di lapangan—dengan standar mutu yang terjaga dan kontrol kualitas yang konsisten."
         },
         "history": {
             "title": "Sejarah Singkat",
@@ -82,28 +86,31 @@
         "vision": {
             "title": "Visi & Misi",
             "vision_title": "Visi",
-            "vision_content": "Menjadi perusahaan konstruksi dan manufaktur beton/aspal terkemuka di Indonesia yang mengedepankan kualitas, kecepatan, dan kepuasan pelanggan melalui inovasi teknologi.",
+            "vision_content": "PT. Jaya Karya Kontruksi akan menjadi salah satu perusahaan konstruksi yang bermutu dengan penekanan pada pertumbuhan pembangunan yang berkelanjutan yang berkompetisi melalui pengembangan sumber daya manusia, manajemen teknologi dan tata Kelola perusahaan yang lebih baik.",
             "mission_title": "Misi",
             "mission_items": {
-                "0": "Memberikan layanan konstruksi berkualitas tinggi dengan standar internasional.",
-                "1": "Menyediakan material beton dan aspal terbaik untuk mendukung infrastruktur nasional.",
-                "2": "Meningkatkan kompetensi sumber daya manusia dan pemanfaatan teknologi terkini.",
-                "3": "Berkomitmen pada keselamatan kerja dan kelestarian lingkungan."
+                "0": "Meningkatkan daya saing perusahaan di industry jasa konstruksi dengan mengembangkan pelayanan dan teknologi terbaik kepada konsumen dalam memenuhi harapan pemangku kepentingan serta meningkatkan pelatihan SDM untuk menghasilkan tenaga kerja yang berkualitas dan menciptakan lingkungan kerja yang kondusif, serta menyediakan lapangan kerja yang luas."
             }
         },
         "values": {
-            "title": "Nilai Perusahaan",
-            "subtitle": "Pilar utama kesuksesan PT. Jaya Karya Kontruksi",
-            "items": {
-                "0": { "title": "Integritas", "desc": "Kami menjunjung tinggi kejujuran dan etika profesional dalam setiap aspek bisnis kami.", "icon": "🛡️" },
-                "1": { "title": "Kualitas", "desc": "Memberikan hasil kerja yang melampaui standar industri adalah komitmen tak tergoyahkan kami.", "icon": "⭐" },
-                "2": { "title": "Kerjasama", "desc": "Kami percaya kekuatan sinergi tim dan kemitraan strategis adalah kunci keberhasilan.", "icon": "🤝" }
-            }
+            "title": "Our Values",
+            "subtitle": "PT. Jaya Karya Kontruksi",
+            "content": "Kami Menghargai Keunggulan, kepercayaan, rasa hormat, pemeberdayaan, Akuntabilitas, dan Hubungan Timbal Balik. Kualitas Layanan yang konsisten, dan Inovasi"
         },
         "structure": {
             "title": "Struktur Organisasi",
             "p1": "Organisasi kami dikelola secara profesional dengan pembagian tugas yang jelas untuk memastikan efisiensi dalam setiap operasional proyek.",
-            "click_zoom": "Klik untuk memperbesar Bagan Struktur Organisasi"
+            "click_zoom": "Klik untuk memperbesar Bagan Struktur Organisasi",
+            "roles": {
+                "director": "Direktur",
+                "mgr_batching": "Manager Batching Plant",
+                "pm": "Project Manager",
+                "admin": "Administrasi",
+                "mgr_equipment": "Equipment Manager",
+                "mgr_finance": "Finance Manager",
+                "finance": "Keuangan",
+                "executor": "Pelaksana"
+            }
         },
         "management": {
             "title": "Manajemen Kami",

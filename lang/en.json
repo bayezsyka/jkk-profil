@@ -11,6 +11,10 @@
         "services_infrastructure": "Infrastructure",
         "services_renovation": "Renovation",
         "services_consultation": "Consultation",
+        "others": "Others",
+        "nav_gallery": "Gallery",
+        "nav_projects": "Projects",
+        "nav_articles": "Articles",
         "projects": "Projects",
         "projects_ongoing": "Ongoing Projects",
         "projects_completed": "Completed Projects",
@@ -66,8 +70,8 @@
         },
         "profile": {
             "title": "Company Profile",
-            "content1": "PT. Jaya Karya Kontruksi is a construction company dedicated to providing the best infrastructure solutions in Indonesia. Founded with a vision to be a leader in the construction industry, we focus on quality, innovation, and sustainability.",
-            "content2": "With years of experience in managing large-scale projects, we have built a strong reputation in General Contractor, Batching Plant, and Asphalt Mixing Plant services."
+            "content1": "PT. Jaya Karya Kontruksi is a General Contractor company engaged in road, bridge, drainage, and building construction, including supporting works such as land filling and site preparation. Since its establishment, we have been trusted to handle various construction projects by prioritizing responsibility, precision in execution, and compliance with the terms and conditions set by project owners. Supported by an experienced professional team, we are committed to maintaining the quality of our work while upholding the trust of our partners and clients.",
+            "content2": "To support the needs of modern infrastructure projects, PT. Jaya Karya Kontruksi has developed material production lines through Batching Plants with two types: Wet Mix and Dry Mix, to meet ready-mix concrete needs flexibly according to project characteristics. Additionally, we also have an Asphalt Mixing Plant (AMP) for hotmix asphalt production, enabling us to provide more integrated services—from material supply to field implementation—with maintained quality standards and consistent quality control."
         },
         "history": {
             "title": "Brief History",
@@ -82,28 +86,31 @@
         "vision": {
             "title": "Vision & Mission",
             "vision_title": "Vision",
-            "vision_content": "To be a leading construction and concrete/asphalt manufacturing company in Indonesia that prioritizes quality, speed, and customer satisfaction through technological innovation.",
+            "vision_content": "PT. Jaya Karya Kontruksi will become one of the quality construction companies with an emphasis on sustainable development growth that competes through human resource development, technology management, and better corporate governance.",
             "mission_title": "Mission",
             "mission_items": {
-                "0": "Provide high-quality construction services with international standards.",
-                "1": "Provide the best concrete and asphalt materials to support national infrastructure.",
-                "2": "Increase human resource competency and utilize the latest technology.",
-                "3": "Committed to work safety and environmental sustainability."
+                "0": "Improving company competitiveness in the construction service industry by developing the best services and technologies to consumers in meeting stakeholder expectations and increasing HR training to produce quality labor and create a conducive work environment, as well as providing broad employment opportunities."
             }
         },
         "values": {
-            "title": "Company Values",
-            "subtitle": "The main pillars of success for PT. Jaya Karya Kontruksi",
-            "items": {
-                "0": { "title": "Integrity", "desc": "We uphold honesty and professional ethics in every aspect of our business.", "icon": "🛡️" },
-                "1": { "title": "Quality", "desc": "Delivering work results that exceed industry standards is our unwavering commitment.", "icon": "⭐" },
-                "2": { "title": "Cooperation", "desc": "We believe that the power of team synergy and strategic partnerships is the key to success.", "icon": "🤝" }
-            }
+            "title": "Our Values",
+            "subtitle": "PT. Jaya Karya Kontruksi",
+            "content": "We value Excellence, Trust, Respect, Empowerment, Accountability, and Mutualism. Consistent Service Quality, and Innovation."
         },
         "structure": {
             "title": "Organization Structure",
             "p1": "Our organization is professionally managed with clear division of duties to ensure efficiency in every project operation.",
-            "click_zoom": "Click to enlarge Organization Chart"
+            "click_zoom": "Click to enlarge Organization Chart",
+            "roles": {
+                "director": "Director",
+                "mgr_batching": "Batching Plant Manager",
+                "pm": "Project Manager",
+                "admin": "Administration",
+                "mgr_equipment": "Equipment Manager",
+                "mgr_finance": "Finance Manager",
+                "finance": "Finance",
+                "executor": "Executor"
+            }
         },
         "management": {
             "title": "Our Management",

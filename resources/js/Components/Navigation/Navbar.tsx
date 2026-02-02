@@ -270,11 +270,11 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                 href: `/${locale}/services/asphalt-mixing-plant`,
             },
             {
-                label: t('nav.projects'),
+                label: t('nav.others'),
                 children: [
-                    { label: t('nav.projects.ongoing'), href: `/${locale}/projek/berjalan` },
-                    { label: t('nav.projects.completed'), href: `/${locale}/projek/selesai` },
-                    { label: t('nav.projects.portfolio'), href: `/${locale}/projek/portfolio` },
+                    { label: t('nav.nav_gallery'), href: `/${locale}/galeri` },
+                    { label: t('nav.nav_projects'), href: `/${locale}/projek` },
+                    { label: t('nav.nav_articles'), href: `/${locale}/artikel` },
                 ],
             },
         ],
