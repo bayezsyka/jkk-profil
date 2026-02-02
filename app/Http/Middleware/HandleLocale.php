@@ -17,12 +17,17 @@ class HandleLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $locale = $request->route('locale');
+        $locale = $request->route('locale') ?: session('locale', config('app.locale'));
         $availableLocales = ['id', 'en'];
 
-        if ($locale && in_array($locale, $availableLocales)) {
-            App::setLocale($locale);
-            URL::defaults(['locale' => $locale]);
+        if (!in_array($locale, $availableLocales)) {
+            $locale = 'id';
+        }
+
+        App::setLocale($locale);
+        URL::defaults(['locale' => $locale]);
+
+        if ($request->route('locale')) {
             session(['locale' => $locale]);
         }
 
