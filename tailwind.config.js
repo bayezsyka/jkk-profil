@@ -7,6 +7,7 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        // Covers: Components, Layouts, Pages, and any other subdirectories in js
         './resources/js/**/*.{js,jsx,ts,tsx}', 
     ],
     theme: {

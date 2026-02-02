@@ -52,7 +52,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
             <div className="splash-logo-container">
                 <div className="splash-logo-circle">
                     <img 
-                        src="/images/logo.png" 
+                        src="/images/logo.webp" 
                         alt="Logo" 
                         className="splash-logo-img"
                         style={{ width: '80%', height: 'auto' }}

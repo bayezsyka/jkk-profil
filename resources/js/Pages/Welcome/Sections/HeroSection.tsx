@@ -77,18 +77,25 @@ const HeroSection: React.FC = () => {
                     }}
                 >
                     {/* Image with subtle zoom effect */}
-                    <div
-                        style={{
-                            position: 'absolute',
-                            inset: 0,
-                            backgroundImage: `url(${slide.image})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            transform: currentSlide === index ? 'scale(1.05)' : 'scale(1)',
-                            transition: 'transform 6s ease-out',
-                        }}
-                    />
+                    {/* Image with subtle zoom effect */}
+                    <picture>
+                        <source srcSet="/images/hero.webp" type="image/webp" />
+                        <img 
+                            src="/images/hero.webp"
+                            alt="Hero Visualization" 
+                            width="1920"
+                            height="1080"
+                            className="absolute inset-0 -z-10 w-full h-full object-cover"
+                            // @ts-ignore - native attribute
+                            fetchPriority={index === 0 ? "high" : "auto"}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding="sync"
+                            style={{
+                                transform: currentSlide === index ? 'scale(1.05)' : 'scale(1)',
+                                transition: 'transform 6s ease-out',
+                            }}
+                        />
+                    </picture>
                     
                     {/* Gradient Overlay - Subtle black gradient for text readability */}
                     <div

@@ -16,7 +16,7 @@ interface PageHeaderProps {
 const PageHeader: React.FC<PageHeaderProps> = ({ 
     title, 
     breadcrumbs, 
-    backgroundImage = '/images/header-bg.png' // Default or fallback
+    backgroundImage = '/images/header-bg.webp' // Default or fallback
 }) => {
     const { locale } = useLanguage();
 

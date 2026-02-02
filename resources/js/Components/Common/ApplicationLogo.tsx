@@ -2,7 +2,7 @@ export default function ApplicationLogo(props: React.ImgHTMLAttributes<HTMLImage
     return (
         <img
             {...props}
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="Application Logo"
         />
     );

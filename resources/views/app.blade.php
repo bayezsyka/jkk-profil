@@ -7,6 +7,9 @@
 
     <title inertia>{{ config('app.name', 'JKK - Jaya Karya Kontruksi') }}</title>
 
+    <!-- Resource Hints & Preloading -->
+    <link rel="preload" as="image" href="/images/hero.webp" fetchpriority="high">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

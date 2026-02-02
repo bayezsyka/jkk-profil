@@ -19,7 +19,7 @@ const ProfileSection: React.FC<{ id: string }> = ({ id }) => {
                 <div className="relative group overflow-hidden rounded-2xl shadow-xl">
                     <div className="aspect-[4/4]">
                          <img 
-                            src="/images/profil.jpeg" 
+                            src="/images/profil.webp" 
                             alt="Company Profile" 
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                          />

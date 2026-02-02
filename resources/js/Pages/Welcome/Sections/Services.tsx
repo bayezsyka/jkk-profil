@@ -30,7 +30,7 @@ const Services: React.FC = () => {
             <div className="absolute inset-0">
                 <div 
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/images/services-bg.png')" }}
+                    style={{ backgroundImage: "url('/images/services-bg.webp')" }}
                 />
                 {/* Heavy Blue Overlay to match the reference style */}
                 <div className="absolute inset-0 bg-primary/90 mix-blend-multiply transition-colors duration-500" />
