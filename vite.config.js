@@ -36,16 +36,10 @@ export default defineConfig({
         target: 'es2020',
         rollupOptions: {
             output: {
-                manualChunks: (id) => {
-                    if (id.includes('node_modules')) {
-                        if (id.includes('react') || id.includes('react-dom') || id.includes('@inertiajs')) {
-                            return 'vendor-react';
-                        }
-                        return 'vendor'; 
-                    }
-                },
+                // manualChunks removed to let Vite calculate optimal chunks and avoid vendor errors
             },
         },
+    },
     ssr: {
         noExternal: ['@inertiajs/server'],
     },
