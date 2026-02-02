@@ -23,9 +23,7 @@ const AboutInfo: React.FC = () => {
         { id: 'profil', label: t('about.profile.title'), Component: ProfileSection },
         { id: 'visi-misi', label: t('about.vision.title'), Component: VisionMissionSection },
         { id: 'nilai', label: t('about.values.title'), Component: ValuesSection },
-        { id: 'sejarah', label: t('about.history.title'), Component: HistorySection },
         { id: 'struktur', label: t('nav.about_structure'), Component: StructureSection },
-        { id: 'manajemen', label: 'Manajemen', Component: ManagementSection }, // TODO: Add Manajemen to JSON if needed
     ];
 
     const breadcrumbs = [
@@ -79,32 +77,36 @@ const AboutInfo: React.FC = () => {
             headerTitle="Tentang Kami"
             breadcrumbs={breadcrumbs}
         >
-            {/* Sub-Navbar Component */}
-            <div ref={menuRef}>
-                <AboutSubNavbar 
-                    sections={sectionsConfig.map(({ id, label }) => ({ id, label }))}
-                    activeSection={activeSection}
-                    scrollToSection={scrollToSection}
-                    isMenuSticky={isMenuSticky}
-                />
-            </div>
+            <div className="container mx-auto px-4 py-12 md:py-20">
+                <div className="flex flex-col md:flex-row gap-12">
+                    {/* Sidebar / Sub-Navbar */}
+                    <aside className="md:w-64 flex-shrink-0" ref={menuRef}>
+                        <div className="md:sticky md:top-32">
+                            <AboutSubNavbar 
+                                sections={sectionsConfig.map(({ id, label }) => ({ id, label }))}
+                                activeSection={activeSection}
+                                scrollToSection={scrollToSection}
+                                isMenuSticky={isMenuSticky}
+                            />
+                        </div>
+                    </aside>
 
-            {/* Content Sections */}
-            <div className="container mx-auto px-4 py-12 md:py-16">
-                <div className="max-w-5xl mx-auto space-y-24">
-                    {sectionsConfig.map(({ id, Component }) => (
-                        <Component key={id} id={id} />
-                    ))}
+                    {/* Content Sections */}
+                    <main className="flex-1 max-w-4xl space-y-24">
+                        {sectionsConfig.map(({ id, Component }) => (
+                            <Component key={id} id={id} />
+                        ))}
+                    </main>
                 </div>
             </div>
 
             <style>{`
                 .scroll-mt-32 {
-                    scroll-margin-top: 180px;
+                    scroll-margin-top: 130px;
                 }
                 @media (max-width: 768px) {
                     .scroll-mt-32 {
-                        scroll-margin-top: 160px;
+                        scroll-margin-top: 100px;
                     }
                 }
             `}</style>
