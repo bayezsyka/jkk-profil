@@ -11,7 +11,7 @@ import HistorySection from './Sections/HistorySection';
 import StructureSection from './Sections/StructureSection';
 import ManagementSection from './Sections/ManagementSection';
 
-const AboutInfo: React.FC = () => {
+const AboutInfo: React.FC<{ organizationMembers: any[] }> = ({ organizationMembers }) => {
     const { t, locale } = useLanguage();
     const [activeSection, setActiveSection] = useState('profil');
     const [isMenuSticky, setIsMenuSticky] = useState(false);
@@ -94,7 +94,11 @@ const AboutInfo: React.FC = () => {
                     {/* Content Sections */}
                     <main className="flex-1 max-w-4xl space-y-24">
                         {sectionsConfig.map(({ id, Component }) => (
-                            <Component key={id} id={id} />
+                            <Component 
+                                key={id} 
+                                id={id} 
+                                data={id === 'struktur' ? organizationMembers : undefined} 
+                            />
                         ))}
                     </main>
                 </div>

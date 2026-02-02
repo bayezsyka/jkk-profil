@@ -34,11 +34,15 @@ Route::prefix('{locale}')
         })->name('home');
 
         Route::get('/tentang-kami', function () {
-            return Inertia::render('About/Info');
+            return Inertia::render('About/Info', [
+                'organizationMembers' => \App\Models\OrganizationMember::orderBy('order')->get(),
+            ]);
         })->name('about');
 
         Route::get('/tentang-kami/struktur', function () {
-            return Inertia::render('About/Structure');
+            return Inertia::render('About/Structure', [
+                'organizationMembers' => \App\Models\OrganizationMember::orderBy('order')->get(),
+            ]);
         })->name('about.structure');
 
         Route::get('/kontak-kami', function () {
@@ -74,5 +78,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('Admin/Dashboard');
         })->name('dashboard');
+
+        // Organization Structure Management
+        Route::get('/organization', [\App\Http\Controllers\Admin\OrganizationController::class, 'index'])->name('organization.index');
+        Route::post('/organization', [\App\Http\Controllers\Admin\OrganizationController::class, 'store'])->name('organization.store');
+        Route::post('/organization/{organizationMember}', [\App\Http\Controllers\Admin\OrganizationController::class, 'update'])->name('organization.update'); // Using POST for update to support file uploads (Laravel/Inertia quirk)
+        Route::delete('/organization/{organizationMember}', [\App\Http\Controllers\Admin\OrganizationController::class, 'destroy'])->name('organization.destroy');
     });
 });
