@@ -1,1 +1,0 @@
-import{u as o,j as r}from"./app-CnG6pko1.js";import{P as i}from"./PublicLayout-3m6Cl1d8.js";import{S as s}from"./ServiceGallery-BX0GrkcV.js";import"./proxy-C1wnJFBg.js";function l({projects:e}){const{t}=o();return r.jsx(i,{title:`${t("services.contractor.title")} - JKK`,headerTitle:t("services.contractor.title"),children:r.jsx(s,{projects:e})})}export{l as default};
