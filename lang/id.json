@@ -224,6 +224,24 @@
             "page_desc": "Produksi aspal hotmix berkualitas tinggi untuk pembangunan jalan dan infrastruktur.",
             "services_title": "Layanan Kami",
             "content": "Kami menyediakan berbagai jenis campuran aspal seperti AC-WC, AC-BC, AC-Base, dan HRS dengan kualitas terbaik. Didukung oleh peralatan teknologi terkini dan tim ahli berpengalaman untuk memastikan setiap produk memenuhi standar teknis jalan raya."
+        },
+        "calculator": {
+            "subtitle": "Estimasi Biaya",
+            "title": "Kalkulator Beton",
+            "description": "Hitung perkiraan biaya kebutuhan beton Anda. Pilih mutu dan masukkan volume.",
+            "parameter_title": "Parameter Pesanan",
+            "quality_label": "Mutu Beton",
+            "volume_label": "Volume (m³)",
+            "vat_label": "Include PPN 11%",
+            "details_title": "Rincian Biaya",
+            "unit_price": "Harga Satuan",
+            "subtotal": "Subtotal",
+            "vat": "PPN (11%)",
+            "total": "Total Estimasi",
+            "note_radius": "*Harga berlaku dalam radius 25km",
+            "note_pump": "*Harga belum termasuk sewa Concrete Pump",
+            "note_change": "*Harga dapat berubah sewaktu-waktu tanpa pemberitahuan",
+            "order_btn": "Pesan"
         }
     },
     "contact": {

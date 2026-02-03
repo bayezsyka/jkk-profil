@@ -44,6 +44,25 @@ interface ContactFormTranslations {
     submit: string;
 }
 
+interface CalculatorTranslations {
+    subtitle: string;
+    title: string;
+    description: string;
+    parameter_title: string;
+    quality_label: string;
+    volume_label: string;
+    vat_label: string;
+    details_title: string;
+    unit_price: string;
+    subtotal: string;
+    vat: string;
+    total: string;
+    note_radius: string;
+    note_pump: string;
+    note_change: string;
+    order_btn: string;
+}
+
 /**
  * Full translations interface matching the JSON structure
  */
@@ -104,6 +123,7 @@ export interface Translations {
         contractor: SectionItem;
         batching: SectionItem;
         asphalt: SectionItem;
+        calculator: CalculatorTranslations;
     };
     contact: {
         title: string;

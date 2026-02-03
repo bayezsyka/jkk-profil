@@ -224,6 +224,24 @@
             "page_desc": "High-quality hotmix asphalt production for road and infrastructure development.",
             "services_title": "Our Services",
             "content": "We provide various types of asphalt mixtures such as AC-WC, AC-BC, AC-Base, and HRS with the best quality. Supported by the latest technology equipment and an experienced team of experts to ensure every product meets road technical standards."
+        },
+        "calculator": {
+            "subtitle": "Cost Estimate",
+            "title": "Concrete Calculator",
+            "description": "Calculate the estimated cost of your concrete needs. Select quality and enter volume.",
+            "parameter_title": "Order Parameters",
+            "quality_label": "Concrete Quality",
+            "volume_label": "Volume (m³)",
+            "vat_label": "Include VAT 11%",
+            "details_title": "Cost Details",
+            "unit_price": "Unit Price",
+            "subtotal": "Subtotal",
+            "vat": "VAT (11%)",
+            "total": "Total Estimate",
+            "note_radius": "*Price valid within 25km radius",
+            "note_pump": "*Price excludes Concrete Pump rental",
+            "note_change": "*Price subject to change without notice",
+            "order_btn": "Order"
         }
     },
     "contact": {
