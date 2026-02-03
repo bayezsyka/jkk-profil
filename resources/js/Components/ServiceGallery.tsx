@@ -35,7 +35,7 @@ export default function ServiceGallery({ projects }: ServiceGalleryProps) {
         const flattened = projects.flatMap(project =>
             project.images.map(image => ({
                 id: image.id,
-                src: `/storage/${image.image_path}`,
+                src: image.image_path.startsWith('http') ? image.image_path : `/storage/${image.image_path}`,
                 projectTitle: project.title,
                 projectLocation: project.location,
                 projectDate: project.date,

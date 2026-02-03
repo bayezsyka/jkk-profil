@@ -132,6 +132,9 @@
         "clients_value": "100+",
         "provinces": "Provinsi"
     },
+    "projects": {
+        "latest_projects": "Proyek Terbaru"
+    },
     "services": {
         "title": "Layanan Kami",
         "description": "Kami menyediakan berbagai layanan konstruksi berkualitas tinggi",
@@ -165,6 +168,54 @@
                 "1": "Pengiriman tepat waktu",
                 "2": "Kapasitas produksi besar",
                 "3": "Didukung armada truck mixer yang memadai"
+            },
+            "pricing": {
+                "title": "Daftar Harga Beton Ready Mix",
+                "subtitle": "Penawaran Harga Radius 25 Km",
+                "last_updated": "03 Desember 2025",
+                "unit": "M³",
+                "currency": "Rp",
+                "table_header_desc": "Jenis Beton / Perincian Penawaran",
+                "table_header_price": "Harga Penawaran / M³",
+                "products": [
+                    { "name": "B.0", "price": "785.000" },
+                    { "name": "K-100", "price": "800.000" },
+                    { "name": "K-125", "price": "810.000" },
+                    { "name": "K-150", "price": "830.000" },
+                    { "name": "K-175", "price": "850.000" },
+                    { "name": "K-200", "price": "865.000" },
+                    { "name": "K-225", "price": "880.000" },
+                    { "name": "K-250", "price": "895.000" },
+                    { "name": "K-275", "price": "915.000" },
+                    { "name": "K-300", "price": "930.000" },
+                    { "name": "K-350", "price": "980.000" },
+                    { "name": "K-400", "price": "1.045.000" },
+                    { "name": "K-450", "price": "1.085.000" },
+                    { "name": "K-500", "price": "1.145.000" },
+                    { "name": "FC-10", "price": "825.000" },
+                    { "name": "FC-15", "price": "860.000" },
+                    { "name": "FC-20", "price": "895.000" },
+                    { "name": "FC-25", "price": "930.000" },
+                    { "name": "FC-30", "price": "985.000" },
+                    { "name": "FS-35", "price": "895.000" },
+                    { "name": "FS-38", "price": "960.000" },
+                    { "name": "FS-41", "price": "990.000" },
+                    { "name": "FS-45 (Fast Track 4 Hari)", "price": "1.040.000" }
+                ],
+                "notes_title": "Catatan Penting:",
+                "notes": [
+                    "Kualitas beton terjamin (Menggunakan Pasir Cimalaka)",
+                    "Harga di atas tidak termasuk PPN 11%",
+                    "Tidak termasuk pemakaian Concrete Pump",
+                    "Harga terima di lokasi proyek",
+                    "Harga tersebut termasuk tes uji beton yang dilakukan di lab milik PT. Jaya Karya Kontruksi",
+                    "Metode pembayaran dengan sistem deposit via:"
+                ],
+                "banks": [
+                    "Bank Mandiri a/c: 1390024348793 an. JAYA KARYA KONTRUKSI",
+                    "Bank BPD JATENG a/c: 1028003915 an. JAYA KARYA KONTRUKSI",
+                    "Bank BNI a/c: 1348433680 an. JAYA KARYA KONTRUKSI"
+                ]
             }
         },
         "asphalt": {
@@ -221,6 +272,7 @@
         "error": "Terjadi kesalahan",
         "success": "Berhasil",
         "close": "Tutup",
+        "updated": "Terakhir Diperbarui",
         "lang_changed": "Bahasa diubah ke Indonesia"
     }
 }

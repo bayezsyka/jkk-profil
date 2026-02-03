@@ -55,8 +55,12 @@ Route::prefix('{locale}')
                 ->with('images')
                 ->orderBy('date', 'desc')
                 ->get();
+
+            $concretePrices = \App\Models\ConcretePrice::orderBy('order')->get();
+
             return Inertia::render('Services/BatchingPlant', [
-                'projects' => $projects
+                'projects' => $projects,
+                'concretePrices' => $concretePrices,
             ]);
         })->name('services.batching');
 
@@ -113,5 +117,8 @@ Route::middleware('auth')->group(function () {
         // Project Gallery Management
         Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
         Route::delete('project-images/{projectImage}', [\App\Http\Controllers\Admin\ProjectController::class, 'destroyImage'])->name('project-images.destroy');
+
+        // Concrete Price Management
+        Route::resource('concrete-prices', \App\Http\Controllers\Admin\ConcretePriceController::class)->only(['index', 'update']);
     });
 });
