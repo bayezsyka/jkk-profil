@@ -1,0 +1,1 @@
+import{u as a,j as e}from"./app-CnG6pko1.js";import{P as r}from"./PublicLayout-3m6Cl1d8.js";import{S as i}from"./ServiceGallery-BX0GrkcV.js";import"./proxy-C1wnJFBg.js";function m({projects:s}){const{t}=a();return e.jsx(r,{title:`${t("services.asphalt.title")} - JKK`,headerTitle:t("services.asphalt.title"),children:e.jsx(i,{projects:s})})}export{m as default};
