@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "d3": "^7.9.0",
-        "d3-org-chart": "^3.1.1"
+        "d3-org-chart": "^3.1.1",
+        "framer-motion": "^12.29.2"
     }
 }

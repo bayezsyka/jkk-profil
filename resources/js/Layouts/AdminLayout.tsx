@@ -53,6 +53,13 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                         expanded={isExpanded}
                     />
                     <SidebarLink 
+                        href={route('admin.projects.index')} 
+                        active={route().current('admin.projects.*')}
+                        icon={<ProjectIcon />}
+                        label="Projects"
+                        expanded={isExpanded}
+                    />
+                    <SidebarLink 
                         href={route('admin.organization.index')} 
                         active={route().current('admin.organization.*')}
                         icon={<OrgIcon />}
@@ -177,6 +184,13 @@ const DashboardIcon = () => (
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
     </svg>
 );
+
+const ProjectIcon = () => (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+    </svg>
+);
+
 
 const OrgIcon = () => (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -51,16 +51,41 @@ Route::prefix('{locale}')
 
         // Services Routes
         Route::get('/services/batching-plant', function () {
-            return Inertia::render('Services/BatchingPlant');
+            $projects = \App\Models\Project::where('category', 'batching_plant')
+                ->with('images')
+                ->orderBy('date', 'desc')
+                ->get();
+            return Inertia::render('Services/BatchingPlant', [
+                'projects' => $projects
+            ]);
         })->name('services.batching');
 
         Route::get('/services/construction', function () {
-            return Inertia::render('Services/Construction');
+            $projects = \App\Models\Project::where('category', 'construction')
+                ->with('images')
+                ->orderBy('date', 'desc')
+                ->get();
+            return Inertia::render('Services/Construction', [
+                'projects' => $projects
+            ]);
         })->name('services.construction');
 
         Route::get('/services/asphalt-mixing-plant', function () {
-            return Inertia::render('Services/AsphaltMixPlant');
+            $projects = \App\Models\Project::where('category', 'asphalt_mixing_plant')
+                ->with('images')
+                ->orderBy('date', 'desc')
+                ->get();
+            return Inertia::render('Services/AsphaltMixPlant', [
+                'projects' => $projects
+            ]);
         })->name('services.asphalt');
+
+        // Gallery Route
+        Route::get('/galeri', [\App\Http\Controllers\GalleryController::class, 'index'])->name('gallery');
+
+        // Projects Routes
+        Route::get('/projek', [\App\Http\Controllers\Public\ProjectController::class, 'index'])->name('projects.index');
+        Route::get('/projek/{id}', [\App\Http\Controllers\Public\ProjectController::class, 'show'])->name('projects.show');
     });
 
 // Auth & Admin Routes
@@ -84,5 +109,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/organization', [\App\Http\Controllers\Admin\OrganizationController::class, 'store'])->name('organization.store');
         Route::post('/organization/{organizationMember}', [\App\Http\Controllers\Admin\OrganizationController::class, 'update'])->name('organization.update'); // Using POST for update to support file uploads (Laravel/Inertia quirk)
         Route::delete('/organization/{organizationMember}', [\App\Http\Controllers\Admin\OrganizationController::class, 'destroy'])->name('organization.destroy');
+
+        // Project Gallery Management
+        Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+        Route::delete('project-images/{projectImage}', [\App\Http\Controllers\Admin\ProjectController::class, 'destroyImage'])->name('project-images.destroy');
     });
 });
