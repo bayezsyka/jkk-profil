@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Admin JKK',
             'email' => 'admin@jkk.com',
             'password' => \Illuminate\Support\Facades\Hash::make('jkk@2026'),
@@ -24,5 +24,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OrganizationSeeder::class,
         ]);
+
+        // Blog Seeder
+        $categories = collect(['Beton', 'Aspal', 'Konstruksi Umum', 'Alat Berat', 'Tutorial'])->map(function ($name) {
+            return \App\Models\Category::create([
+                'name' => $name,
+                'slug' => \Illuminate\Support\Str::slug($name),
+                'description' => "Informasi dan panduan lengkap mengenai teknik sipil kategori $name.",
+            ]);
+        });
+
+        \App\Models\Article::factory(20)->make()->each(function ($article) use ($user, $categories) {
+            $article->user_id = $user->id;
+            $article->category_id = $categories->random()->id;
+            $article->save();
+        });
     }
 }

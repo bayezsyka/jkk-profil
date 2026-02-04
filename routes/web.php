@@ -94,6 +94,9 @@ Route::prefix('{locale}')
         // Projects Routes
         Route::get('/projek', [\App\Http\Controllers\Public\ProjectController::class, 'index'])->name('projects.index');
         Route::get('/projek/{id}', [\App\Http\Controllers\Public\ProjectController::class, 'show'])->name('projects.show');
+
+        // Articles Route
+        Route::get('/artikel', [\App\Http\Controllers\Public\ArticleController::class, 'index'])->name('articles.index');
     });
 
 // Auth & Admin Routes
@@ -125,5 +128,8 @@ Route::middleware('auth')->group(function () {
         // Concrete Price Management
         Route::resource('concrete-prices', \App\Http\Controllers\Admin\ConcretePriceController::class)->only(['index', 'update']);
         Route::resource('asphalt-prices', \App\Http\Controllers\Admin\AsphaltPriceController::class)->only(['index', 'update']);
+
+        // Article Management
+        Route::resource('articles', \App\Http\Controllers\Admin\ArticleController::class);
     });
 });
