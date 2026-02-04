@@ -223,15 +223,57 @@
             "desc": "Quality hotmix asphalt production for road paving projects.",
             "page_desc": "High-quality hotmix asphalt production for road and infrastructure development.",
             "services_title": "Our Services",
-            "content": "We provide various types of asphalt mixtures such as AC-WC, AC-BC, AC-Base, and HRS with the best quality. Supported by the latest technology equipment and an experienced team of experts to ensure every product meets road technical standards."
+            "content": "We provide various types of asphalt mixtures such as AC-WC, AC-BC, AC-Base, and HRS with the best quality. Supported by the latest technology equipment and an experienced team of experts to ensure every product meets road technical standards.",
+            "terms": {
+                "title": "Terms & Conditions",
+                "subtitle": "Important Information Before Ordering",
+                "short_info": "Some things to consider before ordering hotmix:",
+                "items": {
+                    "0": {
+                        "title": "Price Excludes",
+                        "desc": "Anti Stripping, Filler, and Emulsion"
+                    },
+                    "1": {
+                        "title": "Equipment Mobilization Fee",
+                        "desc": "Responsibility of the buyer, including equipment rolling costs in the field"
+                    },
+                    "2": {
+                        "title": "Purchase & Delivery",
+                        "desc": "Based on tonnage as requested by the consumer, basecamp distance < 30km"
+                    },
+                    "3": {
+                        "title": "Buyer's Responsibility",
+                        "desc": "Site suitability, road access permits, and hotmix maintenance after paving"
+                    },
+                    "4": {
+                        "title": "Payment",
+                        "desc": "100% paid in advance according to item request"
+                    },
+                    "5": {
+                        "title": "Price May Change",
+                        "desc": "Prices are non-binding and may change at any time"
+                    }
+                },
+                "full_terms_note": "For complete information regarding requirements, responsibilities, and ordering procedures, please contact us or see details in the calculator section below.",
+                "view_calculator": "View Calculator & Full Info"
+            }
         },
         "calculator": {
             "subtitle": "Cost Estimate",
             "title": "Concrete Calculator",
+            "asphalt_title": "Asphalt Hotmix Cost Estimate",
+            "asphalt_description": "Use this calculator to get an estimate of your asphalt hotmix needs. Please select the hotmix type and enter the estimated weight needed.",
             "description": "Calculate the estimated cost of your concrete needs. Select quality and enter volume.",
             "parameter_title": "Order Parameters",
             "quality_label": "Concrete Quality",
             "volume_label": "Volume (m³)",
+            "weight_label": "Weight / Quantity",
+            "unit_ton": "Ton",
+            "price_type": "Price Type",
+            "price_loco": "Loco / At AMP",
+            "price_tergelar": "Laid",
+            "price_loco_desc": "Self Pickup",
+            "price_tergelar_desc": "Full Service",
             "vat_label": "Include VAT 11%",
             "details_title": "Cost Details",
             "unit_price": "Unit Price",
@@ -240,6 +282,9 @@
             "total": "Total Estimate",
             "note_radius": "*Price valid within 25km radius",
             "note_pump": "*Price excludes Concrete Pump rental",
+            "note_asphalt_change": "*Price subject to change at any time.",
+            "note_asphalt_tergelar": "*Laid price includes delivery and labor.",
+            "note_terms": "*Terms & Conditions apply.",
             "note_change": "*Price subject to change without notice",
             "order_btn": "Order"
         }
