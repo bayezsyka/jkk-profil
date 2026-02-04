@@ -28,13 +28,8 @@ class OrganizationController extends Controller
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
             'parent_id' => 'nullable|exists:organization_members,id',
-            'photo' => 'nullable|image|max:2048',
             'order' => 'nullable|integer',
         ]);
-
-        if ($request->hasFile('photo')) {
-            $validated['photo_path'] = $request->file('photo')->store('organization', 'public');
-        }
 
         OrganizationMember::create($validated);
 
@@ -47,16 +42,8 @@ class OrganizationController extends Controller
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
             'parent_id' => 'nullable|exists:organization_members,id|not_in:' . $organizationMember->id,
-            'photo' => 'nullable|image|max:2048',
             'order' => 'nullable|integer',
         ]);
-
-        if ($request->hasFile('photo')) {
-            if ($organizationMember->photo_path) {
-                Storage::disk('public')->delete($organizationMember->photo_path);
-            }
-            $validated['photo_path'] = $request->file('photo')->store('organization', 'public');
-        }
 
         $organizationMember->update($validated);
 
@@ -65,9 +52,6 @@ class OrganizationController extends Controller
 
     public function destroy(OrganizationMember $organizationMember)
     {
-        if ($organizationMember->photo_path) {
-            Storage::disk('public')->delete($organizationMember->photo_path);
-        }
 
         // Re-assign children to parent of the deleted member
         OrganizationMember::where('parent_id', $organizationMember->id)

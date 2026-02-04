@@ -15,6 +15,23 @@ const StructureSection: React.FC<{ id: string; data?: any[] }> = ({ id, data: ra
         image: member.photo_path ? `/storage/${member.photo_path}` : null,
     }));
 
+    // Handle multiple roots to prevent d3-org-chart error
+    const roots = chartData.filter(node => !node.parentId);
+    if (roots.length > 1) {
+        const virtualRootId = 'virtual-root';
+        chartData.push({
+            id: virtualRootId,
+            parentId: null,
+            name: 'PT. JAYA KARYA KONTRUKSI',
+            role: 'Struktur Organisasi',
+            image: null
+        } as any);
+        
+        roots.forEach(root => {
+            root.parentId = virtualRootId;
+        });
+    }
+
     useLayoutEffect(() => {
         if (chartContainerRef.current && !chartRef.current) {
             const isMobile = window.innerWidth < 768;
@@ -29,44 +46,28 @@ const StructureSection: React.FC<{ id: string; data?: any[] }> = ({ id, data: ra
                 .compactMarginPair((d: any) => 30)
                 .compact(isMobile) // Enable compact mode on mobile for vertical layout
                 .nodeContent((d: any) => {
-                    const hasImage = d.data.image;
                     return `
                         <div style="
                             background: white;
                             border: 2px solid #1e3a5f;
                             border-radius: 12px;
-                            padding: 10px;
+                            padding: 12px;
                             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
                             display: flex;
+                            flex-direction: column;
+                            justify-content: center;
                             align-items: center;
-                            gap: 12px;
+                            text-align: center;
                             height: 100%;
                             width: 100%;
                             transition: all 0.3s;
                         ">
-                            <div style="
-                                width: 45px;
-                                height: 45px;
-                                border-radius: 50%;
-                                background: #f1f5f9;
-                                border: 1px solid #e2e8f0;
-                                overflow: hidden;
-                                flex-shrink: 0;
-                                display: flex;
-                                items-center;
-                                justify-content: center;
-                            ">
-                                ${hasImage ? 
-                                    `<img src="${d.data.image}" style="width: 100%; height: 100%; object-fit: cover;" />` : 
-                                    `<span style="color: #1e3a5f; font-weight: 800; font-size: 16px;">${d.data.name.charAt(0)}</span>`
-                                }
-                            </div>
-                            <div style="flex: 1; min-width: 0;">
+                            <div style="width: 100%; min-width: 0;">
                                 <div style="
                                     color: #1e3a5f;
                                     font-weight: 800;
-                                    font-size: 13px;
-                                    margin-bottom: 2px;
+                                    font-size: 14px;
+                                    margin-bottom: 4px;
                                     text-transform: uppercase;
                                     white-space: nowrap;
                                     overflow: hidden;
@@ -74,11 +75,10 @@ const StructureSection: React.FC<{ id: string; data?: any[] }> = ({ id, data: ra
                                 ">${d.data.name}</div>
                                 <div style="
                                     color: #64748b;
-                                    font-size: 10px;
-                                    font-weight: 500;
-                                    white-space: nowrap;
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
+                                    font-size: 11px;
+                                    font-weight: 600;
+                                    text-transform: uppercase;
+                                    letter-spacing: 0.5px;
                                 ">${d.data.role}</div>
                             </div>
                         </div>

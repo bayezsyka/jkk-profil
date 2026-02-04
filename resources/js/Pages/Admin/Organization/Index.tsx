@@ -8,7 +8,6 @@ interface Member {
     name: string;
     role: string;
     parent_id: number | null;
-    photo_path: string | null;
     order: number;
     parent?: Member;
 }
@@ -21,6 +20,17 @@ interface PageProps {
     members: Member[];
     auth: any;
 }
+
+const COMMON_ROLES = [
+    { key: 'about.structure.roles.director', label: 'Direktur' },
+    { key: 'about.structure.roles.mgr_batching', label: 'Manager Batching Plant' },
+    { key: 'about.structure.roles.pm', label: 'Project Manager' },
+    { key: 'about.structure.roles.admin', label: 'Administrasi' },
+    { key: 'about.structure.roles.mgr_equipment', label: 'Equipment Manager' },
+    { key: 'about.structure.roles.mgr_finance', label: 'Finance Manager' },
+    { key: 'about.structure.roles.finance', label: 'Keuangan' },
+    { key: 'about.structure.roles.executor', label: 'Pelaksana' },
+];
 
 // Utility to build tree from flat array
 const buildTree = (members: Member[]): MemberNode[] => {
@@ -87,11 +97,7 @@ const OrgMemberNode = ({
                     ${level === 0 ? 'border-l-4 border-l-blue-600' : ''}
                 `}>
                     <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 overflow-hidden shrink-0">
-                        {node.photo_path ? (
-                            <img src={`/storage/${node.photo_path}`} alt={node.name} className="w-full h-full object-cover" />
-                        ) : (
-                            <span className="font-bold text-lg">{node.name.charAt(0).toUpperCase()}</span>
-                        )}
+                        <span className="font-bold text-lg">{node.name.charAt(0).toUpperCase()}</span>
                     </div>
                     
                     <div className="flex-1 min-w-0">
@@ -179,7 +185,6 @@ export default function OrganizationIndex({ members }: PageProps) {
         name: '',
         role: '',
         parent_id: '' as string | number,
-        photo: null as File | null,
         order: 0,
     });
 
@@ -199,7 +204,6 @@ export default function OrganizationIndex({ members }: PageProps) {
             name: member.name,
             role: member.role,
             parent_id: member.parent_id || '',
-            photo: null,
             order: member.order,
         });
         clearErrors();
@@ -314,15 +318,30 @@ export default function OrganizationIndex({ members }: PageProps) {
 
                             <div>
                                 <label className="block text-sm font-bold text-gray-700 mb-1">Jabatan</label>
-                                <input
-                                    type="text"
+                                <select
                                     value={data.role}
                                     onChange={(e) => setData('role', e.target.value)}
                                     className="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
-                                    placeholder="Masukkan jabatan..."
                                     required
-                                />
-                                <p className="text-[10px] text-gray-400 mt-1 italic">*Mendukung translation keys (mis: about.structure.roles.director)</p>
+                                >
+                                    <option value="">-- Pilih Jabatan --</option>
+                                    {COMMON_ROLES.map((role) => (
+                                        <option key={role.key} value={role.key}>{role.label}</option>
+                                    ))}
+                                    {!COMMON_ROLES.find(r => r.key === data.role) && data.role && (
+                                        <option value={data.role}>{data.role}</option>
+                                    )}
+                                    <option value="custom">-- Lainnya (Ketik Manual) --</option>
+                                </select>
+                                {data.role === 'custom' && (
+                                    <input
+                                        type="text"
+                                        className="w-full mt-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+                                        placeholder="Ketik jabatan manual..."
+                                        onBlur={(e) => setData('role', e.target.value)}
+                                        autoFocus
+                                    />
+                                )}
                                 {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role}</p>}
                             </div>
 
@@ -338,7 +357,9 @@ export default function OrganizationIndex({ members }: PageProps) {
                                         {members
                                             .filter(m => !editingMember || m.id !== editingMember.id) // Prevent self-parenting
                                             .map((m) => (
-                                                <option key={m.id} value={m.id}>{m.name} ({m.role})</option>
+                                                <option key={m.id} value={m.id}>
+                                                    {m.name} ({m.role.startsWith('about.structure.roles.') ? t(m.role) : m.role})
+                                                </option>
                                             ))}
                                     </select>
                                     {errors.parent_id && <p className="text-red-500 text-xs mt-1">{errors.parent_id}</p>}
@@ -355,27 +376,7 @@ export default function OrganizationIndex({ members }: PageProps) {
                                 </div>
                             </div>
 
-                            <div>
-                                <label className="block text-sm font-bold text-gray-700 mb-1">Foto (Opsional)</label>
-                                <div className="flex items-center gap-4">
-                                    {(editingMember?.photo_path || data.photo) && (
-                                        <div className="w-12 h-12 rounded-full bg-gray-100 overflow-hidden shrink-0 border border-gray-200">
-                                            {data.photo ? (
-                                                <img src={URL.createObjectURL(data.photo)} className="w-full h-full object-cover" />
-                                            ) : (
-                                                <img src={`/storage/${editingMember?.photo_path}`} className="w-full h-full object-cover" />
-                                            )}
-                                        </div>
-                                    )}
-                                    <input
-                                        type="file"
-                                        onChange={(e) => setData('photo', e.target.files ? e.target.files[0] : null)}
-                                        className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all cursor-pointer"
-                                        accept="image/*"
-                                    />
-                                </div>
-                                {errors.photo && <p className="text-red-500 text-xs mt-1">{errors.photo}</p>}
-                            </div>
+
 
                             <div className="pt-4 flex gap-3">
                                 <button
