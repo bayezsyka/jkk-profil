@@ -270,11 +270,14 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                 href: `/${locale}/services/asphalt-mixing-plant`,
             },
             {
+                label: t('nav.nav_articles'), // Using existing key, or plain text if key missing? Let's use key.
+                href: `/${locale}/artikel`,
+            },
+            {
                 label: t('nav.others'),
                 children: [
                     { label: t('nav.nav_gallery'), href: `/${locale}/galeri` },
                     { label: t('nav.nav_projects'), href: `/${locale}/projek` },
-                    { label: t('nav.nav_articles'), href: `/${locale}/artikel` },
                 ],
             },
         ],

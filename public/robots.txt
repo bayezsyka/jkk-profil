@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://jkk-konstruksi.com/sitemap.xml

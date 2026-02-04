@@ -48,7 +48,7 @@ export default function Edit({ project }: Props) {
     };
 
     const handleDeleteImage = (imageId: number) => {
-        if (confirm('Are you sure you want to delete this image?')) {
+        if (confirm('Apakah Anda yakin ingin menghapus gambar ini?')) {
             router.delete(route('admin.project-images.destroy', imageId), {
                 preserveScroll: true,
             });
@@ -57,16 +57,16 @@ export default function Edit({ project }: Props) {
 
     return (
         <AdminLayout>
-            <Head title="Edit Project" />
+            <Head title="Edit Proyek" />
 
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-gray-100 p-6 max-w-4xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-semibold text-gray-800">Edit Project: {project.title}</h2>
+                    <h2 className="text-xl font-semibold text-gray-800">Edit Proyek: {project.title}</h2>
                     <Link
                         href={route('admin.projects.index')}
                         className="text-gray-600 hover:text-gray-900"
                     >
-                        Back to List
+                        Kembali ke Daftar
                     </Link>
                 </div>
 
@@ -217,7 +217,7 @@ export default function Edit({ project }: Props) {
                                 processing ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                         >
-                            {processing ? 'Saving...' : 'Update Project'}
+                            {processing ? 'Menyimpan...' : 'Perbarui Proyek'}
                         </button>
                     </div>
                 </form>

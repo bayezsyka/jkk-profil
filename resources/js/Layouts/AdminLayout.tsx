@@ -56,7 +56,21 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                         href={route('admin.projects.index')} 
                         active={route().current('admin.projects.*')}
                         icon={<ProjectIcon />}
-                        label="Projects"
+                        label="Proyek"
+                        expanded={isExpanded}
+                    />
+                    <SidebarLink 
+                        href={route('admin.articles.index')} 
+                        active={route().current('admin.articles.*')}
+                        icon={<ArticleIcon />}
+                        label="Artikel"
+                        expanded={isExpanded}
+                    />
+                    <SidebarLink 
+                        href={route('admin.categories.index')} 
+                        active={route().current('admin.categories.*')}
+                        icon={<CategoryIcon />}
+                        label="Kategori"
                         expanded={isExpanded}
                     />
                     <SidebarLink 
@@ -93,7 +107,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                     >
                         <LogoutIcon className="w-5 h-5 flex-shrink-0" />
                         <span className={`ml-3 whitespace-nowrap transition-all duration-300 overflow-hidden ${isExpanded ? 'w-auto opacity-100' : 'w-0 opacity-0'}`}>
-                            Log Out
+                            Keluar
                         </span>
                     </Link>
                 </div>
@@ -116,7 +130,12 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                             <ChevronRightIcon className="w-4 h-4" />
                             <span className="text-slate-900">
                                 {route().current('admin.dashboard') ? 'Dashboard' : 
-                                 route().current('admin.organization.*') ? 'Struktur Organisasi' : ''}
+                                 route().current('admin.projects.*') ? 'Proyek' :
+                                 route().current('admin.articles.*') ? 'Artikel' :
+                                 route().current('admin.categories.*') ? 'Kategori' :
+                                 route().current('admin.organization.*') ? 'Struktur Organisasi' : 
+                                 route().current('admin.concrete-prices.*') ? 'Harga Beton' :
+                                 route().current('admin.asphalt-prices.*') ? 'Harga Aspal' : ''}
                             </span>
                         </div>
                     </div>
@@ -208,6 +227,18 @@ const ProjectIcon = () => (
 const OrgIcon = () => (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+    </svg>
+);
+
+const ArticleIcon = () => (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+    </svg>
+);
+
+const CategoryIcon = () => (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
     </svg>
 );
 

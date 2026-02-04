@@ -97,6 +97,7 @@ Route::prefix('{locale}')
 
         // Articles Route
         Route::get('/artikel', [\App\Http\Controllers\Public\ArticleController::class, 'index'])->name('articles.index');
+        Route::get('/artikel/{slug}', [\App\Http\Controllers\Public\ArticleController::class, 'show'])->name('articles.show');
     });
 
 // Auth & Admin Routes
@@ -131,5 +132,6 @@ Route::middleware('auth')->group(function () {
 
         // Article Management
         Route::resource('articles', \App\Http\Controllers\Admin\ArticleController::class);
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
     });
 });

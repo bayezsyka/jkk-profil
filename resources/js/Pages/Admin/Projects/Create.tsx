@@ -28,16 +28,16 @@ export default function Create() {
 
     return (
         <AdminLayout>
-            <Head title="Create Project" />
+            <Head title="Tambah Proyek" />
 
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-gray-100 p-6 max-w-4xl mx-auto">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-semibold text-gray-800">Add New Project</h2>
+                    <h2 className="text-xl font-semibold text-gray-800">Tambah Proyek Baru</h2>
                     <Link
                         href={route('admin.projects.index')}
                         className="text-gray-600 hover:text-gray-900"
                     >
-                        Back to List
+                        Kembali ke Daftar
                     </Link>
                 </div>
 

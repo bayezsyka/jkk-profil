@@ -23,23 +23,23 @@ interface Props {
 
 export default function Index({ articles }: Props) {
     const handleDelete = (id: number) => {
-        if (confirm('Are you sure you want to delete this article?')) {
+        if (confirm('Apakah Anda yakin ingin menghapus artikel ini?')) {
             router.delete(route('admin.articles.destroy', id));
         }
     };
 
     return (
         <AdminLayout>
-            <Head title="Articles" />
+            <Head title="Artikel" />
 
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-gray-100 p-6">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-semibold text-gray-800">Articles Management</h2>
+                    <h2 className="text-xl font-semibold text-gray-800">Manajemen Artikel</h2>
                     <Link
                         href={route('admin.articles.create')}
                         className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
                     >
-                        New Article
+                        Artikel Baru
                     </Link>
                 </div>
 
@@ -47,12 +47,12 @@ export default function Index({ articles }: Props) {
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-gray-50">
                             <tr>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kategori</th>
                                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Views</th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dilihat</th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal</th>
+                                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -92,7 +92,7 @@ export default function Index({ articles }: Props) {
                                                 onClick={() => handleDelete(article.id)}
                                                 className="text-red-600 hover:text-red-900"
                                             >
-                                                Delete
+                                                Hapus
                                             </button>
                                         </td>
                                     </tr>
@@ -100,7 +100,7 @@ export default function Index({ articles }: Props) {
                             ) : (
                                 <tr>
                                     <td colSpan={6} className="px-6 py-4 text-center text-gray-500">
-                                        No articles found.
+                                        Tidak ada artikel ditemukan.
                                     </td>
                                 </tr>
                             )}

@@ -81,18 +81,15 @@ export default function Index({ articles, categories, filters }: Props) {
     };
 
     return (
-        <PublicLayout>
-            <Head title="Pusat Pengetahuan Sipil" />
-
-            <PageHeader 
-                title="Pusat Pengetahuan Sipil" 
-                breadcrumbs={[
-                    { label: 'Beranda', href: route('home', { locale }) },
-                    { label: 'Artikel' }
-                ]}
-                backgroundImage="/images/projects/project-1.jpg" // Using a generic project image as placeholder
-            />
-
+        <PublicLayout 
+            title="Artikel"
+            headerTitle="Artikel"
+            headerImage="/images/header-bg.webp"
+            breadcrumbs={[
+                { label: 'Beranda', href: route('home', { locale }) },
+                { label: 'Artikel' }
+            ]}
+        >
             <div className="py-16 bg-gray-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     
@@ -168,7 +165,7 @@ export default function Index({ articles, categories, filters }: Props) {
 
                                         <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
                                            <Link 
-                                            href="#" /* Will link to detail later */
+                                            href={route('articles.show', { locale, slug: article.slug })}
                                             className="focus:outline-none"
                                            >
                                                 {article.title}
@@ -181,7 +178,7 @@ export default function Index({ articles, categories, filters }: Props) {
 
                                         <div className="pt-4 border-t border-gray-100 mt-auto">
                                             <Link 
-                                                href="#" /* Will link to detail later */ 
+                                                href={route('articles.show', { locale, slug: article.slug })} 
                                                 className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors"
                                             >
                                                 Baca Selengkapnya

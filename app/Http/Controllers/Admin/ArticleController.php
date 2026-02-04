@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ArticleController extends Controller
 {
@@ -45,8 +47,8 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string',
-            'excerpt' => 'required|string',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'excerpt' => 'nullable|string',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:10240',
             'status' => 'required|in:DRAFT,PUBLISHED,ARCHIVED',
             'published_at' => 'nullable|date',
             'seo_title' => 'nullable|string|max:255',
@@ -57,9 +59,18 @@ class ArticleController extends Controller
         $data['slug'] = Str::slug($request->title);
         $data['user_id'] = auth()->id();
 
+        // Auto-generate excerpt if missing
+        if (empty($data['excerpt'])) {
+            $data['excerpt'] = Str::limit(strip_tags($data['content']), 150);
+        }
+
+        // Auto-set published_at if status is PUBLISHED but date is missing
+        if ($request->status === 'PUBLISHED' && empty($request->published_at)) {
+            $data['published_at'] = now();
+        }
+
         if ($request->hasFile('thumbnail')) {
-            $path = $request->file('thumbnail')->store('articles', 'public');
-            $data['thumbnail'] = '/storage/' . $path;
+            $data['thumbnail'] = $this->handleImageUpload($request->file('thumbnail'));
         }
 
         Article::create($data);
@@ -87,8 +98,8 @@ class ArticleController extends Controller
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string',
-            'excerpt' => 'required|string',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'excerpt' => 'nullable|string',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:10240',
             'status' => 'required|in:DRAFT,PUBLISHED,ARCHIVED',
             'published_at' => 'nullable|date',
             'seo_title' => 'nullable|string|max:255',
@@ -96,18 +107,29 @@ class ArticleController extends Controller
         ]);
 
         $data = $request->except('thumbnail');
-        // Optional: Update slug if title changes? Usually better to keep slug stable or make it optional.
-        // Let's not auto-update slug to avoid breaking links, unless explicitly requested or logic added later.
+
+        // Auto-generate excerpt if missing
+        if (empty($data['excerpt'])) {
+            $data['excerpt'] = Str::limit(strip_tags($data['content']), 150);
+        }
+
+        // Auto-set published_at if switching to PUBLISHED and no date set
+        if ($request->status === 'PUBLISHED' && empty($request->published_at) && $article->status !== 'PUBLISHED') {
+            $data['published_at'] = now();
+        } elseif ($request->status === 'PUBLISHED' && empty($request->published_at) && !$article->published_at) {
+            $data['published_at'] = now();
+        }
 
         if ($request->hasFile('thumbnail')) {
             // Delete old thumbnail
             if ($article->thumbnail) {
+                // Handle full URL or relative path logic safely
                 $oldPath = str_replace('/storage/', '', $article->thumbnail);
+                // Simple check to avoid deleting default images if any, though here likely distinct
                 Storage::disk('public')->delete($oldPath);
             }
 
-            $path = $request->file('thumbnail')->store('articles', 'public');
-            $data['thumbnail'] = '/storage/' . $path;
+            $data['thumbnail'] = $this->handleImageUpload($request->file('thumbnail'));
         }
 
         $article->update($data);
@@ -128,5 +150,23 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('admin.articles.index')->with('success', 'Article deleted successfully.');
+    }
+    private function handleImageUpload($file)
+    {
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($file);
+
+        // Resize if too large (e.g., width > 1200) - keeps aspect ratio
+        if ($image->width() > 1200) {
+            $image->scale(width: 1200);
+        }
+
+        // Encode to WebP with 80% quality
+        $encoded = $image->toWebp(quality: 80);
+
+        $filename = Str::random(40) . '.webp';
+        Storage::disk('public')->put('articles/' . $filename, (string) $encoded);
+
+        return '/storage/articles/' . $filename;
     }
 }

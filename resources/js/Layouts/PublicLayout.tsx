@@ -22,6 +22,7 @@ type PublicLayoutProps = PropsWithChildren<{
     breadcrumbs?: BreadcrumbItem[];
     headerImage?: string;
     transparentHeader?: boolean;
+    hidePageHeader?: boolean;
 }>;
 
 export default function PublicLayout({
@@ -30,7 +31,8 @@ export default function PublicLayout({
     headerTitle,
     breadcrumbs = [],
     headerImage,
-    transparentHeader = false
+    transparentHeader = false,
+    hidePageHeader = false
 }: PublicLayoutProps) {
     // Note: Navbar/TopBar now handle their own scroll state, 
     // but we might need scroll here for other effects if needed.
@@ -95,7 +97,7 @@ export default function PublicLayout({
                 />
 
                 <main className={`flex-grow ${transparentHeader ? '' : ''}`}>
-                    {effectiveHeaderTitle && (
+                    {!hidePageHeader && effectiveHeaderTitle && (
                         <PageHeader 
                             title={effectiveHeaderTitle}
                             breadcrumbs={effectiveBreadcrumbs}

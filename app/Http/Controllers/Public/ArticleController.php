@@ -35,12 +35,43 @@ class ArticleController extends Controller
         }
 
         $articles = $query->paginate(9)->withQueryString();
-        $categories = Category::has('articles')->get();
+
+        // Only show categories that have at least one PUBLISHED article
+        $categories = Category::whereHas('articles', function ($q) {
+            $q->published();
+        })->get();
 
         return Inertia::render('Articles/Index', [
             'articles' => $articles,
             'categories' => $categories,
             'filters' => $request->only(['search', 'category']),
+        ]);
+    }
+    public function show($locale, $slug)
+    {
+        $article = Article::where('slug', $slug)
+            ->with(['category', 'user'])
+            ->where(function ($query) {
+                // Allow viewing drafted/archived if user is admin, but for public controller simpler to restrict or check Auth
+                // For now, let's stick to published() scope for public view, unless previews are needed later
+                $query->published();
+            })
+            ->firstOrFail();
+
+        // Increment views
+        $article->increment('views');
+
+        // Related articles
+        $relatedArticles = Article::published()
+            ->where('category_id', $article->category_id)
+            ->where('id', '!=', $article->id)
+            ->orderBy('published_at', 'desc')
+            ->limit(3)
+            ->get();
+
+        return Inertia::render('Articles/Show', [
+            'article' => $article,
+            'relatedArticles' => $relatedArticles,
         ]);
     }
 }
