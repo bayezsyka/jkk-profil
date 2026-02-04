@@ -87,7 +87,7 @@ const HeroSection: React.FC = () => {
                             height="1080"
                             className="absolute inset-0 -z-10 w-full h-full object-cover"
                             // @ts-ignore - native attribute
-                            fetchPriority={index === 0 ? "high" : "auto"}
+                            fetchpriority={index === 0 ? "high" : "auto"}
                             loading={index === 0 ? "eager" : "lazy"}
                             decoding="sync"
                             style={{

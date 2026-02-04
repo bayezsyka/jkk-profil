@@ -2,15 +2,26 @@ import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
 import ServiceGallery from '@/Components/ServiceGallery';
+import AsphaltCalculator from '@/Components/Calculators/AsphaltCalculator';
 
 import { Project } from '@/Components/ProjectCard';
 import ProjectCard from '@/Components/ProjectCard';
 
-interface Props {
-    projects: Project[];
+interface AsphaltPrice {
+    id: number;
+    name: string;
+    price_loco: number;
+    price_tergelar: number;
+    unit: string;
+    description: string | null;
 }
 
-export default function AsphaltMixPlant({ projects }: Props) {
+interface Props {
+    projects: Project[];
+    asphaltPrices: AsphaltPrice[];
+}
+
+export default function AsphaltMixPlant({ projects, asphaltPrices }: Props) {
     const { t } = useLanguage();
     
     const latestProjects = projects.slice(0, 4);
@@ -57,6 +68,69 @@ export default function AsphaltMixPlant({ projects }: Props) {
                     </div>
                 </div>
             </section>
+
+            {/* Terms & Conditions Section */}
+            <section className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Header - Konsisten dengan section lain */}
+                    <div className="max-w-2xl mb-12">
+                        <span className="text-primary font-bold tracking-wider uppercase text-sm mb-2 block">
+                            {t('services.asphalt.terms.title')}
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+                            {t('services.asphalt.terms.subtitle')}
+                        </h2>
+                        <p className="text-slate-600 text-lg">
+                            {t('services.asphalt.terms.short_info')}
+                        </p>
+                    </div>
+
+                    {/* Terms Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                        {[0, 1, 2, 3, 4, 5].map((index) => (
+                            <div 
+                                key={index}
+                                className="bg-slate-50 border border-slate-200 rounded-lg p-6"
+                            >
+                                <div className="flex items-start gap-4">
+                                    <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
+                                        {index + 1}
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="font-bold text-slate-900 text-base mb-2">
+                                            {t(`services.asphalt.terms.items.${index}.title`)}
+                                        </h3>
+                                        <p className="text-slate-600 text-sm">
+                                            {t(`services.asphalt.terms.items.${index}.desc`)}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Bottom Note */}
+                    <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 text-center">
+                        <p className="text-slate-700 mb-4">
+                            {t('services.asphalt.terms.full_terms_note')}
+                        </p>
+                        <a 
+                            href="#calculator" 
+                            className="inline-flex items-center gap-2 px-6 py-2 border-2 border-primary/20 text-primary font-bold rounded-full hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                        >
+                            {t('services.asphalt.terms.view_calculator')}
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <div id="calculator">
+                <AsphaltCalculator asphaltPrices={asphaltPrices} />
+            </div>
         </PublicLayout>
     );
 }
+

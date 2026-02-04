@@ -73,6 +73,13 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                         label="Harga Beton"
                         expanded={isExpanded}
                     />
+                    <SidebarLink 
+                        href={route('admin.asphalt-prices.index')} 
+                        active={route().current('admin.asphalt-prices.*')}
+                        icon={<TruckIcon />}
+                        label="Harga Aspal"
+                        expanded={isExpanded}
+                    />
                 </nav>
 
                 {/* Bottom Section */}
@@ -207,6 +214,12 @@ const OrgIcon = () => (
 const CalculatorIcon = () => (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 4h-6m4 4h-4a2 2 0 01-2-2v-5m-2.4 8.7a8.5 8.5 0 1113.846-5.462" />
+    </svg>
+);
+
+const TruckIcon = () => (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
     </svg>
 );
 

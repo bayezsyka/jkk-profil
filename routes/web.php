@@ -79,8 +79,12 @@ Route::prefix('{locale}')
                 ->with('images')
                 ->orderBy('date', 'desc')
                 ->get();
+
+            $asphaltPrices = \App\Models\AsphaltPrice::orderBy('order')->get();
+
             return Inertia::render('Services/AsphaltMixPlant', [
-                'projects' => $projects
+                'projects' => $projects,
+                'asphaltPrices' => $asphaltPrices,
             ]);
         })->name('services.asphalt');
 
@@ -120,5 +124,6 @@ Route::middleware('auth')->group(function () {
 
         // Concrete Price Management
         Route::resource('concrete-prices', \App\Http\Controllers\Admin\ConcretePriceController::class)->only(['index', 'update']);
+        Route::resource('asphalt-prices', \App\Http\Controllers\Admin\AsphaltPriceController::class)->only(['index', 'update']);
     });
 });

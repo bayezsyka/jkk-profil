@@ -223,15 +223,57 @@
             "desc": "Produksi aspal hotmix berkualitas untuk proyek pengaspalan jalan.",
             "page_desc": "Produksi aspal hotmix berkualitas tinggi untuk pembangunan jalan dan infrastruktur.",
             "services_title": "Layanan Kami",
-            "content": "Kami menyediakan berbagai jenis campuran aspal seperti AC-WC, AC-BC, AC-Base, dan HRS dengan kualitas terbaik. Didukung oleh peralatan teknologi terkini dan tim ahli berpengalaman untuk memastikan setiap produk memenuhi standar teknis jalan raya."
+            "content": "Kami menyediakan berbagai jenis campuran aspal seperti AC-WC, AC-BC, AC-Base, dan HRS dengan kualitas terbaik. Didukung oleh peralatan teknologi terkini dan tim ahli berpengalaman untuk memastikan setiap produk memenuhi standar teknis jalan raya.",
+            "terms": {
+                "title": "Syarat & Ketentuan",
+                "subtitle": "Informasi Penting Sebelum Pemesanan",
+                "short_info": "Beberapa hal yang perlu diperhatikan sebelum melakukan pemesanan hotmix:",
+                "items": {
+                    "0": {
+                        "title": "Harga Belum Termasuk",
+                        "desc": "Anti Stripping, Filler dan Emulsi"
+                    },
+                    "1": {
+                        "title": "Biaya Mobilisasi Alat",
+                        "desc": "Menjadi tanggungjawab pembeli, termasuk biaya rolling alat di lapangan"
+                    },
+                    "2": {
+                        "title": "Pembelian & Pengiriman",
+                        "desc": "Berdasarkan tonase sesuai permintaan konsumen, jarak basecamp < 30km"
+                    },
+                    "3": {
+                        "title": "Tanggungjawab Pembeli",
+                        "desc": "Kelayakan lokasi, ijin akses jalan, dan perawatan hotmix setelah gelar"
+                    },
+                    "4": {
+                        "title": "Pembayaran",
+                        "desc": "100% dibayar di muka sesuai permintaan barang"
+                    },
+                    "5": {
+                        "title": "Harga Dapat Berubah",
+                        "desc": "Harga tidak mengikat dan dapat berubah sewaktu-waktu"
+                    }
+                },
+                "full_terms_note": "Untuk informasi lengkap mengenai persyaratan, tanggungjawab, dan prosedur pemesanan, silakan hubungi kami atau lihat detail pada bagian kalkulator di bawah.",
+                "view_calculator": "Lihat Kalkulator & Info Lengkap"
+            }
         },
         "calculator": {
             "subtitle": "Estimasi Biaya",
             "title": "Kalkulator Beton",
+            "asphalt_title": "Estimasi Biaya Asphalt Hotmix",
+            "asphalt_description": "Gunakan kalkulator ini untuk mendapatkan estimasi biaya kebutuhan aspal hotmix Anda. Silakan pilih jenis hotmix dan masukkan estimasi berat yang dibutuhkan.",
             "description": "Hitung perkiraan biaya kebutuhan beton Anda. Pilih mutu dan masukkan volume.",
             "parameter_title": "Parameter Pesanan",
             "quality_label": "Mutu Beton",
             "volume_label": "Volume (m³)",
+            "weight_label": "Berat / Kuantitas",
+            "unit_ton": "Ton",
+            "price_type": "Tipe Harga",
+            "price_loco": "Loco / Di AMP",
+            "price_tergelar": "Tergelar",
+            "price_loco_desc": "Ambil Sendiri",
+            "price_tergelar_desc": "Terima Beres",
             "vat_label": "Include PPN 11%",
             "details_title": "Rincian Biaya",
             "unit_price": "Harga Satuan",
@@ -239,7 +281,10 @@
             "vat": "PPN (11%)",
             "total": "Total Estimasi",
             "note_radius": "*Harga berlaku dalam radius 25km",
-            "note_pump": "*Harga belum termasuk sewa Concrete Pump",
+            "note_pump": "*Harga belum setelah sewa Concrete Pump",
+            "note_asphalt_change": "*Harga dapat berubah sewaktu-waktu.",
+            "note_asphalt_tergelar": "*Harga Tergelar sudah termasuk pengiriman dan pengerjaan.",
+            "note_terms": "*Syarat & Ketentuan berlaku.",
             "note_change": "*Harga dapat berubah sewaktu-waktu tanpa pemberitahuan",
             "order_btn": "Pesan"
         }

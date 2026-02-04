@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { usePage } from '@inertiajs/react';
 import { PageProps } from '@/types';
@@ -7,6 +7,19 @@ const Footer: React.FC = () => {
     const { company } = usePage<PageProps>().props;
     const { locale, t } = useLanguage();
     const currentYear = new Date().getFullYear();
+    const [isMobile, setIsMobile] = useState(false);
+    const [isTablet, setIsTablet] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 640);
+            setIsTablet(window.innerWidth >= 640 && window.innerWidth < 1024);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
 
     return (
         <footer>
@@ -15,7 +28,7 @@ const Footer: React.FC = () => {
                 style={{
                     background: 'linear-gradient(180deg, #6B7FA6 0%, #5E7198 100%)',
                     color: '#fdfdfe',
-                    padding: '48px 32px 42px',
+                    padding: isMobile ? '24px 16px 20px' : isTablet ? '32px 24px 28px' : '48px 32px 42px',
                     position: 'relative',
                 }}
             >
@@ -35,18 +48,26 @@ const Footer: React.FC = () => {
                     style={{
                         maxWidth: '1200px',
                         margin: '0 auto',
-                        display: 'grid',
-                        gridTemplateColumns: '1.3fr 1fr',
-                        gap: '36px',
+                        display: 'flex',
+                        flexDirection: isMobile || isTablet ? 'column' : 'row',
+                        justifyContent: 'space-between',
+                        alignItems: isMobile || isTablet ? 'center' : 'center',
+                        gap: isMobile ? '20px' : isTablet ? '24px' : '36px',
+                        textAlign: isMobile || isTablet ? 'center' : 'left',
                     }}
                 >
                     {/* Company Info */}
-                    <div>
+                    <div style={{ 
+                        flex: isMobile || isTablet ? 'unset' : '1.3',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: isMobile || isTablet ? 'center' : 'flex-start',
+                    }}>
                         <h3
                             style={{
-                                fontSize: '18px',
+                                fontSize: isMobile ? '14px' : isTablet ? '16px' : '18px',
                                 fontWeight: 800,
-                                margin: '0 0 14px 0',
+                                margin: isMobile ? '0 0 8px 0' : '0 0 14px 0',
                                 letterSpacing: '0.4px',
                             }}
                         >
@@ -55,21 +76,21 @@ const Footer: React.FC = () => {
 
                         <div
                             style={{
-                                width: '44px',
-                                height: '3px',
+                                width: isMobile ? '32px' : '44px',
+                                height: isMobile ? '2px' : '3px',
                                 backgroundColor: 'rgba(253,253,254,0.35)',
-                                marginBottom: '18px',
+                                marginBottom: isMobile ? '10px' : '18px',
                                 borderRadius: '2px',
                             }}
                         />
 
                         <p
                             style={{
-                                fontSize: '14px',
+                                fontSize: isMobile ? '12px' : '14px',
                                 color: 'rgba(253,253,254,0.9)',
-                                lineHeight: 1.7,
+                                lineHeight: 1.6,
                                 margin: 0,
-                                maxWidth: '540px',
+                                maxWidth: isMobile ? '100%' : '540px',
                             }}
                         >
                             {company.address}
@@ -80,8 +101,9 @@ const Footer: React.FC = () => {
                     <div
                         style={{
                             display: 'flex',
-                            justifyContent: 'flex-end',
+                            justifyContent: isMobile || isTablet ? 'center' : 'flex-end',
                             alignItems: 'center',
+                            flex: isMobile || isTablet ? 'unset' : '1',
                         }}
                     >
                         <a
@@ -89,13 +111,13 @@ const Footer: React.FC = () => {
                             style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                gap: '10px',
+                                gap: isMobile ? '6px' : '10px',
                                 backgroundColor: '#FDFDFE',
                                 color: '#4A5B7C',
                                 textDecoration: 'none',
-                                fontSize: '14px',
+                                fontSize: isMobile ? '12px' : '14px',
                                 fontWeight: 700,
-                                padding: '14px 26px',
+                                padding: isMobile ? '10px 18px' : isTablet ? '12px 22px' : '14px 26px',
                                 borderRadius: '9999px',
                                 boxShadow: '0 12px 26px rgba(0,0,0,0.18)',
                                 transition: 'all 0.2s ease',
@@ -113,8 +135,8 @@ const Footer: React.FC = () => {
                         >
                             {t('topbar.contact')}
                             <svg
-                                width="18"
-                                height="18"
+                                width={isMobile ? "14" : "18"}
+                                height={isMobile ? "14" : "18"}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -135,7 +157,7 @@ const Footer: React.FC = () => {
             <div
                 style={{
                     backgroundColor: '#4B5C80',
-                    padding: '14px 32px',
+                    padding: isMobile ? '10px 16px' : '14px 32px',
                 }}
             >
                 <div
@@ -143,17 +165,16 @@ const Footer: React.FC = () => {
                         maxWidth: '1200px',
                         margin: '0 auto',
                         display: 'flex',
-                        justifyContent: 'space-between',
+                        justifyContent: 'center',
                         alignItems: 'center',
-                        flexWrap: 'wrap',
-                        gap: '12px',
                     }}
                 >
                     <p
                         style={{
-                            fontSize: '12px',
+                            fontSize: isMobile ? '10px' : '12px',
                             color: 'rgba(253,253,254,0.75)',
                             margin: 0,
+                            textAlign: 'center',
                         }}
                     >
                         © {currentYear} PT. JAYA KARYA KONTRUKSI
