@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Listbox, Switch } from '@headlessui/react';
 
 interface AsphaltPrice {
-    id: number;
+    id: number | string;
     name: string;
     price_loco: number;
     price_tergelar: number;
@@ -12,16 +12,35 @@ interface AsphaltPrice {
     description: string | null;
 }
 
+const DEFAULT_ASPHALT_PRICES: AsphaltPrice[] = [
+    {
+        id: 'fallback-1',
+        name: 'AC-WC',
+        price_loco: 1275000,
+        price_tergelar: 1450000,
+        unit: 'TON',
+        description: null
+    },
+    {
+        id: 'fallback-2',
+        name: 'AC-BC',
+        price_loco: 1250000,
+        price_tergelar: 1425000,
+        unit: 'TON',
+        description: null
+    }
+];
+
 interface Props {
     asphaltPrices: AsphaltPrice[];
 }
 
 export default function AsphaltCalculator({ asphaltPrices = [] }: Props) {
     const { locale, t } = useLanguage();
-    // Fallback if no prices provided
-    const prices = asphaltPrices.length > 0 ? asphaltPrices : [];
+    // Use provided prices or fallback to defaults
+    const prices = asphaltPrices.length > 0 ? asphaltPrices : DEFAULT_ASPHALT_PRICES;
     
-    const [selectedType, setSelectedType] = useState<AsphaltPrice>(prices[0] || null);
+    const [selectedType, setSelectedType] = useState<AsphaltPrice>(prices[0]);
     const [weight, setWeight] = useState<number | ''>(1);
     const [priceType, setPriceType] = useState<'loco' | 'tergelar'>('loco'); // 'loco' or 'tergelar'
     const [includePPN, setIncludePPN] = useState(false);
@@ -60,7 +79,7 @@ export default function AsphaltCalculator({ asphaltPrices = [] }: Props) {
         }).format(value);
     };
 
-    if (prices.length === 0) return null;
+
 
     return (
         <section className="py-20 bg-white" id="calculator">
