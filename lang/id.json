@@ -16,6 +16,7 @@
         "nav_projects": "Proyek",
         "nav_articles": "Artikel",
         "projects": "Proyek",
+        "articles": "Artikel",
         "projects_ongoing": "Proyek Berjalan",
         "projects_completed": "Proyek Selesai",
         "projects_portfolio": "Portfolio",
@@ -133,7 +134,23 @@
         "provinces": "Provinsi"
     },
     "projects": {
-        "latest_projects": "Proyek Terbaru"
+        "our_work": "Karya Kami",
+        "latest_projects": "Proyek Terbaru",
+        "latest_projects_desc": "Lihat beberapa proyek terbaru yang telah kami kerjakan dengan standar kualitas terbaik."
+    },
+    "gallery": {
+        "title": "Galeri",
+        "our_gallery": "Galeri Foto Proyek",
+        "description": "Dokumentasi visual dari berbagai proyek yang telah kami kerjakan.",
+        "click_to_view": "Klik untuk memperbesar",
+        "more": "lainnya"
+    },
+    "articles": {
+        "blog": "Blog",
+        "latest_articles": "Artikel Terbaru",
+        "latest_articles_desc": "Baca berita dan informasi terbaru seputar konstruksi dan proyek kami.",
+        "views": "dilihat",
+        "no_more_articles": "Belum ada artikel lainnya."
     },
     "services": {
         "title": "Layanan Kami",
@@ -331,6 +348,7 @@
     "common": {
         "readMore": "Baca Selengkapnya",
         "viewAll": "Lihat Semua",
+        "viewDetail": "Lihat Detail",
         "loading": "Memuat...",
         "error": "Terjadi kesalahan",
         "success": "Berhasil",

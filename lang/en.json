@@ -16,6 +16,7 @@
         "nav_projects": "Projects",
         "nav_articles": "Articles",
         "projects": "Projects",
+        "articles": "Articles",
         "projects_ongoing": "Ongoing Projects",
         "projects_completed": "Completed Projects",
         "projects_portfolio": "Portfolio",
@@ -133,7 +134,23 @@
         "provinces": "Provinces"
     },
     "projects": {
-        "latest_projects": "Latest Projects"
+        "our_work": "Our Work",
+        "latest_projects": "Latest Projects",
+        "latest_projects_desc": "Explore some of our recent projects delivered with the highest quality standards."
+    },
+    "gallery": {
+        "title": "Gallery",
+        "our_gallery": "Project Photo Gallery",
+        "description": "Visual documentation of various projects we have completed.",
+        "click_to_view": "Click to enlarge",
+        "more": "more"
+    },
+    "articles": {
+        "blog": "Blog",
+        "latest_articles": "Latest Articles",
+        "latest_articles_desc": "Read the latest news and information about construction and our projects.",
+        "views": "views",
+        "no_more_articles": "No more articles available."
     },
     "services": {
         "title": "Our Services",
@@ -331,6 +348,7 @@
     "common": {
         "readMore": "Read More",
         "viewAll": "View All",
+        "viewDetail": "View Detail",
         "loading": "Loading...",
         "error": "An error occurred",
         "success": "Success",

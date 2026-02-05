@@ -14,7 +14,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
     const closeMobile = () => setIsMobileOpen(false);
 
     return (
-        <div className="min-h-screen bg-slate-50 flex overflow-hidden">
+        <div className="h-screen bg-slate-50 flex overflow-hidden">
             {/* Mobile Sidebar Overlay */}
             {isMobileOpen && (
                 <div 
@@ -27,7 +27,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
             <aside 
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-slate-200 transition-all duration-300 ease-in-out flex flex-col shadow-xl lg:shadow-none lg:static ${
+                className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-slate-200 transition-all duration-300 ease-in-out flex flex-col shadow-xl lg:shadow-none lg:relative ${
                     isExpanded ? 'w-64' : 'w-20'
                 } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
             >
@@ -97,7 +97,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                 </nav>
 
                 {/* Bottom Section */}
-                <div className="p-3 border-t border-slate-100 space-y-1">
+                <div className="p-3 border-t border-slate-100 space-y-1 flex-shrink-0">
                     <Link
                         href={route('logout')}
                         method="post"
@@ -116,7 +116,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
             {/* Main Content Area */}
             <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
                 {/* Header */}
-                <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16 flex items-center px-6 justify-between">
+                <header className="flex-shrink-0 bg-white/80 backdrop-blur-md border-b border-slate-200 h-16 flex items-center px-6 justify-between z-40">
                     <div className="flex items-center gap-4">
                         <button 
                             className="lg:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100"
@@ -152,7 +152,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                 </header>
 
                 {/* Content */}
-                <main className="flex-1 overflow-auto bg-slate-50/50">
+                <main className="flex-1 overflow-y-auto bg-slate-50/50 scroll-smooth">
                     <div className="p-6 md:p-8 max-w-7xl mx-auto">
                         {(usePage().props as any).flash?.success && (
                             <div className="mb-8 p-4 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-2xl flex items-center gap-3 animate-in slide-in-from-top duration-500 shadow-sm border-l-4 border-l-emerald-500">

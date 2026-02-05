@@ -14,6 +14,13 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class ArticleController extends Controller
 {
+    protected $imageService;
+
+    public function __construct(\App\Services\ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -70,7 +77,8 @@ class ArticleController extends Controller
         }
 
         if ($request->hasFile('thumbnail')) {
-            $data['thumbnail'] = $this->handleImageUpload($request->file('thumbnail'));
+            $path = $this->imageService->uploadAndCompress($request->file('thumbnail'), 'articles', 1200);
+            $data['thumbnail'] = $path;
         }
 
         Article::create($data);
@@ -123,13 +131,12 @@ class ArticleController extends Controller
         if ($request->hasFile('thumbnail')) {
             // Delete old thumbnail
             if ($article->thumbnail) {
-                // Handle full URL or relative path logic safely
                 $oldPath = str_replace('/storage/', '', $article->thumbnail);
-                // Simple check to avoid deleting default images if any, though here likely distinct
                 Storage::disk('public')->delete($oldPath);
             }
 
-            $data['thumbnail'] = $this->handleImageUpload($request->file('thumbnail'));
+            $path = $this->imageService->uploadAndCompress($request->file('thumbnail'), 'articles', 1200);
+            $data['thumbnail'] = $path;
         }
 
         $article->update($data);
@@ -150,23 +157,5 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('admin.articles.index')->with('success', 'Article deleted successfully.');
-    }
-    private function handleImageUpload($file)
-    {
-        $manager = new ImageManager(new Driver());
-        $image = $manager->read($file);
-
-        // Resize if too large (e.g., width > 1200) - keeps aspect ratio
-        if ($image->width() > 1200) {
-            $image->scale(width: 1200);
-        }
-
-        // Encode to WebP with 80% quality
-        $encoded = $image->toWebp(quality: 80);
-
-        $filename = Str::random(40) . '.webp';
-        Storage::disk('public')->put('articles/' . $filename, (string) $encoded);
-
-        return '/storage/articles/' . $filename;
     }
 }

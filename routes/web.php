@@ -30,7 +30,35 @@ Route::prefix('{locale}')
     ->where(['locale' => 'id|en'])
     ->group(function () {
         Route::get('/', function () {
-            return Inertia::render('Welcome/Index');
+            // Get latest 3 projects with images
+            $latestProjects = \App\Models\Project::with('images')
+                ->orderBy('date', 'desc')
+                ->take(3)
+                ->get();
+
+            // Get all project images for gallery (with project title)
+            $galleryImages = \App\Models\ProjectImage::with('project:id,title')
+                ->get()
+                ->map(function ($image) {
+                    return [
+                        'id' => $image->id,
+                        'image_path' => $image->image_path,
+                        'project_title' => $image->project->title ?? 'Project',
+                    ];
+                });
+
+            // Get latest 3 published articles
+            $latestArticles = \App\Models\Article::with('category')
+                ->published()
+                ->orderBy('published_at', 'desc')
+                ->take(3)
+                ->get();
+
+            return Inertia::render('Welcome/Index', [
+                'latestProjects' => $latestProjects,
+                'galleryImages' => $galleryImages,
+                'latestArticles' => $latestArticles,
+            ]);
         })->name('home');
 
         Route::get('/tentang-kami', function () {

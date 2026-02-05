@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 // Navigation Components
 import { Navbar, Footer } from '@/Components/Navigation';
 
 // Home Section Components
-import { HeroSection, Services} from './Sections';
+import { 
+    HeroSection, 
+    Services, 
+    LatestProjectsSection, 
+    PhotoGallerySection, 
+    LatestArticlesSection 
+} from './Sections';
 
 // UI Components
 import { SplashScreen, Toast } from '@/Components/UI';
@@ -15,7 +21,54 @@ interface ToastData {
     type: 'success' | 'info' | 'error';
 }
 
-const WelcomeContent: React.FC = () => {
+interface ProjectImage {
+    id: number;
+    image_path: string;
+}
+
+interface Project {
+    id: number;
+    title: string;
+    location: string;
+    date: string;
+    category: string;
+    description?: string;
+    images: ProjectImage[];
+}
+
+interface GalleryImage {
+    id: number;
+    image_path: string;
+    project_title: string;
+}
+
+interface Category {
+    id: number;
+    name: string;
+}
+
+interface Article {
+    id: number;
+    title: string;
+    slug: string;
+    excerpt: string;
+    thumbnail: string | null;
+    published_at: string;
+    views: number;
+    category: Category | null;
+}
+
+interface WelcomePageProps {
+    latestProjects: Project[];
+    galleryImages: GalleryImage[];
+    latestArticles: Article[];
+}
+
+const WelcomeContent: React.FC<WelcomePageProps> = ({ 
+    latestProjects, 
+    galleryImages, 
+    latestArticles 
+}) => {
     const [showSplash, setShowSplash] = useState(true);
     const [topBarVisible, setTopBarVisible] = useState(true);
     const [isScrolled, setIsScrolled] = useState(false);
@@ -67,10 +120,20 @@ const WelcomeContent: React.FC = () => {
             />
             
             <main>
+                {/* 1. Hero Section */}
                 <HeroSection />
+                
+                {/* 2. 3 Proyek Terakhir */}
+                <LatestProjectsSection projects={latestProjects} />
+                
+                {/* 3. Layanan Kami */}
                 <Services/>
-                {/* <AboutSection /> */}
-                {/* StatsSection removed as it does not exist */}
+                
+                {/* 4. Galeri Foto Slideshow Random */}
+                <PhotoGallerySection images={galleryImages} />
+                
+                {/* 5. Artikel Terbaru */}
+                <LatestArticlesSection articles={latestArticles} />
             </main>
             
             <Footer />
@@ -87,6 +150,13 @@ const WelcomeContent: React.FC = () => {
 };
 
 export default function Welcome() {
+    const props = usePage().props as unknown as { 
+        latestProjects: Project[]; 
+        galleryImages: GalleryImage[]; 
+        latestArticles: Article[] 
+    };
+    const { latestProjects, galleryImages, latestArticles } = props;
+
     return (
         <>
             <Head>
@@ -99,9 +169,14 @@ export default function Welcome() {
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
             </Head>
             <div className="jkk-website">
-                <WelcomeContent />
+                <WelcomeContent 
+                    latestProjects={latestProjects || []}
+                    galleryImages={galleryImages || []}
+                    latestArticles={latestArticles || []}
+                />
             </div>
         </>
     );
 }
+
 
