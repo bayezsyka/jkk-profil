@@ -67,7 +67,7 @@ class Article extends Model
                 }
 
                 // Return the storage URL
-                return \Illuminate\Support\Facades\Storage::url($value);
+                return \Illuminate\Support\Facades\Storage::disk('public')->url($value);
             }
         );
     }
