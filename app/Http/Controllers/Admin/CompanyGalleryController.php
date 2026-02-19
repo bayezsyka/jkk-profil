@@ -38,12 +38,19 @@ class CompanyGalleryController extends Controller
             $maxOrder = CompanyGallery::max('order') ?? 0;
 
             foreach ($request->file('images') as $image) {
-                $path = $this->imageService->uploadAndCompress($image, 'company-gallery');
+                try {
+                    $path = $this->imageService->uploadAndCompress($image, 'company-gallery');
 
-                CompanyGallery::create([
-                    'image_path' => $path,
-                    'order' => ++$maxOrder,
-                ]);
+                    CompanyGallery::create([
+                        'image_path' => $path,
+                        'order' => ++$maxOrder,
+                    ]);
+
+                    \Illuminate\Support\Facades\Log::info("Successfully uploaded image: $path");
+                } catch (\Exception $e) {
+                    \Illuminate\Support\Facades\Log::error("Failed to upload image: " . $e->getMessage());
+                    return redirect()->back()->with('error', 'Terjadi kesalahan saat mengupload foto: ' . $e->getMessage());
+                }
             }
         }
 
