@@ -29,17 +29,36 @@ Route::get('/', function () {
 // Temporary route to fix storage on hosting
 Route::get('/fix-storage', function () {
     try {
-        // Create symbolic link
+        $results = [];
         \Illuminate\Support\Facades\Artisan::call('storage:link');
-        $output = \Illuminate\Support\Facades\Artisan::output();
+        $results[] = "Artisan storage:link: " . trim(\Illuminate\Support\Facades\Artisan::output());
 
-        // Fix permissions if possible
-        $publicStoragePath = public_path('storage');
-        if (file_exists($publicStoragePath)) {
-            @chmod($publicStoragePath, 0755);
+        $fix = function ($p) use (&$fix) {
+            if (!file_exists($p)) return;
+            @chmod($p, 0755);
+            if (is_dir($p)) {
+                foreach (scandir($p) as $i) {
+                    if ($i === '.' || $i === '..') continue;
+                    $full = $p . DIRECTORY_SEPARATOR . $i;
+                    if (is_dir($full)) $fix($full);
+                    else @chmod($full, 0644);
+                }
+            }
+        };
+
+        $storagePath = storage_path('app/public');
+        if (file_exists($storagePath)) {
+            $fix($storagePath);
+            $results[] = "Permissions in storage/app/public fixed";
         }
 
-        return "Storage link fixed. Output: " . $output;
+        $publicStorageLink = public_path('storage');
+        if (file_exists($publicStorageLink)) {
+            @chmod($publicStorageLink, 0755);
+            $results[] = "Public storage link fixed";
+        }
+
+        return ['messages' => $results, 'diagnostic' => ['link' => is_link($publicStorageLink)]];
     } catch (\Exception $e) {
         return "Error: " . $e->getMessage();
     }

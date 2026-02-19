@@ -43,7 +43,11 @@ class ImageService
         $encoded = $image->toWebp($quality);
 
         // Save to storage (public disk)
-        Storage::disk('public')->put($fullPath, (string) $encoded);
+        Storage::disk('public')->put($fullPath, (string) $encoded, 'public');
+
+        // Explicitly set permission to 644 (required by some shared hostings)
+        $absolutePath = Storage::disk('public')->path($fullPath);
+        @chmod($absolutePath, 0644);
 
         return $fullPath;
     }
