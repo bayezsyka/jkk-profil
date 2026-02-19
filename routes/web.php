@@ -26,6 +26,25 @@ Route::get('/', function () {
     return redirect('/id');
 });
 
+// Temporary route to fix storage on hosting
+Route::get('/fix-storage', function () {
+    try {
+        // Create symbolic link
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        $output = \Illuminate\Support\Facades\Artisan::output();
+
+        // Fix permissions if possible
+        $publicStoragePath = public_path('storage');
+        if (file_exists($publicStoragePath)) {
+            @chmod($publicStoragePath, 0755);
+        }
+
+        return "Storage link fixed. Output: " . $output;
+    } catch (\Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
+});
+
 Route::prefix('{locale}')
     ->where(['locale' => 'id|en'])
     ->group(function () {
