@@ -178,6 +178,8 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
+    Route::redirect('/admin', '/admin/dashboard');
+
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('Admin/Dashboard');
