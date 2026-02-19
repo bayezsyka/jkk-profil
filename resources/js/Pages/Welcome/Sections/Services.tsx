@@ -60,7 +60,7 @@ const Services: React.FC = () => {
                 {/* Footer Link */}
                 <div className="text-center mt-auto pt-8">
                     <Link 
-                        href={`/${locale}/projek/berjalan`} // Updated to valid sub-route
+                        href={`/${locale}/projek`}
                         className="inline-flex items-center text-white/80 hover:text-white text-sm md:text-base font-medium tracking-wider uppercase transition-colors group"
                     >
                         <span>{t('common.viewAll')} {t('nav.projects')}</span>

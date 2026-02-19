@@ -35,6 +35,10 @@ export default function Edit({ project }: Props) {
         images: [] as File[],
     });
 
+    const handleImagesChange = React.useCallback((files: File[]) => {
+        setData('images', files);
+    }, [setData]);
+
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
         post(route('admin.projects.update', project.id), {
@@ -183,7 +187,7 @@ export default function Edit({ project }: Props) {
                         <div className="md:col-span-2">
                              <MultiImageUpload
                                 label="Tambah Foto Baru"
-                                onChange={(files) => setData('images', files)}
+                                onChange={handleImagesChange}
                                 error={errors.images}
                             />
                         </div>

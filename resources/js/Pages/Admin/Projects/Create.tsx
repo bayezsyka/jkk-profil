@@ -14,6 +14,10 @@ export default function Create() {
         images: [] as File[],
     });
 
+    const handleImagesChange = React.useCallback((files: File[]) => {
+        setData('images', files);
+    }, [setData]);
+
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
         post(route('admin.projects.store'), {
@@ -130,7 +134,7 @@ export default function Create() {
                         <div className="md:col-span-2">
                             <MultiImageUpload
                                 label="Foto Proyek"
-                                onChange={(files) => setData('images', files)}
+                                onChange={handleImagesChange}
                                 error={errors.images}
                             />
                         </div>

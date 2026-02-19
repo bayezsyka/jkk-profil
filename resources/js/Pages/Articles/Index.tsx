@@ -82,12 +82,12 @@ export default function Index({ articles, categories, filters }: Props) {
 
     return (
         <PublicLayout 
-            title="Artikel"
-            headerTitle="Artikel"
+            title={t('nav.articles')}
+            headerTitle={t('nav.articles')}
             headerImage="/images/header-bg.webp"
             breadcrumbs={[
-                { label: 'Beranda', href: route('home', { locale }) },
-                { label: 'Artikel' }
+                { label: t('nav.home'), href: route('home', { locale }) },
+                { label: t('nav.articles') }
             ]}
         >
             <div className="py-16 bg-gray-50">
@@ -99,7 +99,7 @@ export default function Index({ articles, categories, filters }: Props) {
                              <div className="relative">
                                 <input
                                     type="text"
-                                    placeholder="Cari artikel..."
+                                    placeholder={t('topbar.search')}
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
@@ -121,7 +121,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                 onChange={handleCategoryChange}
                                 className="w-full py-2 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent cursor-pointer bg-white"
                             >
-                                <option value="all">Semua Kategori</option>
+                                <option value="all">{t('common.allCategories')}</option>
                                 {categories.map((cat) => (
                                     <option key={cat.id} value={cat.slug}>{cat.name}</option>
                                 ))}
@@ -155,7 +155,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                     <div className="p-6 flex flex-col flex-1">
                                         <div className="flex items-center text-xs text-gray-500 mb-3 space-x-2">
                                             <span>
-                                                {new Date(article.published_at).toLocaleDateString('id-ID', {
+                                                {new Date(article.published_at).toLocaleDateString(locale === 'id' ? 'id-ID' : 'en-US', {
                                                     day: 'numeric',
                                                     month: 'long',
                                                     year: 'numeric'
@@ -181,7 +181,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                                 href={route('articles.show', { locale, slug: article.slug })} 
                                                 className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors"
                                             >
-                                                Baca Selengkapnya
+                                                {t('common.readMore')}
                                                 <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                                 </svg>
@@ -196,8 +196,8 @@ export default function Index({ articles, categories, filters }: Props) {
                             <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <h3 className="mt-2 text-sm font-medium text-gray-900">Tidak ada artikel ditemukan</h3>
-                            <p className="mt-1 text-sm text-gray-500">Coba ubah kata kunci pencarian atau filter kategori.</p>
+                            <h3 className="mt-2 text-sm font-medium text-gray-900">{t('common.noArticles')}</h3>
+                            <p className="mt-1 text-sm text-gray-500">{t('common.checkSearch')}</p>
                         </div>
                     )}
 

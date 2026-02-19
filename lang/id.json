@@ -36,15 +36,15 @@
         "description": "Jasa Konstruksi, Batching Plant, & Asphalt Mixing Plant Terpercaya di Brebes",
         "slides": {
             "0": {
-                "title": "Jasa Konstruksi Terpercaya",
+                "title": "Jasa Konstruksi",
                 "subtitle": "Mitra strategis pembangunan infrastruktur Indonesia. Spesialis Gedung, Jalan, dan Jembatan."
             },
             "1": {
-                "title": "Batching Plant Berkualitas Tinggi",
+                "title": "Batching Plant",
                 "subtitle": "Menghadirkan beton ready mix berkualitas dengan sistem Dry Mix dan dukungan laboratorium lengkap."
             },
             "2": {
-                "title": "Asphalt Mixing Plant Presisi",
+                "title": "Asphalt Mixing Plant",
                 "subtitle": "Layanan pengaspalan presisi dengan teknologi terkini untuk jalan yang tahan lama."
             }
         },
@@ -113,6 +113,10 @@
                 "executor": "Pelaksana"
             }
         },
+        "company_gallery": {
+            "title": "Galeri Perusahaan",
+            "subtitle": "Dokumentasi visual kegiatan dan fasilitas perusahaan kami."
+        },
         "management": {
             "title": "Manajemen Kami",
             "roles": {
@@ -136,14 +140,22 @@
     "projects": {
         "our_work": "Karya Kami",
         "latest_projects": "Proyek Terbaru",
-        "latest_projects_desc": "Lihat beberapa proyek terbaru yang telah kami kerjakan dengan standar kualitas terbaik."
+        "latest_projects_desc": "Lihat beberapa proyek terbaru yang telah kami kerjakan dengan standar kualitas terbaik.",
+        "list": "Daftar Proyek"
     },
     "gallery": {
         "title": "Galeri",
         "our_gallery": "Galeri Foto Proyek",
         "description": "Dokumentasi visual dari berbagai proyek yang telah kami kerjakan.",
         "click_to_view": "Klik untuk memperbesar",
-        "more": "lainnya"
+        "more": "lainnya",
+        "empty": "Belum ada foto untuk kategori ini.",
+        "filters": {
+            "all": "Semua",
+            "construction": "Konstruksi",
+            "batching_plant": "Batching Plant",
+            "asphalt_mixing_plant": "Asphalt Mixing Plant"
+        }
     },
     "articles": {
         "blog": "Blog",
@@ -354,6 +366,13 @@
         "success": "Berhasil",
         "close": "Tutup",
         "updated": "Terakhir Diperbarui",
-        "lang_changed": "Bahasa diubah ke Indonesia"
+        "scrollDown": "Gulir ke Bawah",
+        "lang_changed": "Bahasa diubah ke Indonesia",
+        "allCategories": "Semua Kategori",
+        "noArticles": "Belum ada artikel ditemukan",
+        "checkSearch": "Coba ubah kata kunci pencarian atau filter kategori.",
+        "noDescription": "Tidak ada deskripsi tersedia.",
+        "previous": "Sebelumnya",
+        "next": "Selanjutnya"
     }
 }

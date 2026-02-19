@@ -23,6 +23,11 @@ type PublicLayoutProps = PropsWithChildren<{
     headerImage?: string;
     transparentHeader?: boolean;
     hidePageHeader?: boolean;
+    headerHeight?: string;
+    headerImageOpacity?: number;
+    headerImageMixBlendMode?: 'overlay' | 'normal' | 'multiply' | 'screen' | 'soft-light';
+    headerOverlayOpacity?: number;
+    headerTextPosition?: 'center' | 'top';
 }>;
 
 export default function PublicLayout({
@@ -32,7 +37,12 @@ export default function PublicLayout({
     breadcrumbs = [],
     headerImage,
     transparentHeader = false,
-    hidePageHeader = false
+    hidePageHeader = false,
+    headerHeight,
+    headerImageOpacity,
+    headerImageMixBlendMode,
+    headerOverlayOpacity,
+    headerTextPosition
 }: PublicLayoutProps) {
     // Note: Navbar/TopBar now handle their own scroll state, 
     // but we might need scroll here for other effects if needed.
@@ -102,6 +112,11 @@ export default function PublicLayout({
                             title={effectiveHeaderTitle}
                             breadcrumbs={effectiveBreadcrumbs}
                             backgroundImage={headerImage}
+                            heightClass={headerHeight}
+                            imageOpacity={headerImageOpacity}
+                            imageMixBlendMode={headerImageMixBlendMode}
+                            overlayOpacity={headerOverlayOpacity}
+                            textPosition={headerTextPosition}
                         />
                     )}
                     

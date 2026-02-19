@@ -10,8 +10,14 @@ import ValuesSection from './Sections/ValuesSection';
 import HistorySection from './Sections/HistorySection';
 import StructureSection from './Sections/StructureSection';
 import ManagementSection from './Sections/ManagementSection';
+import CompanyGallerySection from './Sections/CompanyGallerySection';
 
-const AboutInfo: React.FC<{ organizationMembers: any[] }> = ({ organizationMembers }) => {
+interface GalleryPhoto {
+    id: number;
+    image_path: string;
+}
+
+const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryPhoto[] }> = ({ organizationMembers, companyGallery }) => {
     const { t, locale } = useLanguage();
     const [activeSection, setActiveSection] = useState('profil');
     const [isMenuSticky, setIsMenuSticky] = useState(false);
@@ -24,6 +30,9 @@ const AboutInfo: React.FC<{ organizationMembers: any[] }> = ({ organizationMembe
         { id: 'visi-misi', label: t('about.vision.title'), Component: VisionMissionSection },
         { id: 'nilai', label: t('about.values.title'), Component: ValuesSection },
         { id: 'struktur', label: t('nav.about_structure'), Component: StructureSection },
+        ...(companyGallery && companyGallery.length > 0
+            ? [{ id: 'galeri', label: t('about.company_gallery.title'), Component: CompanyGallerySection }]
+            : []),
     ];
 
     const breadcrumbs = [
@@ -97,7 +106,7 @@ const AboutInfo: React.FC<{ organizationMembers: any[] }> = ({ organizationMembe
                             <Component 
                                 key={id} 
                                 id={id} 
-                                data={id === 'struktur' ? organizationMembers : undefined} 
+                                data={id === 'struktur' ? organizationMembers : id === 'galeri' ? companyGallery : undefined} 
                             />
                         ))}
                     </main>

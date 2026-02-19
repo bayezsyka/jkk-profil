@@ -30,6 +30,12 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
         <PublicLayout 
             title={`${t('services.batching.title')} - JKK`}
             headerTitle={t('services.batching.title')}
+            headerImage="/images/hero-batchingplant.webp"
+            headerHeight="h-screen"
+            headerImageOpacity={0.8}
+            headerImageMixBlendMode="normal"
+            headerOverlayOpacity={0.8}
+            headerTextPosition="top"
         >
             <ServiceGallery projects={projects} />
 

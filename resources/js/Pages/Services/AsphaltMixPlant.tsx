@@ -30,6 +30,12 @@ export default function AsphaltMixPlant({ projects, asphaltPrices }: Props) {
         <PublicLayout 
             title={`${t('services.asphalt.title')} - JKK`}
             headerTitle={t('services.asphalt.title')}
+            headerImage="/images/hero-amp.webp"
+            headerHeight="h-screen"
+            headerImageOpacity={0.8}
+            headerImageMixBlendMode="normal"
+            headerOverlayOpacity={0.8}
+            headerTextPosition="top"
         >
             <ServiceGallery projects={projects} />
 

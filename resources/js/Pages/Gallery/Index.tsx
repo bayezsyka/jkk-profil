@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ProjectImage {
     id: number;
@@ -35,6 +36,7 @@ interface GalleryItem {
 }
 
 export default function Index({ projects }: Props) {
+    const { t, locale } = useLanguage();
     const [activeCategory, setActiveCategory] = useState<string>('all');
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -90,16 +92,16 @@ export default function Index({ projects }: Props) {
     });
 
     const categories = [
-        { id: 'all', label: 'Semua' },
-        { id: 'batching_plant', label: 'Batching Plant' },
-        { id: 'asphalt_mixing_plant', label: 'Asphalt Mixing Plant' },
-        { id: 'construction', label: 'Konstruksi' },
+        { id: 'all', label: t('gallery.filters.all') },
+        { id: 'batching_plant', label: t('gallery.filters.batching_plant') },
+        { id: 'asphalt_mixing_plant', label: t('gallery.filters.asphalt_mixing_plant') },
+        { id: 'construction', label: t('gallery.filters.construction') },
     ];
 
     return (
         <PublicLayout 
-            title="Galeri Proyek - JKK"
-            headerTitle="Galeri Proyek"
+            title={`${t('gallery.title')} - JKK`}
+            headerTitle={t('gallery.our_gallery')}
         >
             <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
                 
@@ -154,7 +156,7 @@ export default function Index({ projects }: Props) {
 
                 {filteredImages.length === 0 && (
                     <div className="text-center py-20 text-slate-500">
-                        <p>Belum ada foto untuk kategori ini.</p>
+                        <p>{t('gallery.empty')}</p>
                     </div>
                 )}
             </div>
@@ -222,7 +224,7 @@ export default function Index({ projects }: Props) {
                             >
                                 <h3 className="text-xl font-bold">{filteredImages[currentImageIndex].projectTitle}</h3>
                                 <p className="text-slate-400 mt-1">
-                                    {filteredImages[currentImageIndex].projectLocation} &bull; {new Date(filteredImages[currentImageIndex].projectDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                    {filteredImages[currentImageIndex].projectLocation} &bull; {new Date(filteredImages[currentImageIndex].projectDate).toLocaleDateString(locale === 'id' ? 'id-ID' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                                 </p>
                             </motion.div>
 

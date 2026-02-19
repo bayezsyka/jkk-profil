@@ -1,6 +1,7 @@
 import { Head, Link } from '@inertiajs/react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ProjectImage {
     id: number;
@@ -32,10 +33,11 @@ interface Props {
 }
 
 export default function Index({ projects }: Props) {
+    const { t } = useLanguage();
     return (
         <PublicLayout 
-            title="Daftar Proyek - JKK"
-            headerTitle="Daftar Proyek"
+            title={`${t('projects.list')} - JKK`}
+            headerTitle={t('projects.list')}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -62,7 +64,9 @@ export default function Index({ projects }: Props) {
                                     </div>
                                 )}
                                 <div className="absolute top-4 left-4 bg-blue-600/90 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
-                                    {project.category.replace('_', ' ')}
+                                    {t(`gallery.filters.${project.category}`) !== `gallery.filters.${project.category}` 
+                                        ? t(`gallery.filters.${project.category}`) 
+                                        : project.category.replace('_', ' ')}
                                 </div>
                             </div>
                             
@@ -90,14 +94,14 @@ export default function Index({ projects }: Props) {
                                 </h3>
                                 
                                 <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
-                                    {project.description || "Tidak ada deskripsi tersedia."}
+                                    {project.description || t('common.noDescription')}
                                 </p>
                                 
                                 <Link 
                                     href={route('projects.show', project.id)}
                                     className="inline-flex items-center justify-center w-full px-4 py-2 bg-slate-50 text-slate-700 rounded-lg hover:bg-slate-100 font-medium transition-colors gap-2 group"
                                 >
-                                    Lihat Detail
+                                    {t('common.viewDetail')}
                                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
@@ -115,7 +119,7 @@ export default function Index({ projects }: Props) {
                                 href={projects.prev_page_url} 
                                 className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
                             >
-                                Previous
+                                {t('common.previous')}
                             </Link>
                         )}
                         {projects.next_page_url && (
@@ -123,7 +127,7 @@ export default function Index({ projects }: Props) {
                                 href={projects.next_page_url} 
                                 className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
                             >
-                                Next
+                                {t('common.next')}
                             </Link>
                         )}
                     </div>

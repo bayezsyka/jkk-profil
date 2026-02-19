@@ -19,6 +19,12 @@ export default function Construction({ projects }: Props) {
         <PublicLayout 
             title={`${t('services.contractor.title')} - JKK`}
             headerTitle={t('services.contractor.title')}
+            headerImage="/images/hero-kontruksi.jpeg"
+            headerHeight="h-screen"
+            headerImageOpacity={0.8}
+            headerImageMixBlendMode="normal"
+            headerOverlayOpacity={0.8}
+            headerTextPosition="top"
         >
             <ServiceGallery projects={projects} />
 

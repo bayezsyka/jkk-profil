@@ -125,6 +125,33 @@ export interface Translations {
         asphalt: SectionItem;
         calculator: CalculatorTranslations;
     };
+    projects: {
+        our_work: string;
+        latest_projects: string;
+        latest_projects_desc: string;
+        list: string;
+    };
+    gallery: {
+        title: string;
+        our_gallery: string;
+        description: string;
+        click_to_view: string;
+        more: string;
+        empty: string;
+        filters: {
+            all: string;
+            construction: string;
+            batching_plant: string;
+            asphalt_mixing_plant: string;
+        };
+    };
+    articles: {
+        blog: string;
+        latest_articles: string;
+        latest_articles_desc: string;
+        views: string;
+        no_more_articles: string;
+    };
     contact: {
         title: string;
         description: string;
@@ -154,6 +181,13 @@ export interface Translations {
         error: string;
         success: string;
         close: string;
+        scrollDown: string;
+        allCategories: string;
+        noArticles: string;
+        checkSearch: string;
+        noDescription: string;
+        previous: string;
+        next: string;
     };
 }
 

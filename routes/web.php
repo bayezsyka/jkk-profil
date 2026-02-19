@@ -64,6 +64,7 @@ Route::prefix('{locale}')
         Route::get('/tentang-kami', function () {
             return Inertia::render('About/Info', [
                 'organizationMembers' => \App\Models\OrganizationMember::orderBy('order')->get(),
+                'companyGallery' => \App\Models\CompanyGallery::orderBy('order')->get(),
             ]);
         })->name('about');
 
@@ -161,5 +162,10 @@ Route::middleware('auth')->group(function () {
         // Article Management
         Route::resource('articles', \App\Http\Controllers\Admin\ArticleController::class);
         Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+
+        // Company Gallery Management
+        Route::get('/company-gallery', [\App\Http\Controllers\Admin\CompanyGalleryController::class, 'index'])->name('company-gallery.index');
+        Route::post('/company-gallery', [\App\Http\Controllers\Admin\CompanyGalleryController::class, 'store'])->name('company-gallery.store');
+        Route::delete('/company-gallery/{companyGallery}', [\App\Http\Controllers\Admin\CompanyGalleryController::class, 'destroy'])->name('company-gallery.destroy');
     });
 });

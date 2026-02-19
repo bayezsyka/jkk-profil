@@ -36,15 +36,15 @@
         "description": "Trusted Construction Services, Batching Plant, & Asphalt Mixing Plant in Brebes",
         "slides": {
             "0": {
-                "title": "Trusted Construction Services",
+                "title": "Construction Services",
                 "subtitle": "Strategic partner for Indonesia infrastructure development. Specialists in Buildings, Roads, and Bridges."
             },
             "1": {
-                "title": "High Quality Batching Plant",
+                "title": "Batching Plant",
                 "subtitle": "Delivering quality ready-mix concrete with Dry Mix system and complete laboratory support."
             },
             "2": {
-                "title": "Precision Asphalt Mixing Plant",
+                "title": "Asphalt Mixing Plant",
                 "subtitle": "Precision asphalt paving services with modern technology for durable roads."
             }
         },
@@ -113,6 +113,10 @@
                 "executor": "Executor"
             }
         },
+        "company_gallery": {
+            "title": "Company Gallery",
+            "subtitle": "Visual documentation of our company activities and facilities."
+        },
         "management": {
             "title": "Our Management",
             "roles": {
@@ -136,14 +140,22 @@
     "projects": {
         "our_work": "Our Work",
         "latest_projects": "Latest Projects",
-        "latest_projects_desc": "Explore some of our recent projects delivered with the highest quality standards."
+        "latest_projects_desc": "Explore some of our recent projects delivered with the highest quality standards.",
+        "list": "Project List"
     },
     "gallery": {
         "title": "Gallery",
         "our_gallery": "Project Photo Gallery",
         "description": "Visual documentation of various projects we have completed.",
         "click_to_view": "Click to enlarge",
-        "more": "more"
+        "more": "more",
+        "empty": "No photos available for this category.",
+        "filters": {
+            "all": "All",
+            "construction": "Construction",
+            "batching_plant": "Batching Plant",
+            "asphalt_mixing_plant": "Asphalt Mixing Plant"
+        }
     },
     "articles": {
         "blog": "Blog",
@@ -354,6 +366,13 @@
         "success": "Success",
         "close": "Close",
         "updated": "Last Updated",
-        "lang_changed": "Language changed to English"
+        "scrollDown": "Scroll Down",
+        "lang_changed": "Language changed to English",
+        "allCategories": "All Categories",
+        "noArticles": "No articles found",
+        "checkSearch": "Try changing search keywords or category filters.",
+        "noDescription": "No description available.",
+        "previous": "Previous",
+        "next": "Next"
     }
 }

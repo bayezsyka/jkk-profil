@@ -54,45 +54,57 @@ export default function ServiceGallery({ projects }: ServiceGalleryProps) {
     if (galleryImages.length === 0) return null;
 
     return (
-        <div className="w-full relative overflow-hidden bg-black h-[35vh] md:h-[45vh] lg:h-[50vh]">
-            {/* Gradient Overlays for smooth edge fade */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-black/20 to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-black/20 to-transparent z-10 pointer-events-none" />
+        <div className="relative z-30 -mt-[25vh] md:-mt-[45vh] mb-0 w-full group">
+            {/* SlideShow Container */}
+            <div className="w-full overflow-hidden relative">
+                {/* Gradient mask for smooth edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-slate-900/0 to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-slate-900/0 to-transparent z-10 pointer-events-none" />
 
-            <div className="flex h-full items-center">
-                <motion.div
-                    className="flex h-full"
-                    animate={{ x: "-50%" }}
-                    transition={{ 
-                        ease: "linear", 
-                        duration: Math.max(30, loopedImages.length * 4), 
-                        repeat: Infinity 
-                    }}
-                    style={{ width: "fit-content" }}
-                >
-                    {loopedImages.map((item, index) => (
-                        <div
-                            key={`${item.id}-${index}`}
-                            className="relative h-full aspect-[4/3] md:aspect-[16/9] flex-shrink-0 border-none outline-none select-none pointer-events-none"
-                        >
-                            <img
-                                src={item.src}
-                                alt={item.projectTitle}
-                                className="w-full h-full object-cover"
-                                loading="eager"
-                                draggable={false}
-                            />
-                            {/* Subtle overlay with info - static, no hover needed */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
-                                <div className="text-white">
-                                    <h3 className="text-sm md:text-base font-bold tracking-wider uppercase opacity-80">{item.projectTitle}</h3>
-                                    <p className="text-xs mt-0.5 opacity-60">{item.projectLocation}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
+                <div className="flex items-center pb-8">
+                     <MarqueeContent images={loopedImages} />
+                </div>
             </div>
+
+
         </div>
+    );
+}
+
+function MarqueeContent({ images }: { images: GalleryItem[] }) {
+    return (
+        <motion.div
+            className="flex items-center gap-4 md:gap-6 px-4"
+            animate={{ x: "-50%" }}
+            transition={{ 
+                ease: "linear", 
+                duration: Math.max(40, images.length * 5), 
+                repeat: Infinity 
+            }}
+            style={{ width: "max-content" }}
+        >
+            {images.map((item, index) => (
+                <a 
+                    href="#" 
+                    key={`${item.id}-${index}`}
+                    className="relative block shrink-0 w-[220px] sm:w-[320px] md:w-[420px] aspect-video rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+                >
+                    <img
+                        src={item.src}
+                        alt={item.projectTitle}
+                        className="w-full h-full object-cover"
+                        loading="eager"
+                        draggable={false}
+                    />
+                    
+                    {/* Minimal Overlay - Clean Look */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
+                        <h3 className="text-white font-bold text-base md:text-lg leading-tight drop-shadow-md line-clamp-1">{item.projectTitle}</h3>
+                        <p className="text-white/80 text-xs md:text-sm mt-0.5 drop-shadow-sm">{item.projectLocation}</p>
+                    </div>
+                </a>
+            ))}
+        </motion.div>
     );
 }

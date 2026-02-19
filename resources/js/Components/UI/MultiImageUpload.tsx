@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { convertToWebP, formatBytes } from '@/Utils/imageUtils';
 
 interface FileState {
@@ -20,6 +20,23 @@ interface MultiImageUploadProps {
 const MultiImageUpload: React.FC<MultiImageUploadProps> = ({ label, onChange, error }) => {
     const [files, setFiles] = useState<FileState[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const lastSentFilesRef = useRef<File[]>([]);
+
+    // Sync processed files to parent via onChange
+    useEffect(() => {
+        const allProcessedFiles = files
+            .filter(f => f.status === 'done' && f.processedFile)
+            .map(f => f.processedFile as File);
+        
+        // Only trigger onChange if the set of processed files has actually changed
+        const isChanged = allProcessedFiles.length !== lastSentFilesRef.current.length ||
+            allProcessedFiles.some((f, i) => f !== lastSentFilesRef.current[i]);
+
+        if (isChanged) {
+            lastSentFilesRef.current = allProcessedFiles;
+            onChange(allProcessedFiles);
+        }
+    }, [files, onChange]);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = e.target.files ? Array.from(e.target.files) : [];
@@ -69,22 +86,14 @@ const MultiImageUpload: React.FC<MultiImageUploadProps> = ({ label, onChange, er
             clearInterval(interval);
             const newPreviewUrl = URL.createObjectURL(webpFile);
 
-            setFiles(prev => {
-                const updated = prev.map(f => f.id === id ? { 
-                    ...f, 
-                    status: 'done' as const, 
-                    processedFile: webpFile, 
-                    progress: 100,
-                    processedSize: totalSize,
-                    previewUrl: newPreviewUrl 
-                } : f);
-                
-                // Trigger onChange with all processed files
-                const allProcessedFiles = updated.filter(f => f.status === 'done').map(f => f.processedFile as File);
-                onChange(allProcessedFiles);
-                
-                return updated;
-            });
+            setFiles(prev => prev.map(f => f.id === id ? { 
+                ...f, 
+                status: 'done' as const, 
+                processedFile: webpFile, 
+                progress: 100,
+                processedSize: totalSize,
+                previewUrl: newPreviewUrl 
+            } : f));
 
         } catch (err) {
             console.error('Image processing failed:', err);
@@ -93,12 +102,7 @@ const MultiImageUpload: React.FC<MultiImageUploadProps> = ({ label, onChange, er
     };
 
     const removeFile = (id: string) => {
-        setFiles(prev => {
-            const filtered = prev.filter(f => f.id !== id);
-            const allProcessedFiles = filtered.filter(f => f.status === 'done').map(f => f.processedFile as File);
-            onChange(allProcessedFiles);
-            return filtered;
-        });
+        setFiles(prev => prev.filter(f => f.id !== id));
     };
 
     const startAll = () => {

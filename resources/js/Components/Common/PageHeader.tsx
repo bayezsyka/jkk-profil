@@ -11,18 +11,41 @@ interface PageHeaderProps {
     title: string;
     breadcrumbs: BreadcrumbItem[];
     backgroundImage?: string;
+    heightClass?: string;
+    imageOpacity?: number;
+    imageMixBlendMode?: 'overlay' | 'normal' | 'multiply' | 'screen' | 'soft-light';
+    overlayOpacity?: number;
+    textPosition?: 'center' | 'top';
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ 
     title, 
     breadcrumbs, 
-    backgroundImage = '/images/header-bg.webp' // Default or fallback
+    backgroundImage = '/images/header-bg.webp',
+    heightClass = "h-[250px] md:h-[300px]",
+    imageOpacity = 0.2,
+    imageMixBlendMode = 'overlay',
+    overlayOpacity = 1,
+    textPosition = 'center'
 }) => {
-    const { locale } = useLanguage();
+    const { locale, t } = useLanguage();
+
+    const alignmentClass = textPosition === 'top' 
+        ? 'items-start pt-32 md:pt-48' 
+        : 'items-center';
+
+    const isFullScreen = heightClass.includes('h-screen') || heightClass.includes('min-h-screen');
+
+    const handleScrollDown = () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <div 
-            className="relative w-full h-[250px] md:h-[300px] flex items-center"
+            className={`relative w-full ${heightClass} flex ${alignmentClass}`}
             style={{
                 background: `linear-gradient(90deg, #1e3a8a 0%, #172554 100%)`, // Deep blue gradient base
                 position: 'relative',
@@ -36,8 +59,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    opacity: 0.2,
-                    mixBlendMode: 'overlay'
+                    opacity: imageOpacity,
+                    mixBlendMode: imageMixBlendMode
                 }}
             />
             
@@ -45,7 +68,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             <div 
                 className="absolute inset-0 z-10"
                 style={{
-                    background: 'linear-gradient(90deg, rgba(30, 58, 138, 0.95) 0%, rgba(30, 58, 138, 0.8) 50%, rgba(30, 58, 138, 0.4) 100%)'
+                    background: 'linear-gradient(90deg, rgba(30, 58, 138, 0.95) 0%, rgba(30, 58, 138, 0.8) 50%, rgba(30, 58, 138, 0.4) 100%)',
+                    opacity: overlayOpacity
                 }}
             />
 
@@ -89,6 +113,21 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {title}
                 </h1>
             </div>
+
+            {/* Scroll Down Button for Full Screen Headers */}
+            {isFullScreen && (
+                <div className="absolute bottom-8 left-0 right-0 z-40 flex justify-center animate-bounce md:hidden">
+                    <button 
+                        onClick={handleScrollDown}
+                        className="text-white hover:text-gray-200 transition-colors focus:outline-none"
+                        aria-label={t('common.scrollDown')}
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-10 h-10">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
