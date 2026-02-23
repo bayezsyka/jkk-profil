@@ -16,9 +16,9 @@
 
     <!-- Static SEO Fallback -->
     <meta name="description"
-        content="PT Jaya Karya Konstruksi (JKK) melayani jasa konstruksi, pengaspalan jalan hotmix, dan sewa batching plant beton berkualitas SNI.">
+        content="PT Jaya Karya Kontruksi (JKK) melayani jasa konstruksi, pengaspalan jalan hotmix, dan sewa batching plant beton berkualitas SNI.">
     <meta name="keywords"
-        content="pt jaya karya konstruksi, batching plant pt jaya karya konstruksi, kontraktor aspal, jkk">
+        content="pt jaya karya kontruksi, batching plant pt jaya karya kontruksi, kontraktor aspal, jkk">
 
     <!-- Scripts -->
     @routes

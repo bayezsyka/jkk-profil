@@ -133,7 +133,7 @@ export default function Welcome() {
     return (
         <>
             <Head>
-                <title>Beranda - Kontraktor Jalan & Beton Ready Mix</title>
+                <title>Beranda</title>
                 <meta name="description" content="PT. Jaya Karya Kontruksi (JKK) - Mitra terpercaya untuk konstruksi jalan, produksi aspal hotmix (AMP), dan beton ready mix berkualitas tinggi di Kalimantan Timur." />
                 <meta name="keywords" content="kontraktor jalan, konstruksi jalan, aspal hotmix, beton ready mix, AMP, Batching Plant, JKK, Jaya Karya Kontruksi, Kalimantan Timur, pembangunan jalan, supplier beton" />
                 
@@ -168,7 +168,7 @@ export default function Welcome() {
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Organization",
-                        "name": "PT Jaya Karya Konstruksi",
+                        "name": "PT Jaya Karya Kontruksi",
                         "url": app_url,
                         "logo": `${app_url}/images/logo.webp`,
                         "contactPoint": {
@@ -188,9 +188,9 @@ export default function Welcome() {
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "ConstructionBusiness",
-                        "name": "PT Jaya Karya Konstruksi",
+                        "name": "PT Jaya Karya Kontruksi",
                         "alternateName": "JKK",
-                        "description": "PT Jaya Karya Konstruksi (JKK) adalah perusahaan konstruksi terkemuka yang spesialis dalam pembangunan jalan, produksi aspal hotmix, dan penyediaan beton ready mix berkualitas SNI.",
+                        "description": "PT Jaya Karya Kontruksi (JKK) adalah perusahaan konstruksi terkemuka yang spesialis dalam pembangunan jalan, produksi aspal hotmix, dan penyediaan beton ready mix berkualitas SNI.",
                         "url": app_url,
                         "logo": `${app_url}/images/logo.webp`,
                         "image": `${app_url}/images/hero-kontruksi.jpeg`,

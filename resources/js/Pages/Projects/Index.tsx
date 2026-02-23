@@ -36,7 +36,7 @@ export default function Index({ projects }: Props) {
     const { t } = useLanguage();
     return (
         <PublicLayout 
-            title={`${t('projects.list')} - JKK`}
+            title={t('projects.list')}
             headerTitle={t('projects.list')}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">

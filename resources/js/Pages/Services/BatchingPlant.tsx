@@ -31,11 +31,11 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
         <>
             <Head>
                 <title>Layanan Batching Plant</title>
-                <meta name="description" content="Sewa batching plant dan beton ready mix berkualitas dari PT Jaya Karya Konstruksi. Kami melayani pengiriman beton cor mutu tinggi untuk berbagai proyek konstruksi dengan standar kualitas SNI." />
-                <meta name="keywords" content="batching plant pt jaya karya konstruksi, sewa batching plant, beton ready mix, harga beton cor, supply beton, pt jaya karya konstruksi, jkk" />
+                <meta name="description" content="Sewa batching plant dan beton ready mix berkualitas dari PT Jaya Karya Kontruksi. Kami melayani pengiriman beton cor mutu tinggi untuk berbagai proyek konstruksi dengan standar kualitas SNI." />
+                <meta name="keywords" content="batching plant pt jaya karya kontruksi, sewa batching plant, beton ready mix, harga beton cor, supply beton, pt jaya karya kontruksi, jkk" />
             </Head>
             <PublicLayout 
-                title={`${t('services.batching.title')} - JKK`}
+                title={t('services.batching.title')}
                 hidePageHeader
             >
             <ServicePageHeader

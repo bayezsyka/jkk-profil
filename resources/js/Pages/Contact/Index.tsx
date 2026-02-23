@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
 
     return (
         <PublicLayout
-            title={`${t('contact.title')} - JKK`}
+            title={t('contact.title')}
             headerTitle={t('contact.title')}
             breadcrumbs={breadcrumbs}
         >

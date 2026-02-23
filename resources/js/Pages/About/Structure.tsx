@@ -13,7 +13,7 @@ const Structure: React.FC<{ organizationMembers: any[] }> = ({ organizationMembe
 
     return (
         <PublicLayout
-            title={`${t('nav.about_structure')} - JKK`}
+            title={t('nav.about_structure')}
             headerTitle={t('nav.about_structure')}
             breadcrumbs={breadcrumbs}
         >

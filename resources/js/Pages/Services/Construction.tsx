@@ -17,7 +17,7 @@ export default function Construction({ projects }: Props) {
 
     return (
         <PublicLayout 
-            title={`${t('services.contractor.title')} - JKK`}
+            title={t('services.contractor.title')}
             hidePageHeader
         >
             <ServicePageHeader

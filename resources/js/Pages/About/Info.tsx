@@ -86,12 +86,12 @@ const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryP
     return (
         <>
             <Head>
-                <title>{`${t('nav.about')} - PT. Jaya Karya Kontruksi | Pengalaman & Visi`}</title>
+                <title>{`${t('nav.about')} | Pengalaman & Visi`}</title>
                 <meta name="description" content="Pelajari profil PT. Jaya Karya Kontruksi (JKK), visi misi, dan dedikasi kami dalam menyediakan layanan konstruksi jalan dan beton berkualitas di Kalimantan Timur." />
                 <meta name="keywords" content="profil JKK, tentang PT. Jaya Karya Kontruksi, visi misi konstruksi, kontraktor jalan Kaltim, sejarah perusahaan konstruksi" />
             </Head>
             <PublicLayout
-                title={`${t('nav.about')} - PT. Jaya Karya Kontruksi`}
+                title={t('nav.about')}
                 headerTitle={t('nav.about')}
                 breadcrumbs={breadcrumbs}
             >

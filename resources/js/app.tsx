@@ -7,7 +7,11 @@ import { createRoot } from 'react-dom/client';
 const appName = import.meta.env.VITE_APP_NAME || 'Jaya Karya Kontruksi';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => {
+        if (!title || title.includes('Beranda')) return appName;
+        if (title.includes(appName) || title.includes('JKK')) return title;
+        return `${title} - ${appName}`;
+    },
     resolve: (name) => {
         // Eager load Welcome/Index for faster LCP
         const eagerPages = import.meta.glob('./Pages/Welcome/Index.tsx', { eager: true });
