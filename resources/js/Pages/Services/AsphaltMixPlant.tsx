@@ -1,6 +1,7 @@
 import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
+import { Head } from '@inertiajs/react';
 import ServicePageHeader from '@/Components/ServicePageHeader';
 import AsphaltCalculator from '@/Components/Calculators/AsphaltCalculator';
 
@@ -27,10 +28,16 @@ export default function AsphaltMixPlant({ projects, asphaltPrices }: Props) {
     const latestProjects = projects.slice(0, 4);
 
     return (
-        <PublicLayout 
-            title={`${t('services.asphalt.title')} - JKK`}
-            hidePageHeader
-        >
+        <>
+            <Head>
+                <title>{`${t('services.asphalt.title')} - JKK | Produksi Aspal Hotmix Berkualitas`}</title>
+                <meta name="description" content="Layanan Asphalt Mix Plant (AMP) PT. Jaya Karya Kontruksi. Menyediakan berbagai tipe aspal hotmix berkualitas tinggi untuk proyek pengaspalan jalan Anda." />
+                <meta name="keywords" content="asphalt mix plant, aspal hotmix, harga aspal hotmix, jual aspal, pengaspalan jalan, kontraktor aspal, JKK AMP" />
+            </Head>
+            <PublicLayout 
+                title={`${t('services.asphalt.title')} - JKK`}
+                hidePageHeader
+            >
             <ServicePageHeader
                 title={t('services.asphalt.title')}
                 subtitle={t('services.asphalt.desc')}
@@ -144,6 +151,7 @@ export default function AsphaltMixPlant({ projects, asphaltPrices }: Props) {
                 </div>
             )}
         </PublicLayout>
+        </>
     );
 }
 

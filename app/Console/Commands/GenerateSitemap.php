@@ -30,36 +30,67 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        $sitemap = Sitemap::create()
-            ->add(Url::create('/'))
-            ->add(Url::create('/id'))
-            ->add(Url::create('/en'))
-            ->add(Url::create('/id/tentang-kami'))
-            ->add(Url::create('/id/services/batching-plant'))
-            ->add(Url::create('/id/services/construction'))
-            ->add(Url::create('/id/services/asphalt-mixing-plant'))
-            ->add(Url::create('/id/galeri'))
-            ->add(Url::create('/id/projek'))
-            ->add(Url::create('/id/artikel'));
+        $sitemap = Sitemap::create();
+        $locales = ['id', 'en'];
 
-        // Add Projects
-        Project::all()->each(function (Project $project) use ($sitemap) {
-            $sitemap->add(Url::create("/id/projek/{$project->id}")
-                ->setLastModificationDate($project->updated_at)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                ->setPriority(0.8));
-        });
+        foreach ($locales as $locale) {
+            // Main Pages
+            $sitemap->add(Url::create(route('home', ['locale' => $locale]))
+                ->setPriority(1.0)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
 
-        // Add Articles
-        Article::published()->get()->each(function (Article $article) use ($sitemap) {
-            $sitemap->add(Url::create("/id/artikel/{$article->slug}")
-                ->setLastModificationDate($article->updated_at)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-                ->setPriority(0.9));
-        });
+            $sitemap->add(Url::create(route('about', ['locale' => $locale]))
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+
+            $sitemap->add(Url::create(route('contact', ['locale' => $locale]))
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+
+            $sitemap->add(Url::create(route('gallery', ['locale' => $locale]))
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+
+            // Services
+            $sitemap->add(Url::create(route('services.batching', ['locale' => $locale]))
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+
+            $sitemap->add(Url::create(route('services.construction', ['locale' => $locale]))
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+
+            $sitemap->add(Url::create(route('services.asphalt', ['locale' => $locale]))
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+
+            // Dynamic Projects
+            $sitemap->add(Url::create(route('projects.index', ['locale' => $locale]))
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+
+            Project::all()->each(function (Project $project) use ($sitemap, $locale) {
+                $sitemap->add(Url::create(route('projects.show', ['locale' => $locale, 'id' => $project->id]))
+                    ->setLastModificationDate($project->updated_at)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.7));
+            });
+
+            // Dynamic Articles
+            $sitemap->add(Url::create(route('articles.index', ['locale' => $locale]))
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY));
+
+            Article::published()->get()->each(function (Article $article) use ($sitemap, $locale) {
+                $sitemap->add(Url::create(route('articles.show', ['locale' => $locale, 'slug' => $article->slug]))
+                    ->setLastModificationDate($article->updated_at)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setPriority(0.7));
+            });
+        }
 
         $sitemap->writeToFile(public_path('sitemap.xml'));
 
-        $this->info('Sitemap generated successfully.');
+        $this->info("Sitemap generated successfully with " . count($sitemap->getTags()) . " URLs.");
     }
 }

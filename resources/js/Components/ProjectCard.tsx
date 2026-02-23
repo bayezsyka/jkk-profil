@@ -39,7 +39,8 @@ export default function ProjectCard({
                 {project.images.length > 0 ? (
                     <img 
                         src={project.images[0].image_path.startsWith('http') ? project.images[0].image_path : `/storage/${project.images[0].image_path}`} 
-                        alt={project.title}
+                        alt={`Proyek Konstruksi ${project.title} - ${project.location} | PT Jaya Karya Kontruksi`}
+                        loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                 ) : (

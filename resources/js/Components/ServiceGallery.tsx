@@ -91,7 +91,7 @@ function MarqueeContent({ images }: { images: GalleryItem[] }) {
                 >
                     <img
                         src={item.src}
-                        alt={item.projectTitle}
+                        alt={`Proyek Konstruksi ${item.projectTitle} - JKK ${item.projectLocation}`}
                         className="w-full h-full object-cover"
                         loading="eager"
                         draggable={false}

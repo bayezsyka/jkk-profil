@@ -99,6 +99,22 @@ export default function PublicLayout({
                 {!headerImage && (
                     <link rel="preload" as="image" href="/images/header-bg.webp" />
                 )}
+
+                {/* Breadcrumb Structured Data */}
+                {effectiveBreadcrumbs.length > 0 && (
+                    <script type="application/ld+json">
+                        {JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "BreadcrumbList",
+                            "itemListElement": effectiveBreadcrumbs.map((crumb, index) => ({
+                                "@type": "ListItem",
+                                "position": index + 1,
+                                "name": crumb.label,
+                                "item": crumb.href ? (crumb.href.startsWith('http') ? crumb.href : `https://jkk-konstruksi.com${crumb.href}`) : undefined
+                            }))
+                        })}
+                    </script>
+                )}
             </Head>
 
             <div className={`min-h-screen bg-gray-50 flex flex-col`}>

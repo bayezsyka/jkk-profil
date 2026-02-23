@@ -107,12 +107,12 @@ const Contact: React.FC = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                         </svg>
                                     </div>
-                                    <div>
-                                        <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.office')}</p>
-                                        <p className="text-gray-600 leading-relaxed text-sm">
-                                            {company?.address || t('contact.address_not_set')}
-                                        </p>
-                                    </div>
+                                    <address className="not-italic">
+                                         <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.office')}</p>
+                                         <p className="text-gray-600 leading-relaxed text-sm">
+                                             {company?.address || t('contact.address_not_set')}
+                                         </p>
+                                     </address>
                                 </div>
 
                                 {/* Telepon */}
@@ -122,29 +122,29 @@ const Contact: React.FC = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                         </svg>
                                     </div>
-                                    <div>
-                                        <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.phone')}</p>
-                                        <p className="text-gray-600 text-sm">{company?.phone || '(021) 1234-5678'}</p>
-                                    </div>
-                                </div>
-
-                                {/* Email Kontak */}
-                                <div className="flex items-start gap-4">
-                                    <div className="mt-1 w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.email')}</p>
-                                        <a
-                                            href={`mailto:${company?.email_1 || 'jayakarya24@gmail.com'}`}
-                                            className="text-blue-700 hover:text-blue-800 transition-colors text-sm font-semibold"
-                                        >
-                                            {company?.email_1 || 'jayakarya24@gmail.com'}
-                                        </a>
-                                    </div>
-                                </div>
+                                    <address className="not-italic">
+                                         <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.phone')}</p>
+                                         <p className="text-gray-600 text-sm">{company?.phone || '(021) 1234-5678'}</p>
+                                     </address>
+                                 </div>
+ 
+                                 {/* Email Kontak */}
+                                 <div className="flex items-start gap-4">
+                                     <div className="mt-1 w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 text-blue-600">
+                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                         </svg>
+                                     </div>
+                                     <address className="not-italic">
+                                         <p className="text-sm font-semibold text-gray-900 mb-1">{t('contact.email')}</p>
+                                         <a
+                                             href={`mailto:${company?.email_1 || 'jayakarya24@gmail.com'}`}
+                                             className="text-blue-700 hover:text-blue-800 transition-colors text-sm font-semibold"
+                                         >
+                                             {company?.email_1 || 'jayakarya24@gmail.com'}
+                                         </a>
+                                     </address>
+                                 </div>
 
                                 {/* Website */}
                                 <div className="flex items-start gap-4">

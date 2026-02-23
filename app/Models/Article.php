@@ -7,10 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Article extends Model
 {
     use HasFactory;
+
+    protected static function booted()
+    {
+        static::creating(function ($article) {
+            if (!$article->slug) {
+                $article->slug = Str::slug($article->title);
+            }
+        });
+
+        static::updating(function ($article) {
+            if ($article->isDirty('title') && !$article->isDirty('slug')) {
+                $article->slug = Str::slug($article->title);
+            }
+        });
+    }
 
     protected $fillable = [
         'category_id',

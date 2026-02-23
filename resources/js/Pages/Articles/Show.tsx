@@ -77,8 +77,13 @@ export default function Show({ article, relatedArticles }: Props) {
     return (
         <>
             <Head>
-                <title>{`${article.seo_title || article.title || t('articles.articles')} - JKK`}</title>
-                <meta name="description" content={article.excerpt || ''} />
+                <title>{`${article.seo_title || article.title} | Blog PT. Jaya Karya Kontruksi`}</title>
+                <meta name="description" content={article.excerpt || `${article.title}. Baca artikel selengkapnya di website resmi PT. Jaya Karya Kontruksi.`} />
+                <meta name="keywords" content={article.seo_keywords || `artikel konstruksi, ${article.title}, JKK blog, berita konstruksi, info batching plant, info AMP`} />
+                <meta property="og:title" content={article.seo_title || article.title} />
+                <meta property="og:description" content={article.excerpt} />
+                <meta property="og:image" content={article.thumbnail} />
+                <meta property="og:type" content="article" />
                 <script 
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -86,6 +91,7 @@ export default function Show({ article, relatedArticles }: Props) {
                             "@context": "https://schema.org",
                             "@type": "Article",
                             "headline": article.seo_title || article.title,
+                            "description": article.excerpt,
                             "image": article.thumbnail ? [article.thumbnail] : [],
                             "datePublished": article.published_at,
                             "dateModified": article.published_at,

@@ -126,7 +126,8 @@ const PhotoGallerySection: React.FC<PhotoGallerySectionProps> = ({ images }) => 
                                 }`}>
                                     <img
                                         src={`/storage/${image.image_path}`}
-                                        alt={image.project_title}
+                                        alt={`Dokumentasi Proyek ${image.project_title} - JKK Gallery`}
+                                        loading="lazy"
                                         className="w-[180px] sm:w-[280px] md:w-[380px] lg:w-[460px] h-[130px] sm:h-[210px] md:h-[285px] lg:h-[320px] object-cover"
                                     />
                                     {isCenter && (
@@ -181,7 +182,7 @@ const PhotoGallerySection: React.FC<PhotoGallerySectionProps> = ({ images }) => 
                     <div className="max-w-5xl max-h-[90vh] relative" onClick={(e) => e.stopPropagation()}>
                         <img
                             src={`/storage/${selectedImage.image_path}`}
-                            alt={selectedImage.project_title}
+                            alt={`Detail Foto Proyek ${selectedImage.project_title} | PT Jaya Karya Kontruksi`}
                             className="max-w-full max-h-[85vh] object-contain rounded-lg"
                         />
                         <p className="text-white text-center mt-3 text-sm font-medium">

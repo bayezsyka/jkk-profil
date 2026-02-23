@@ -1,6 +1,7 @@
 import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
+import { Head } from '@inertiajs/react';
 import ServicePageHeader from '@/Components/ServicePageHeader';
 
 import { Project } from '@/Components/ProjectCard';
@@ -27,10 +28,16 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
     const latestProjects = projects.slice(0, 4);
 
     return (
-        <PublicLayout 
-            title={`${t('services.batching.title')} - JKK`}
-            hidePageHeader
-        >
+        <>
+            <Head>
+                <title>{`${t('services.batching.title')} - JKK | Beton Ready Mix Berkualitas Tinggi`}</title>
+                <meta name="description" content="Layanan Batching Plant PT. Jaya Karya Kontruksi. Menyediakan beton ready mix mutu terjamin untuk proyek konstruksi gedung dan jalan di Kalimantan Timur." />
+                <meta name="keywords" content="batching plant, beton ready mix, harga beton cor, jual beton ready mix, supply beton, kontraktor beton, beton Kaltim" />
+            </Head>
+            <PublicLayout 
+                title={`${t('services.batching.title')} - JKK`}
+                hidePageHeader
+            >
             <ServicePageHeader
                 title={t('services.batching.title')}
                 subtitle={t('services.batching.desc')}
@@ -85,6 +92,7 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
                 <BatchingCalculator initialPrices={concretePrices} />
             )}
         </PublicLayout>
+        </>
     );
 }
 

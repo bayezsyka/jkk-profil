@@ -82,7 +82,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             <div className="absolute inset-0 z-0">
                 <img 
                     src={backgroundImage} 
-                    alt="" 
+                    alt={`Background Header ${title} - PT Jaya Karya Kontruksi`} 
                     className="w-full h-full object-cover"
                     style={{
                         opacity: imageOpacity,

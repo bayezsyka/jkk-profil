@@ -63,7 +63,6 @@ class ArticleController extends Controller
         ]);
 
         $data = $request->except('thumbnail');
-        $data['slug'] = Str::slug($request->title);
         $data['user_id'] = auth()->id();
 
         // Auto-generate excerpt if missing

@@ -51,7 +51,7 @@ const CompanyGallerySection: React.FC<{ id: string; data?: GalleryPhoto[] }> = (
                             <div className="relative rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
                                 <img
                                     src={`/storage/${photo.image_path}`}
-                                    alt=""
+                                    alt={`Foto Dokumentasi Perusahaan PT Jaya Karya Kontruksi - Galeri ${index + 1}`}
                                     width="800"
                                     height="600"
                                     className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
@@ -110,7 +110,7 @@ const CompanyGallerySection: React.FC<{ id: string; data?: GalleryPhoto[] }> = (
                     {/* Image */}
                     <img
                         src={`/storage/${photos[lightboxIndex].image_path}`}
-                        alt=""
+                        alt={`Galeri Perusahaan JKK - Foto ${lightboxIndex + 1}`}
                         className="max-w-[90vw] max-h-[85vh] object-contain rounded-2xl shadow-2xl"
                         onClick={(e) => e.stopPropagation()}
                     />

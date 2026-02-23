@@ -68,27 +68,28 @@ const HeroSection: React.FC = () => {
             <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end">
                 {/* Slide Title */}
                 <div className="relative min-h-[120px] md:min-h-[160px]">
-                    {slides.map((slide, index) => (
-                        <div
-                            key={index}
-                            className={`absolute inset-x-0 bottom-0 transition-all duration-700 ease-out ${
-                                currentSlide === index
-                                    ? 'opacity-100 translate-y-0'
-                                    : 'opacity-0 translate-y-4 pointer-events-none'
-                            }`}
-                        >
-                            <div className="max-w-3xl">
-                                {/* Accent bar */}
-                                <div className="flex items-center gap-2 mb-6">
-                                    <div className="w-10 md:w-14 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
-                                    <div className="w-3 h-1 bg-blue-400/40 rounded-full" />
-                                </div>
-                                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] drop-shadow-xl">
-                                    {t(slide.titleKey)}
-                                </h1>
-                            </div>
+                    <div className="max-w-3xl">
+                        {/* Accent bar */}
+                        <div className="flex items-center gap-2 mb-6">
+                            <div className="w-10 md:w-14 h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
+                            <div className="w-3 h-1 bg-blue-400/40 rounded-full" />
                         </div>
-                    ))}
+                        
+                        <h1 className="relative text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] drop-shadow-xl min-h-[2em]">
+                            {slides.map((slide, index) => (
+                                <span
+                                    key={index}
+                                    className={`absolute inset-x-0 bottom-0 transition-all duration-700 ease-out ${
+                                        currentSlide === index
+                                            ? 'opacity-100 translate-y-0'
+                                            : 'opacity-0 translate-y-4 pointer-events-none'
+                                    }`}
+                                >
+                                    {t(slide.titleKey)}
+                                </span>
+                            ))}
+                        </h1>
+                    </div>
                 </div>
 
                 {/* Slide Indicators & Controls */}

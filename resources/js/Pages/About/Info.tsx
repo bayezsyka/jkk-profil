@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
+import { Head } from '@inertiajs/react';
 import AboutSubNavbar from './AboutSubNavbar';
 
 // Section Components
@@ -83,11 +84,17 @@ const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryP
     };
 
     return (
-        <PublicLayout
-            title={`${t('nav.about')} - PT. Jaya Karya Kontruksi`}
-            headerTitle={t('nav.about')}
-            breadcrumbs={breadcrumbs}
-        >
+        <>
+            <Head>
+                <title>{`${t('nav.about')} - PT. Jaya Karya Kontruksi | Pengalaman & Visi`}</title>
+                <meta name="description" content="Pelajari profil PT. Jaya Karya Kontruksi (JKK), visi misi, dan dedikasi kami dalam menyediakan layanan konstruksi jalan dan beton berkualitas di Kalimantan Timur." />
+                <meta name="keywords" content="profil JKK, tentang PT. Jaya Karya Kontruksi, visi misi konstruksi, kontraktor jalan Kaltim, sejarah perusahaan konstruksi" />
+            </Head>
+            <PublicLayout
+                title={`${t('nav.about')} - PT. Jaya Karya Kontruksi`}
+                headerTitle={t('nav.about')}
+                breadcrumbs={breadcrumbs}
+            >
             <div className="container mx-auto px-4 py-12 md:py-20">
                 <div className="flex flex-col md:flex-row gap-12">
                     {/* Sidebar / Sub-Navbar */}
@@ -134,6 +141,7 @@ const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryP
                 }
             `}</style>
         </PublicLayout>
+        </>
     );
 };
 

@@ -1,4 +1,11 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /login
+
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /login
+Disallow: /register
 
 Sitemap: https://jkk-konstruksi.com/sitemap.xml

@@ -84,17 +84,18 @@ const Footer: React.FC = () => {
                             }}
                         />
 
-                        <p
+                        <address
                             style={{
                                 fontSize: isMobile ? '12px' : '14px',
                                 color: 'rgba(253,253,254,0.9)',
                                 lineHeight: 1.6,
                                 margin: 0,
                                 maxWidth: isMobile ? '100%' : '540px',
+                                fontStyle: 'normal'
                             }}
                         >
                             {company.address}
-                        </p>
+                        </address>
                     </div>
 
                     {/* CTA */}
