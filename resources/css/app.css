@@ -9,12 +9,12 @@
 
 /* CSS Custom Properties (CSS Variables) */
 :root {
-    --color-primary: #667BA3;
+    --color-primary: #667ba3;
     --color-primary-dark: #526086;
-    --color-secondary: #4A5678;
-    --color-accent: #3D3532;
+    --color-secondary: #4a5678;
+    --color-accent: #3d3532;
     --color-light: #fdfdfe;
-    --color-dark: #2D2926;
+    --color-dark: #2d2926;
 }
 
 /* CSS Reset & Base Styles */
@@ -65,7 +65,7 @@ body {
 .splash-bg-circle-1 {
     width: 300px;
     height: 300px;
-    background: #7A8DB8;
+    background: #7a8db8;
     top: -100px;
     right: -100px;
 }
@@ -82,7 +82,7 @@ body {
 .splash-bg-circle-3 {
     width: 200px;
     height: 200px;
-    background: #667BA3;
+    background: #667ba3;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -106,8 +106,6 @@ body {
     justify-content: center;
     margin-bottom: 24px;
 }
-
-
 
 .splash-company-name {
     font-size: 28px;
@@ -163,7 +161,7 @@ body {
 .hero-bg-circle-1 {
     width: 500px;
     height: 500px;
-    background: #7A8DB8;
+    background: #7a8db8;
     top: -200px;
     right: -100px;
 }
@@ -358,6 +356,14 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #667BA3;
+    background: #667ba3;
 }
 
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}

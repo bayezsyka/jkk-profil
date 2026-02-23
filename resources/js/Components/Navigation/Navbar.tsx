@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage, Locale } from '@/hooks/useLanguage';
 import { usePage } from '@inertiajs/react';
 import ApplicationLogo from '@/Components/Common/ApplicationLogo';
+import SearchOverlay from '@/Components/Navigation/SearchOverlay';
 
 interface MenuItem {
     label: string;
@@ -22,9 +23,10 @@ interface TopBarProps {
     style?: React.CSSProperties;
     isTransparent?: boolean;
     isMobile?: boolean;
+    onSearchClick?: () => void;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransparent = false, isMobile = false }) => {
+const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransparent = false, isMobile = false, onSearchClick }) => {
     const { locale, setLanguage, t } = useLanguage();
 
     const [showSearch, setShowSearch] = useState(false);
@@ -101,7 +103,7 @@ const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransp
                     />
 
                     <button
-                        onClick={() => setShowSearch(!showSearch)}
+                        onClick={() => onSearchClick?.()}
                         style={{
                             background: 'none',
                             border: 'none',
@@ -157,35 +159,6 @@ const TopBar: React.FC<TopBarProps> = ({ onShowToast, className, style, isTransp
                 </button>
             </div>
 
-            {showSearch && !isMobile && (
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '100%',
-                        right: 0,
-                        backgroundColor: 'white',
-                        padding: '10px',
-                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                        borderRadius: '0 0 8px 8px',
-                        zIndex: 60,
-                        color: '#374151',
-                    }}
-                >
-                    <form onSubmit={handleSearch} style={{ display: 'flex', gap: '8px' }}>
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder={t('topbar.search')}
-                            className="text-sm border rounded px-2 py-1 outline-none focus:border-blue-500"
-                            autoFocus
-                        />
-                        <button type="submit" className="bg-blue-900 text-white text-xs px-3 py-1 rounded">
-                            GO
-                        </button>
-                    </form>
-                </div>
-            )}
         </div>
     );
 };
@@ -212,6 +185,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
     const [mobileExpanded, setMobileExpanded] = useState<Record<string, boolean>>({});
     const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
     const [mobileSearchQuery, setMobileSearchQuery] = useState('');
+    const [searchOverlayOpen, setSearchOverlayOpen] = useState(false);
 
     useEffect(() => {
         const mq = window.matchMedia('(max-width: 1024px)');
@@ -350,7 +324,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                                 transition: 'all 0.3s ease',
                             }}
                         >
-                            <TopBar onShowToast={onShowToast} isTransparent={isTransparent} style={{ color: topBarColor }} />
+                            <TopBar onShowToast={onShowToast} isTransparent={isTransparent} style={{ color: topBarColor }} onSearchClick={() => setSearchOverlayOpen(true)} />
                         </div>
 
                         <div
@@ -482,10 +456,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                             <button
-                                onClick={() => {
-                                    setMobileSearchOpen((v) => !v);
-                                    if (!mobileOpen) setMobileOpen(true);
-                                }}
+                                onClick={() => setSearchOverlayOpen(true)}
                                 style={{
                                     width: '44px',
                                     height: '44px',
@@ -600,7 +571,7 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
 
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <button
-                                onClick={() => setMobileSearchOpen((v) => !v)}
+                                onClick={() => setSearchOverlayOpen(true)}
                                 style={{
                                     width: '38px',
                                     height: '38px',
@@ -648,50 +619,8 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                         </div>
                     </div>
 
-                    {mobileSearchOpen && (
-                        <div
-                            style={{
-                                padding: '12px 16px',
-                                borderBottom: '1px solid rgba(15, 23, 42, 0.08)',
-                            }}
-                        >
-                            <form onSubmit={handleMobileSearch} style={{ display: 'flex', gap: '10px' }}>
-                                <input
-                                    type="text"
-                                    value={mobileSearchQuery}
-                                    onChange={(e) => setMobileSearchQuery(e.target.value)}
-                                    placeholder={t('topbar.search')}
-                                    style={{
-                                        flex: 1,
-                                        height: '42px',
-                                        borderRadius: '12px',
-                                        border: '1px solid rgba(15, 23, 42, 0.16)',
-                                        padding: '0 12px',
-                                        fontSize: '14px',
-                                        outline: 'none',
-                                    }}
-                                    autoFocus
-                                />
-                                <button
-                                    type="submit"
-                                    style={{
-                                        height: '42px',
-                                        padding: '0 14px',
-                                        borderRadius: '12px',
-                                        border: 'none',
-                                        background: '#0B2D5C',
-                                        color: 'white',
-                                        fontWeight: 700,
-                                        fontSize: '12px',
-                                        letterSpacing: '0.5px',
-                                        cursor: 'pointer',
-                                    }}
-                                >
-                                    GO
-                                </button>
-                            </form>
-                        </div>
-                    )}
+
+
 
                     <nav
                         style={{
@@ -889,6 +818,8 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast, className, style, forceTra
                     </div>
                 </aside>
             )}
+
+            <SearchOverlay isOpen={searchOverlayOpen} onClose={() => setSearchOverlayOpen(false)} />
         </>
     );
 };

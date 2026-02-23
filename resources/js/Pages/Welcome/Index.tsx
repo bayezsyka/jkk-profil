@@ -6,12 +6,12 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { Navbar, Footer } from '@/Components/Navigation';
 
 // Home Section Components
-import { 
-    HeroSection, 
-    Services, 
-    LatestProjectsSection, 
-    PhotoGallerySection, 
-    LatestArticlesSection 
+import {
+    HeroSection,
+    Services,
+    LatestProjectsSection,
+    PhotoGallerySection,
+    LatestArticlesSection,
 } from './Sections';
 
 // UI Components
@@ -65,33 +65,17 @@ interface WelcomePageProps {
     latestArticles: Article[];
 }
 
-const WelcomeContent: React.FC<WelcomePageProps> = ({ 
-    latestProjects, 
-    galleryImages, 
-    latestArticles 
+const WelcomeContent: React.FC<WelcomePageProps> = ({
+    latestProjects,
+    galleryImages,
+    latestArticles,
 }) => {
     const [showSplash, setShowSplash] = useState(true);
-    const [topBarVisible, setTopBarVisible] = useState(true);
-    const [isScrolled, setIsScrolled] = useState(false);
     const [toast, setToast] = useState<ToastData | null>(null);
 
     useEffect(() => {
-        // Check if showSplash was already shown this session
         const splashShown = sessionStorage.getItem('splashShown');
-        if (splashShown) {
-            setShowSplash(false);
-        }
-    }, []);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            // setTopBarVisible(scrollY < 50); // Removed as we handle it via Navbar positioning
-            setIsScrolled(scrollY > 44); // Threshold matching TopBar height
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        if (splashShown) setShowSplash(false);
     }, []);
 
     const handleSplashComplete = () => {
@@ -103,47 +87,29 @@ const WelcomeContent: React.FC<WelcomePageProps> = ({
         setToast({ message, type });
     };
 
-    const hideToast = () => {
-        setToast(null);
-    };
-
     if (showSplash) {
         return <SplashScreen onComplete={handleSplashComplete} />;
     }
 
     return (
         <>
-            {/* TopBar is now integrated into Navbar */}
-            
-            {/* Navbar handles fixed positioning and transparency internally */}
-            <Navbar 
-                onShowToast={showToast}
-            />
-            
+            <Navbar onShowToast={showToast} />
+
             <main>
-                {/* 1. Hero Section */}
                 <HeroSection />
-                
-                {/* 2. 3 Proyek Terakhir */}
+                <Services />
                 <LatestProjectsSection projects={latestProjects} />
-                
-                {/* 3. Layanan Kami */}
-                <Services/>
-                
-                {/* 4. Galeri Foto Slideshow Random */}
                 <PhotoGallerySection images={galleryImages} />
-                
-                {/* 5. Artikel Terbaru */}
                 <LatestArticlesSection articles={latestArticles} />
             </main>
-            
+
             <Footer />
-            
+
             {toast && (
                 <Toast
                     message={toast.message}
                     type={toast.type}
-                    onClose={hideToast}
+                    onClose={() => setToast(null)}
                 />
             )}
         </>
@@ -152,10 +118,10 @@ const WelcomeContent: React.FC<WelcomePageProps> = ({
 
 export default function Welcome() {
     const { t } = useLanguage();
-    const props = usePage().props as unknown as { 
-        latestProjects: Project[]; 
-        galleryImages: GalleryImage[]; 
-        latestArticles: Article[] 
+    const props = usePage().props as unknown as {
+        latestProjects: Project[];
+        galleryImages: GalleryImage[];
+        latestArticles: Article[];
     };
     const { latestProjects, galleryImages, latestArticles } = props;
 
@@ -171,7 +137,7 @@ export default function Welcome() {
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
             </Head>
             <div className="jkk-website">
-                <WelcomeContent 
+                <WelcomeContent
                     latestProjects={latestProjects || []}
                     galleryImages={galleryImages || []}
                     latestArticles={latestArticles || []}
@@ -180,5 +146,3 @@ export default function Welcome() {
         </>
     );
 }
-
-
