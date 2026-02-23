@@ -21,6 +21,8 @@ const ProfileSection: React.FC<{ id: string }> = ({ id }) => {
                          <img 
                             src="/images/profil.webp" 
                             alt="Company Profile" 
+                            width="600"
+                            height="600"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                          />
                     </div>

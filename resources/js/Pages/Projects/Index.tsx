@@ -47,7 +47,7 @@ export default function Index({ projects }: Props) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full"
+                            className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full relative"
                         >
                             <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden">
                                 {project.images.length > 0 ? (
@@ -63,7 +63,7 @@ export default function Index({ projects }: Props) {
                                         </svg>
                                     </div>
                                 )}
-                                <div className="absolute top-4 left-4 bg-blue-600/90 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+                                <div className="absolute top-4 left-4 bg-blue-600/90 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm z-20">
                                     {t(`gallery.filters.${project.category}`) !== `gallery.filters.${project.category}` 
                                         ? t(`gallery.filters.${project.category}`) 
                                         : project.category.replace('_', ' ')}
@@ -88,7 +88,7 @@ export default function Index({ projects }: Props) {
                                 </div>
                                 
                                 <h3 className="text-xl font-bold text-slate-800 mb-3 line-clamp-2">
-                                    <Link href={route('projects.show', project.id)} className="hover:text-blue-600 transition-colors">
+                                    <Link href={route('projects.show', project.id)} className="hover:text-blue-600 transition-colors after:absolute after:inset-0 after:z-10">
                                         {project.title}
                                     </Link>
                                 </h3>
@@ -99,7 +99,7 @@ export default function Index({ projects }: Props) {
                                 
                                 <Link 
                                     href={route('projects.show', project.id)}
-                                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-slate-50 text-slate-700 rounded-lg hover:bg-slate-100 font-medium transition-colors gap-2 group"
+                                    className="inline-flex items-center justify-center w-full px-4 py-2 bg-slate-50 text-slate-700 rounded-lg hover:bg-slate-100 font-medium transition-colors gap-2 group relative z-20"
                                 >
                                     {t('common.viewDetail')}
                                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

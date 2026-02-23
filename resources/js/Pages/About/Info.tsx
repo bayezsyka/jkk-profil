@@ -8,9 +8,11 @@ import ProfileSection from './Sections/ProfileSection';
 import VisionMissionSection from './Sections/VisionMissionSection';
 import ValuesSection from './Sections/ValuesSection';
 import HistorySection from './Sections/HistorySection';
-import StructureSection from './Sections/StructureSection';
 import ManagementSection from './Sections/ManagementSection';
-import CompanyGallerySection from './Sections/CompanyGallerySection';
+
+// Lazy loaded heavy components
+const StructureSection = React.lazy(() => import('./Sections/StructureSection'));
+const CompanyGallerySection = React.lazy(() => import('./Sections/CompanyGallerySection'));
 
 interface GalleryPhoto {
     id: number;
@@ -103,11 +105,19 @@ const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryP
                     {/* Content Sections */}
                     <main className="flex-1 max-w-4xl space-y-24">
                         {sectionsConfig.map(({ id, Component }) => (
-                            <Component 
+                            <React.Suspense 
                                 key={id} 
-                                id={id} 
-                                data={id === 'struktur' ? organizationMembers : id === 'galeri' ? companyGallery : undefined} 
-                            />
+                                fallback={
+                                    <div id={id} className="scroll-mt-32 bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm animate-pulse h-64 flex items-center justify-center">
+                                        <div className="w-10 h-10 border-4 border-[#1e3a5f]/20 border-t-[#1e3a5f] rounded-full animate-spin"></div>
+                                    </div>
+                                }
+                            >
+                                <Component 
+                                    id={id} 
+                                    data={id === 'struktur' ? organizationMembers : id === 'galeri' ? companyGallery : undefined} 
+                                />
+                            </React.Suspense>
                         ))}
                     </main>
                 </div>

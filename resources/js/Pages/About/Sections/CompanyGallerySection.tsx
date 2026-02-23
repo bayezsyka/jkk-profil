@@ -52,8 +52,11 @@ const CompanyGallerySection: React.FC<{ id: string; data?: GalleryPhoto[] }> = (
                                 <img
                                     src={`/storage/${photo.image_path}`}
                                     alt=""
+                                    width="800"
+                                    height="600"
                                     className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                                     loading="lazy"
+                                    decoding="async"
                                 />
                                 {/* Hover overlay */}
                                 <div className="absolute inset-0 bg-[#1e3a5f]/0 group-hover:bg-[#1e3a5f]/20 transition-all duration-500 flex items-center justify-center">

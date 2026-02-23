@@ -53,16 +53,19 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             }}
         >
             {/* Background Image with Overlay */}
-            <div 
-                className="absolute inset-0 z-0"
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    opacity: imageOpacity,
-                    mixBlendMode: imageMixBlendMode
-                }}
-            />
+            <div className="absolute inset-0 z-0">
+                <img 
+                    src={backgroundImage} 
+                    alt="" 
+                    className="w-full h-full object-cover"
+                    style={{
+                        opacity: imageOpacity,
+                        mixBlendMode: imageMixBlendMode
+                    }}
+                    // @ts-ignore
+                    fetchpriority="high"
+                />
+            </div>
             
             {/* Gradient Overlay for Text Readability */}
             <div 

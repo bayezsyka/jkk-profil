@@ -135,7 +135,7 @@ export default function Index({ articles, categories, filters }: Props) {
                             {articles.data.map((article) => (
                                 <article 
                                     key={article.id} 
-                                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col h-full group"
+                                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col h-full group relative"
                                 >
                                     {/* Thumbnail */}
                                     <div className="relative aspect-video overflow-hidden">
@@ -144,7 +144,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                             alt={article.title} 
                                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                                         />
-                                        <div className="absolute top-4 left-4">
+                                        <div className="absolute top-4 left-4 z-20">
                                             <span className="bg-blue-600/90 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
                                                 {article.category.name}
                                             </span>
@@ -166,7 +166,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                         <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
                                            <Link 
                                             href={route('articles.show', { locale, slug: article.slug })}
-                                            className="focus:outline-none"
+                                            className="focus:outline-none after:absolute after:inset-0 after:z-10"
                                            >
                                                 {article.title}
                                             </Link>
@@ -176,7 +176,7 @@ export default function Index({ articles, categories, filters }: Props) {
                                             {article.excerpt}
                                         </p>
 
-                                        <div className="pt-4 border-t border-gray-100 mt-auto">
+                                        <div className="pt-4 border-t border-gray-100 mt-auto relative z-20">
                                             <Link 
                                                 href={route('articles.show', { locale, slug: article.slug })} 
                                                 className="inline-flex items-center text-blue-600 font-semibold text-sm hover:text-blue-700 transition-colors"

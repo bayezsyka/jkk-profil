@@ -84,6 +84,12 @@ export default function PublicLayout({
             <Head>
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                {headerImage && (
+                    <link rel="preload" as="image" href={headerImage} />
+                )}
+                {!headerImage && (
+                    <link rel="preload" as="image" href="/images/header-bg.webp" />
+                )}
             </Head>
 
             <div className={`min-h-screen bg-gray-50 flex flex-col`}>
