@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Head, usePage } from '@inertiajs/react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 // Navigation Components
 import { Navbar, Footer } from '@/Components/Navigation';
@@ -150,6 +151,7 @@ const WelcomeContent: React.FC<WelcomePageProps> = ({
 };
 
 export default function Welcome() {
+    const { t } = useLanguage();
     const props = usePage().props as unknown as { 
         latestProjects: Project[]; 
         galleryImages: GalleryImage[]; 
@@ -160,8 +162,8 @@ export default function Welcome() {
     return (
         <>
             <Head>
-                <title>JKK - Jaya Karya Kontruksi</title>
-                <meta name="description" content="Website Resmi JKK - Jaya Karya Kontruksi. Membangun Masa Depan Indonesia dengan konstruksi berkualitas tinggi." />
+                <title>JKK - PT. Jaya Karya Kontruksi</title>
+                <meta name="description" content={t('hero.subtitle')} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

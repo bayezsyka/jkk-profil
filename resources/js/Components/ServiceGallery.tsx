@@ -54,7 +54,7 @@ export default function ServiceGallery({ projects }: ServiceGalleryProps) {
     if (galleryImages.length === 0) return null;
 
     return (
-        <div className="relative z-30 -mt-[25vh] md:-mt-[45vh] mb-0 w-full group">
+        <div className="relative z-30 -mt-[28vh] md:-mt-[45vh] mb-0 w-full group">
             {/* SlideShow Container */}
             <div className="w-full overflow-hidden relative">
                 {/* Gradient mask for smooth edges */}
@@ -87,7 +87,7 @@ function MarqueeContent({ images }: { images: GalleryItem[] }) {
                 <a 
                     href="#" 
                     key={`${item.id}-${index}`}
-                    className="relative block shrink-0 w-[220px] sm:w-[320px] md:w-[420px] aspect-video rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+                    className="relative block shrink-0 w-[280px] sm:w-[360px] md:w-[460px] aspect-video rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 will-change-transform"
                 >
                     <img
                         src={item.src}

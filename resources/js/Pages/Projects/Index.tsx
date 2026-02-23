@@ -93,9 +93,11 @@ export default function Index({ projects }: Props) {
                                     </Link>
                                 </h3>
                                 
-                                <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
-                                    {project.description || t('common.noDescription')}
-                                </p>
+                                {project.description && (
+                                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
+                                        {project.description}
+                                    </p>
+                                )}
                                 
                                 <Link 
                                     href={route('projects.show', project.id)}

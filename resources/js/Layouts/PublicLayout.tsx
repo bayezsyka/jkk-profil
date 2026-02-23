@@ -1,10 +1,11 @@
 import React, { useState, useEffect, ReactNode, PropsWithChildren } from 'react';
-import { Head } from '@inertiajs/react';
-
-// Navigation Components
-import { Navbar, Footer } from '@/Components/Navigation';
+import { Head, usePage } from '@inertiajs/react';
 import { PageHeader } from '@/Components/Common';
-import { Toast } from '@/Components/UI';
+import Navbar from '@/Components/Navigation/Navbar';
+import Footer from '@/Components/Navigation/Footer';
+import Toast from '@/Components/UI/Toast';
+import { useLanguage } from '@/hooks/useLanguage';
+import { PageProps } from '@/types';
 
 interface BreadcrumbItem {
     label: string;
@@ -27,12 +28,13 @@ type PublicLayoutProps = PropsWithChildren<{
     headerImageOpacity?: number;
     headerImageMixBlendMode?: 'overlay' | 'normal' | 'multiply' | 'screen' | 'soft-light';
     headerOverlayOpacity?: number;
-    headerTextPosition?: 'center' | 'top';
+    headerTextPosition?: 'center' | 'top' | 'bottom';
+    headerHasBottomContent?: boolean;
 }>;
 
 export default function PublicLayout({
     children,
-    title = 'JKK - Jaya Karya Kontruksi', // Default title
+    title,
     headerTitle,
     breadcrumbs = [],
     headerImage,
@@ -42,8 +44,15 @@ export default function PublicLayout({
     headerImageOpacity,
     headerImageMixBlendMode,
     headerOverlayOpacity,
-    headerTextPosition
+    headerTextPosition,
+    headerHasBottomContent = false,
+    ...rest
 }: PublicLayoutProps) {
+    const { t } = useLanguage();
+    const { company } = usePage<PageProps>().props;
+
+    const pageTitle = title || `${t('footer.company')} - JKK`;
+
     // Note: Navbar/TopBar now handle their own scroll state, 
     // but we might need scroll here for other effects if needed.
     // Keeping it simple for now and letting components be autonomous.
@@ -72,7 +81,7 @@ export default function PublicLayout({
 
     // Automatic Header Logic
     // If headerTitle is not provided, try to derive it from the page title
-    const effectiveHeaderTitle = headerTitle || title.replace(/ - JKK.*| - Jaya Karya Kontruksi.*/, '');
+    const effectiveHeaderTitle = headerTitle || pageTitle.replace(/ - JKK.*| - Jaya Karya Kontruksi.*/, '');
     
     // If breadcrumbs are not provided, create a default one based on the title
     const effectiveBreadcrumbs = breadcrumbs.length > 0 
@@ -82,7 +91,7 @@ export default function PublicLayout({
     return (
         <>
             <Head>
-                <title>{title}</title>
+                <title>{pageTitle}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 {headerImage && (
                     <link rel="preload" as="image" href={headerImage} />
@@ -123,6 +132,7 @@ export default function PublicLayout({
                             imageMixBlendMode={headerImageMixBlendMode}
                             overlayOpacity={headerOverlayOpacity}
                             textPosition={headerTextPosition}
+                            hasBottomContent={headerHasBottomContent}
                         />
                     )}
                     

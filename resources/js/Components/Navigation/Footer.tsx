@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                                 letterSpacing: '0.4px',
                             }}
                         >
-                            PT. JAYA KARYA KONTRUKSI
+                            {t('footer.company')}
                         </h3>
 
                         <div
@@ -177,7 +177,7 @@ const Footer: React.FC = () => {
                             textAlign: 'center',
                         }}
                     >
-                        © {currentYear} PT. JAYA KARYA KONTRUKSI
+                        © {currentYear} {t('footer.company')}
                     </p>
                 </div>
             </div>

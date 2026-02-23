@@ -1,7 +1,7 @@
 import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
-import ServiceGallery from '@/Components/ServiceGallery';
+import ServicePageHeader from '@/Components/ServicePageHeader';
 
 import { Project } from '@/Components/ProjectCard';
 import ProjectCard from '@/Components/ProjectCard';
@@ -29,15 +29,18 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
     return (
         <PublicLayout 
             title={`${t('services.batching.title')} - JKK`}
-            headerTitle={t('services.batching.title')}
-            headerImage="/images/hero-batchingplant.webp"
-            headerHeight="h-screen"
-            headerImageOpacity={0.8}
-            headerImageMixBlendMode="normal"
-            headerOverlayOpacity={0.8}
-            headerTextPosition="top"
+            hidePageHeader
         >
-            <ServiceGallery projects={projects} />
+            <ServicePageHeader
+                title={t('services.batching.title')}
+                subtitle={t('services.batching.desc')}
+                breadcrumbs={[
+                    { label: t('nav.services'), href: `#` },
+                    { label: t('services.batching.title') },
+                ]}
+                backgroundImage="/images/hero-batchingplant.webp"
+                projects={projects}
+            />
 
             {/* Latest Projects Section */}
             {projects.length > 0 && (

@@ -28,50 +28,56 @@ interface Props {
     relatedArticles: Article[];
 }
 
-// Service data for sidebar
-const services = [
-    {
-        id: 1,
-        title: 'Batching Plant',
-        description: 'Produksi beton ready mix berkualitas tinggi',
-        icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-        ),
-        route: 'services.batching'
-    },
-    {
-        id: 2,
-        title: 'Konstruksi Umum',
-        description: 'Jasa konstruksi bangunan & infrastruktur',
-        icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        ),
-        route: 'services.construction'
-    },
-    {
-        id: 3,
-        title: 'Asphalt Mixing Plant',
-        description: 'Produksi hotmix aspal berkualitas',
-        icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-        ),
-        route: 'services.asphalt'
-    }
-];
+// Services icon map helper
+const ServiceIcon = ({ type }: { type: string }) => {
+    if (type === 'batching') return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+    );
+    if (type === 'construction') return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    );
+    return (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+    );
+};
 
 export default function Show({ article, relatedArticles }: Props) {
     const { locale, t } = useLanguage();
 
+    const services = [
+        {
+            id: 1,
+            title: t('services.batching.title'),
+            description: t('services.batching.desc'),
+            type: 'batching',
+            route: 'services.batching'
+        },
+        {
+            id: 2,
+            title: t('services.contractor.title'),
+            description: t('services.contractor.desc'),
+            type: 'construction',
+            route: 'services.construction'
+        },
+        {
+            id: 3,
+            title: t('services.asphalt.title'),
+            description: t('services.asphalt.desc'),
+            type: 'asphalt',
+            route: 'services.asphalt'
+        }
+    ];
+
     return (
         <>
             <Head>
-                <title>{`${article.seo_title || article.title || 'Artikel'} - JKK`}</title>
+                <title>{`${article.seo_title || article.title || t('articles.articles')} - JKK`}</title>
                 <meta name="description" content={article.excerpt || ''} />
                 <script 
                     type="application/ld+json"
@@ -85,7 +91,7 @@ export default function Show({ article, relatedArticles }: Props) {
                             "dateModified": article.published_at,
                             "author": [{
                                 "@type": "Organization",
-                                "name": article.user?.name || "Jaya Karya Kontruksi",
+                                "name": article.user?.name || t('footer.company'),
                                 "url": "https://jkk-konstruksi.com"
                             }]
                         })
@@ -144,7 +150,7 @@ export default function Show({ article, relatedArticles }: Props) {
                             </Link>
                             <span className="text-gray-500">/</span>
                             <Link href={route('articles.index', { locale })} className="hover:text-white transition-colors">
-                                Artikel
+                                {t('nav.articles')}
                             </Link>
                             <span className="text-gray-500">/</span>
                             <Link 
@@ -174,13 +180,13 @@ export default function Show({ article, relatedArticles }: Props) {
                                 <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
                                     {(article.user.name || 'J')[0].toUpperCase()}
                                 </div>
-                                <span className="font-medium text-white">{article.user.name || 'Jaya Karya Kontruksi'}</span>
+                                <span className="font-medium text-white">{article.user.name || t('footer.company')}</span>
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
-                                {new Date(article.published_at).toLocaleDateString('id-ID', {
+                                {new Date(article.published_at).toLocaleDateString(locale === 'id' ? 'id-ID' : 'en-US', {
                                     day: 'numeric', month: 'long', year: 'numeric'
                                 })}
                             </span>
@@ -189,7 +195,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                 </svg>
-                                {article.views} dibaca
+                                {article.views} {t('articles.read')}
                             </span>
                         </div>
                     </div>
@@ -212,8 +218,8 @@ export default function Show({ article, relatedArticles }: Props) {
                                 <div className="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                         <div>
-                                            <h4 className="font-bold text-gray-900 mb-1">Bagikan Artikel</h4>
-                                            <p className="text-sm text-gray-500">Sebarkan informasi bermanfaat ini</p>
+                                            <h4 className="font-bold text-gray-900 mb-1">{t('articles.share')}</h4>
+                                            <p className="text-sm text-gray-500">{t('articles.share_desc')}</p>
                                         </div>
                                         <div className="flex gap-3">
                                             <a 
@@ -261,7 +267,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                                         <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                                             <span className="w-1 h-6 bg-blue-600 mr-3 rounded-full"></span>
-                                            Layanan Kami
+                                            {t('services.title')}
                                         </h3>
                                         <div className="space-y-3">
                                             {services.map((service) => (
@@ -271,7 +277,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                                     className="group flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-blue-50 border border-gray-100 hover:border-blue-200 transition-all"
                                                 >
                                                     <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                                                        {service.icon}
+                                                        <ServiceIcon type={service.type} />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
                                                         <h4 className="font-semibold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">
@@ -299,15 +305,15 @@ export default function Show({ article, relatedArticles }: Props) {
                                             </svg>
                                         </div>
                                         
-                                        <h3 className="text-xl font-bold mb-3 text-white relative z-10">Butuh Bantuan Proyek?</h3>
+                                        <h3 className="text-xl font-bold mb-3 text-white relative z-10">{t('articles.cta_title')}</h3>
                                         <p className="text-blue-100 mb-5 text-sm leading-relaxed relative z-10">
-                                            Tim profesional kami siap membantu mewujudkan proyek konstruksi Anda.
+                                            {t('articles.cta_desc')}
                                         </p>
                                         <Link 
                                             href={route('contact', { locale })} 
                                             className="relative z-10 block w-full text-center bg-white text-blue-900 hover:bg-blue-50 font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-xl"
                                         >
-                                            Hubungi Kami
+                                            {t('topbar.contact')}
                                         </Link>
                                     </div>
 
@@ -316,7 +322,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
                                             <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                                                 <span className="w-1 h-6 bg-blue-600 mr-3 rounded-full"></span>
-                                                Artikel Terpopuler
+                                                {t('articles.related_popular')}
                                             </h3>
                                             <div className="space-y-4">
                                                 {relatedArticles.map((item, index) => (
@@ -337,7 +343,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                                 </svg>
-                                                                {item.views} dibaca
+                                                                {item.views} {t('articles.read')}
                                                             </p>
                                                         </div>
                                                     </Link>

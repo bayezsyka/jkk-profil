@@ -111,7 +111,11 @@
                 "mgr_finance": "Finance Manager",
                 "finance": "Keuangan",
                 "executor": "Pelaksana"
-            }
+            },
+            "zoom": "Gulir untuk Memperbesar",
+            "pan": "Geser untuk Melihat",
+            "expand": "Klik untuk Memperluas/Mengecilkan",
+            "fit": "SESUAIKAN BAGAN"
         },
         "company_gallery": {
             "title": "Galeri Perusahaan",
@@ -162,6 +166,12 @@
         "latest_articles": "Artikel Terbaru",
         "latest_articles_desc": "Baca berita dan informasi terbaru seputar konstruksi dan proyek kami.",
         "views": "dilihat",
+        "read": "dibaca",
+        "share": "Bagikan Artikel",
+        "share_desc": "Sebarkan informasi bermanfaat ini",
+        "related_popular": "Artikel Terpopuler",
+        "cta_title": "Butuh Bantuan Proyek?",
+        "cta_desc": "Tim profesional kami siap membantu mewujudkan proyek konstruksi Anda.",
         "no_more_articles": "Belum ada artikel lainnya."
     },
     "services": {

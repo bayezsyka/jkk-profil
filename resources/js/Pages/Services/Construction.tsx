@@ -1,7 +1,7 @@
 import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
-import ServiceGallery from '@/Components/ServiceGallery';
+import ServicePageHeader from '@/Components/ServicePageHeader';
 
 import { Project } from '@/Components/ProjectCard';
 import ProjectCard from '@/Components/ProjectCard';
@@ -18,15 +18,18 @@ export default function Construction({ projects }: Props) {
     return (
         <PublicLayout 
             title={`${t('services.contractor.title')} - JKK`}
-            headerTitle={t('services.contractor.title')}
-            headerImage="/images/hero-kontruksi.jpeg"
-            headerHeight="h-screen"
-            headerImageOpacity={0.8}
-            headerImageMixBlendMode="normal"
-            headerOverlayOpacity={0.8}
-            headerTextPosition="top"
+            hidePageHeader
         >
-            <ServiceGallery projects={projects} />
+            <ServicePageHeader
+                title={t('services.contractor.title')}
+                subtitle={t('services.contractor.desc')}
+                breadcrumbs={[
+                    { label: t('nav.services'), href: `#` },
+                    { label: t('services.contractor.title') },
+                ]}
+                backgroundImage="/images/hero-kontruksi.jpeg"
+                projects={projects}
+            />
 
             {/* Latest Projects Section */}
             {projects.length > 0 && (

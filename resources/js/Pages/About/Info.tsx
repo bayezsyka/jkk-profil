@@ -39,7 +39,7 @@ const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryP
 
     const breadcrumbs = [
         { label: t('nav.about'), href: `/${locale}/tentang-kami` },
-        { label: sectionsConfig.find(s => s.id === activeSection)?.label || 'Profil' }
+        { label: sectionsConfig.find(s => s.id === activeSection)?.label || t('about.profile.title') }
     ];
 
     useEffect(() => {
@@ -84,8 +84,8 @@ const AboutInfo: React.FC<{ organizationMembers: any[]; companyGallery: GalleryP
 
     return (
         <PublicLayout
-            title="Tentang Kami - PT. Jaya Karya Kontruksi"
-            headerTitle="Tentang Kami"
+            title={`${t('nav.about')} - PT. Jaya Karya Kontruksi`}
+            headerTitle={t('nav.about')}
             breadcrumbs={breadcrumbs}
         >
             <div className="container mx-auto px-4 py-12 md:py-20">

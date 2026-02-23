@@ -7,10 +7,10 @@ import { PageProps } from '@/types';
 interface ContactPageProps extends PageProps {}
 
 const Contact: React.FC = () => {
-    const { t } = useLanguage();
+    const { t, locale } = useLanguage();
     const { company } = usePage<ContactPageProps>().props;
 
-    const breadcrumbs = [{ label: t('nav.home'), href: '/' }, { label: t('nav.contact') }];
+    const breadcrumbs = [{ label: t('nav.home'), href: route('home', { locale }) }, { label: t('nav.contact') }];
 
     // Kantor Utama: 6°52'38.8"S 109°04'22.5"E => -6.877444, 109.072917
     // Basecamp    : 6°56'33.7"S 108°55'05.2"E => -6.942694, 108.918111

@@ -1,7 +1,7 @@
 import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
-import ServiceGallery from '@/Components/ServiceGallery';
+import ServicePageHeader from '@/Components/ServicePageHeader';
 import AsphaltCalculator from '@/Components/Calculators/AsphaltCalculator';
 
 import { Project } from '@/Components/ProjectCard';
@@ -29,15 +29,18 @@ export default function AsphaltMixPlant({ projects, asphaltPrices }: Props) {
     return (
         <PublicLayout 
             title={`${t('services.asphalt.title')} - JKK`}
-            headerTitle={t('services.asphalt.title')}
-            headerImage="/images/hero-amp.webp"
-            headerHeight="h-screen"
-            headerImageOpacity={0.8}
-            headerImageMixBlendMode="normal"
-            headerOverlayOpacity={0.8}
-            headerTextPosition="top"
+            hidePageHeader
         >
-            <ServiceGallery projects={projects} />
+            <ServicePageHeader
+                title={t('services.asphalt.title')}
+                subtitle={t('services.asphalt.desc')}
+                breadcrumbs={[
+                    { label: t('nav.services'), href: `#` },
+                    { label: t('services.asphalt.title') },
+                ]}
+                backgroundImage="/images/hero-amp.webp"
+                projects={projects}
+            />
 
             {/* Latest Projects Section */}
             {projects.length > 0 && (

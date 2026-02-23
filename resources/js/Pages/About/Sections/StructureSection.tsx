@@ -119,7 +119,7 @@ const StructureSection: React.FC<{ id: string; data?: any[] }> = ({ id, data: ra
                             onClick={() => chartRef.current?.fit()}
                             className="p-3 bg-white border border-gray-100 rounded-xl shadow-lg hover:bg-gray-50 transition-colors text-[#1e3a5f] font-bold text-xs"
                          >
-                            FIT CHART
+                            {t('about.structure.fit')}
                          </button>
                     </div>
                 </div>
@@ -127,15 +127,15 @@ const StructureSection: React.FC<{ id: string; data?: any[] }> = ({ id, data: ra
                 <div className="mt-8 flex justify-center items-center gap-4 text-gray-400 text-xs font-medium">
                     <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                        Scroll to Zoom
+                        {t('about.structure.zoom')}
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                        Drag to Pan
+                        {t('about.structure.pan')}
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                        Click to Expand/Collapse
+                        {t('about.structure.expand')}
                     </div>
                 </div>
             </div>

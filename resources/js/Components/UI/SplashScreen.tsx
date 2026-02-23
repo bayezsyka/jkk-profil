@@ -62,7 +62,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
             
             {/* Company Name */}
             <h1 className="splash-company-name">
-                Jaya Karya Kontruksi
+                {t('footer.company')}
             </h1>
             
             {/* Tagline */}

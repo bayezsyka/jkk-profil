@@ -83,9 +83,9 @@ export default function ProjectCard({
                     </Link>
                 </h3>
                 
-                {showDescription && (
+                {showDescription && project.description && (
                     <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-1">
-                        {project.description || "Tidak ada deskripsi tersedia."}
+                        {project.description}
                     </p>
                 )}
                 

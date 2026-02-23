@@ -109,9 +109,13 @@
                 "admin": "Administration",
                 "mgr_equipment": "Equipment Manager",
                 "mgr_finance": "Finance Manager",
-                "finance": "Finance",
+                "keuangan": "Finance",
                 "executor": "Executor"
-            }
+            },
+            "zoom": "Scroll to Zoom",
+            "pan": "Drag to Pan",
+            "expand": "Click to Expand/Collapse",
+            "fit": "FIT CHART"
         },
         "company_gallery": {
             "title": "Company Gallery",
@@ -162,7 +166,13 @@
         "latest_articles": "Latest Articles",
         "latest_articles_desc": "Read the latest news and information about construction and our projects.",
         "views": "views",
-        "no_more_articles": "No more articles available."
+        "read": "read",
+        "share": "Share Article",
+        "share_desc": "Spread this useful information",
+        "related_popular": "Popular Articles",
+        "cta_title": "Need Project Help?",
+        "cta_desc": "Our professional team is ready to help realize your construction project.",
+        "no_more_articles": "No more articles."
     },
     "services": {
         "title": "Our Services",

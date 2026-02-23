@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface ProjectImage {
     id: number;
@@ -24,6 +25,7 @@ interface Props {
 }
 
 export default function Show({ project }: Props) {
+    const { t, locale } = useLanguage();
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -56,16 +58,16 @@ export default function Show({ project }: Props) {
 
     return (
         <PublicLayout 
-            title={`${project.title} - Proyek JKK`}
-            headerTitle="Detail Proyek"
+            title={`${project.title} - ${t('nav.projects')}`}
+            headerTitle={t('projects.our_work')}
             breadcrumbs={[
-                { label: 'Proyek', href: route('projects.index') },
+                { label: t('nav.projects'), href: route('projects.index', { locale }) },
                 { label: project.title }
             ]}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 
-                <div className="max-w-4xl mx-auto mb-12">
+                <div className="max-w-6xl mx-auto mb-12">
                     <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4 capitalize">
                         {project.category.replace('_', ' ')}
                     </span>
@@ -83,7 +85,7 @@ export default function Show({ project }: Props) {
                             <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            <span>{new Date(project.date).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                            <span>{new Date(project.date).toLocaleDateString(locale === 'id' ? 'id-ID' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                         </div>
                         {project.subcategory && (
                              <div className="flex items-center gap-2">
@@ -95,15 +97,17 @@ export default function Show({ project }: Props) {
                         )}
                     </div>
 
-                    <div className="prose prose-lg max-w-none text-gray-700">
-                        <p className="whitespace-pre-wrap">{project.description || "Tidak ada deskripsi detail untuk proyek ini."}</p>
-                    </div>
+                    {project.description && (
+                        <div className="prose prose-lg max-w-none text-gray-700">
+                            <p className="whitespace-pre-wrap">{project.description}</p>
+                        </div>
+                    )}
                 </div>
 
                 {/* Gallery Grid */}
                 {project.images.length > 0 && (
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-blue-600 pl-4">Dokumentasi Proyek</h2>
+                        <h2 className="text-2xl font-bold text-slate-800 mb-6 border-l-4 border-blue-600 pl-4">{t('gallery.our_gallery')}</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {project.images.map((image, index) => (
                                 <div 

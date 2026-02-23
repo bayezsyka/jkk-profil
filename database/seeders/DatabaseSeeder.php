@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AsphaltPriceSeeder::class,
             ConcretePriceSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }
