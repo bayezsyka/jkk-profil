@@ -1,151 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-    <loc>http://127.0.0.1:8000/id</loc>
+    <loc>https://jayakaryakontruksi.com/id</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/tentang-kami</loc>
+    <loc>https://jayakaryakontruksi.com/id/tentang-kami</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/kontak-kami</loc>
+    <loc>https://jayakaryakontruksi.com/id/kontak-kami</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/galeri</loc>
+    <loc>https://jayakaryakontruksi.com/id/galeri</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/services/batching-plant</loc>
+    <loc>https://jayakaryakontruksi.com/id/services/batching-plant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/services/construction</loc>
+    <loc>https://jayakaryakontruksi.com/id/services/construction</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/services/asphalt-mixing-plant</loc>
+    <loc>https://jayakaryakontruksi.com/id/services/asphalt-mixing-plant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/projek</loc>
+    <loc>https://jayakaryakontruksi.com/id/projek</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/projek/1</loc>
+    <loc>https://jayakaryakontruksi.com/id/projek/1</loc>
     <lastmod>2026-02-23T06:50:33+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/artikel</loc>
+    <loc>https://jayakaryakontruksi.com/id/artikel</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/artikel/apa-itu-asphalt-mixing-plant</loc>
+    <loc>https://jayakaryakontruksi.com/id/artikel/apa-itu-asphalt-mixing-plant</loc>
     <lastmod>2026-02-23T07:57:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/artikel/apa-itu-jasa-konstruksi</loc>
+    <loc>https://jayakaryakontruksi.com/id/artikel/apa-itu-jasa-konstruksi</loc>
     <lastmod>2026-02-23T06:29:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/artikel/apa-itu-batching-plant</loc>
+    <loc>https://jayakaryakontruksi.com/id/artikel/apa-itu-batching-plant</loc>
     <lastmod>2026-02-23T07:57:32+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/id/artikel/amp</loc>
+    <loc>https://jayakaryakontruksi.com/id/artikel/amp</loc>
     <lastmod>2026-02-23T08:00:55+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en</loc>
+    <loc>https://jayakaryakontruksi.com/en</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/tentang-kami</loc>
+    <loc>https://jayakaryakontruksi.com/en/tentang-kami</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/kontak-kami</loc>
+    <loc>https://jayakaryakontruksi.com/en/kontak-kami</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/galeri</loc>
+    <loc>https://jayakaryakontruksi.com/en/galeri</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/services/batching-plant</loc>
+    <loc>https://jayakaryakontruksi.com/en/services/batching-plant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/services/construction</loc>
+    <loc>https://jayakaryakontruksi.com/en/services/construction</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/services/asphalt-mixing-plant</loc>
+    <loc>https://jayakaryakontruksi.com/en/services/asphalt-mixing-plant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/projek</loc>
+    <loc>https://jayakaryakontruksi.com/en/projek</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/projek/1</loc>
+    <loc>https://jayakaryakontruksi.com/en/projek/1</loc>
     <lastmod>2026-02-23T06:50:33+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/artikel</loc>
+    <loc>https://jayakaryakontruksi.com/en/artikel</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/artikel/apa-itu-asphalt-mixing-plant</loc>
+    <loc>https://jayakaryakontruksi.com/en/artikel/apa-itu-asphalt-mixing-plant</loc>
     <lastmod>2026-02-23T07:57:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/artikel/apa-itu-jasa-konstruksi</loc>
+    <loc>https://jayakaryakontruksi.com/en/artikel/apa-itu-jasa-konstruksi</loc>
     <lastmod>2026-02-23T06:29:14+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/artikel/apa-itu-batching-plant</loc>
+    <loc>https://jayakaryakontruksi.com/en/artikel/apa-itu-batching-plant</loc>
     <lastmod>2026-02-23T07:57:32+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
-    <loc>http://127.0.0.1:8000/en/artikel/amp</loc>
+    <loc>https://jayakaryakontruksi.com/en/artikel/amp</loc>
     <lastmod>2026-02-23T08:00:55+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

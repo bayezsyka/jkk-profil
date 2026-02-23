@@ -10,6 +10,4 @@ Disallow: /login
 Disallow: /register
 
 # RUJUKAN SITEMAP
-# PERINGATAN: Pastikan untuk mengganti URL di bawah ini dengan domain asli Anda (misal: jayakaryakontruksi.com) 
-# saat melakukan deployment ke server production agar Google bisa menemukan sitemap dengan benar.
-Sitemap: https://[domain-anda.com]/sitemap.xml
+Sitemap: https://jayakaryakontruksi.com/sitemap.xml
