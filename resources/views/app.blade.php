@@ -16,9 +16,9 @@
 
     <!-- Static SEO Fallback -->
     <meta name="description"
-        content="PT Jaya Karya Kontruksi (JKK) melayani jasa konstruksi, pengaspalan jalan hotmix, dan sewa batching plant beton berkualitas SNI.">
+        content="PT Jaya Karya Kontruksi (JKK) - Kontraktor spesialis konstruksi jalan, pengaspalan hotmix (AMP), dan penyedia beton ready mix berkualitas SNI di Kalimantan Timur.">
     <meta name="keywords"
-        content="pt jaya karya kontruksi, batching plant pt jaya karya kontruksi, kontraktor aspal, jkk">
+        content="jaya karya kontruksi, jkk, kontraktor jalan, aspal hotmix, ready mix, batching plant, pt jkk, konstruksi kalimantan">
 
     <!-- Scripts -->
     @routes
