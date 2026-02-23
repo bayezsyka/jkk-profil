@@ -4,7 +4,7 @@ import './bootstrap';
 import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
 
-const appName = import.meta.env.VITE_APP_NAME || 'JKK';
+const appName = import.meta.env.VITE_APP_NAME || 'Jaya Karya Kontruksi';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

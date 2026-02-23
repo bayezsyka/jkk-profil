@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title inertia>{{ config('app.name', 'JKK - Jaya Karya Kontruksi') }}</title>
+    <title inertia>{{ config('app.name', 'Jaya Karya Kontruksi') }}</title>
 
     <!-- Resource Hints & Preloading -->
 

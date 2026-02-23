@@ -30,7 +30,7 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
     return (
         <>
             <Head>
-                <title>Layanan Batching Plant - PT Jaya Karya Konstruksi</title>
+                <title>Layanan Batching Plant</title>
                 <meta name="description" content="Sewa batching plant dan beton ready mix berkualitas dari PT Jaya Karya Konstruksi. Kami melayani pengiriman beton cor mutu tinggi untuk berbagai proyek konstruksi dengan standar kualitas SNI." />
                 <meta name="keywords" content="batching plant pt jaya karya konstruksi, sewa batching plant, beton ready mix, harga beton cor, supply beton, pt jaya karya konstruksi, jkk" />
             </Head>

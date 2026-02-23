@@ -51,7 +51,7 @@ export default function PublicLayout({
     const { t } = useLanguage();
     const { company, app_url } = usePage<PageProps>().props;
 
-    const pageTitle = title || `${t('footer.company')} - JKK`;
+    const pageTitle = title || t('footer.company');
 
     // Note: Navbar/TopBar now handle their own scroll state, 
     // but we might need scroll here for other effects if needed.
