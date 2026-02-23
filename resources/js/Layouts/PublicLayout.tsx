@@ -49,7 +49,7 @@ export default function PublicLayout({
     ...rest
 }: PublicLayoutProps) {
     const { t } = useLanguage();
-    const { company } = usePage<PageProps>().props;
+    const { company, app_url } = usePage<PageProps>().props;
 
     const pageTitle = title || `${t('footer.company')} - JKK`;
 
@@ -100,6 +100,9 @@ export default function PublicLayout({
                     <link rel="preload" as="image" href="/images/header-bg.webp" />
                 )}
 
+                {/* Canonical URL to force Non-WWW preference in Search Engines */}
+                <link rel="canonical" href={app_url.replace('www.', '') + (typeof window !== 'undefined' ? window.location.pathname : '')} />
+
                 {/* Breadcrumb Structured Data */}
                 {effectiveBreadcrumbs.length > 0 && (
                     <script type="application/ld+json">
@@ -110,7 +113,7 @@ export default function PublicLayout({
                                 "@type": "ListItem",
                                 "position": index + 1,
                                 "name": crumb.label,
-                                "item": crumb.href ? (crumb.href.startsWith('http') ? crumb.href : `https://jkk-konstruksi.com${crumb.href}`) : undefined
+                                "item": crumb.href ? (crumb.href.startsWith('http') ? crumb.href : `${app_url}${crumb.href}`) : undefined
                             }))
                         })}
                     </script>

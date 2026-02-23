@@ -30,16 +30,16 @@ export default function BatchingPlant({ projects, concretePrices }: Props) {
     return (
         <>
             <Head>
-                <title>{`${t('services.batching.title')} - JKK | Beton Ready Mix Berkualitas Tinggi`}</title>
-                <meta name="description" content="Layanan Batching Plant PT. Jaya Karya Kontruksi. Menyediakan beton ready mix mutu terjamin untuk proyek konstruksi gedung dan jalan di Kalimantan Timur." />
-                <meta name="keywords" content="batching plant, beton ready mix, harga beton cor, jual beton ready mix, supply beton, kontraktor beton, beton Kaltim" />
+                <title>Layanan Batching Plant - PT Jaya Karya Konstruksi</title>
+                <meta name="description" content="Sewa batching plant dan beton ready mix berkualitas dari PT Jaya Karya Konstruksi. Kami melayani pengiriman beton cor mutu tinggi untuk berbagai proyek konstruksi dengan standar kualitas SNI." />
+                <meta name="keywords" content="batching plant pt jaya karya konstruksi, sewa batching plant, beton ready mix, harga beton cor, supply beton, pt jaya karya konstruksi, jkk" />
             </Head>
             <PublicLayout 
                 title={`${t('services.batching.title')} - JKK`}
                 hidePageHeader
             >
             <ServicePageHeader
-                title={t('services.batching.title')}
+                title="Layanan Batching Plant PT Jaya Karya Konstruksi"
                 subtitle={t('services.batching.desc')}
                 breadcrumbs={[
                     { label: t('nav.services'), href: `#` },

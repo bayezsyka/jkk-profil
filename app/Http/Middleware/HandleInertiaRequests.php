@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'company' => config('company'),
+            'app_url' => config('app.url'),
             'locale' => $locale,
             'translations' => $translations,
         ];

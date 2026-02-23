@@ -21,4 +21,5 @@ export type PageProps<
         user: User;
     };
     company: Company;
+    app_url: string;
 };

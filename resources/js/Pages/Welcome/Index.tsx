@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Head, usePage } from '@inertiajs/react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { PageProps } from '@/types';
 
 // Navigation Components
 import { Navbar, Footer } from '@/Components/Navigation';
@@ -116,14 +117,18 @@ const WelcomeContent: React.FC<WelcomePageProps> = ({
     );
 };
 
+interface WelcomeProps extends PageProps {
+    latestProjects: Project[];
+    galleryImages: GalleryImage[];
+    latestArticles: Article[];
+}
+
 export default function Welcome() {
     const { t } = useLanguage();
-    const props = usePage().props as unknown as {
-        latestProjects: Project[];
-        galleryImages: GalleryImage[];
-        latestArticles: Article[];
-    };
-    const { latestProjects, galleryImages, latestArticles } = props;
+    const { latestProjects, galleryImages, latestArticles, app_url: rawAppUrl, company } = usePage<WelcomeProps>().props;
+    
+    // Normalize URL to Non-WWW for SEO consistency
+    const app_url = rawAppUrl.replace('www.', '');
 
     return (
         <>
@@ -136,9 +141,9 @@ export default function Welcome() {
                 <meta property="og:site_name" content="Jaya Karya Kontruksi" />
                 <meta property="og:title" content="PT. Jaya Karya Kontruksi | Kontraktor Jalan & Produsen Beton Ready Mix" />
                 <meta property="og:description" content="Kualitas konstruksi terbaik di Kalimantan Timur dengan aspal hotmix dan beton ready mix unggulan." />
-                <meta property="og:url" content="https://jkk-konstruksi.com" />
+                <meta property="og:url" content={app_url} />
                 <meta property="og:type" content="website" />
-                <meta property="og:image" content="https://jkk-konstruksi.com/images/hero-kontruksi.jpeg" />
+                <meta property="og:image" content={`${app_url}/images/hero-kontruksi.jpeg`} />
                 <meta name="twitter:card" content="summary_large_image" />
                 
                 {/* Structured Data for Google Rich Results */}
@@ -148,12 +153,12 @@ export default function Welcome() {
                         "@type": "WebSite",
                         "name": "Jaya Karya Kontruksi",
                         "alternateName": "PT JKK",
-                        "url": "https://jkk-konstruksi.com",
+                        "url": app_url,
                         "potentialAction": {
                             "@type": "SearchAction",
                             "target": {
                                 "@type": "EntryPoint",
-                                "urlTemplate": "https://jkk-konstruksi.com/id/artikel?search={search_term_string}"
+                                "urlTemplate": `${app_url}/id/artikel?search={search_term_string}`
                             },
                             "query-input": "required name=search_term_string"
                         }
@@ -163,12 +168,12 @@ export default function Welcome() {
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Organization",
-                        "name": "PT. Jaya Karya Kontruksi",
-                        "url": "https://jkk-konstruksi.com",
-                        "logo": "https://jkk-konstruksi.com/favicon.ico",
+                        "name": "PT Jaya Karya Konstruksi",
+                        "url": app_url,
+                        "logo": `${app_url}/images/logo.webp`,
                         "contactPoint": {
                             "@type": "ContactPoint",
-                            "telephone": "+62-811-1234-5678", // Replace with real phone if known
+                            "telephone": company.phone,
                             "contactType": "customer service",
                             "areaServed": "ID",
                             "availableLanguage": ["id", "en"]
@@ -182,24 +187,27 @@ export default function Welcome() {
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "LocalBusiness",
-                        "name": "PT. Jaya Karya Kontruksi",
-                        "image": "https://jkk-konstruksi.com/images/hero-kontruksi.jpeg",
-                        "@id": "https://jkk-konstruksi.com",
-                        "url": "https://jkk-konstruksi.com",
-                        "telephone": "+6281112345678",
+                        "@type": "ConstructionBusiness",
+                        "name": "PT Jaya Karya Konstruksi",
+                        "alternateName": "JKK",
+                        "description": "PT Jaya Karya Konstruksi (JKK) adalah perusahaan konstruksi terkemuka yang spesialis dalam pembangunan jalan, produksi aspal hotmix, dan penyediaan beton ready mix berkualitas SNI.",
+                        "url": app_url,
+                        "logo": `${app_url}/images/logo.webp`,
+                        "image": `${app_url}/images/hero-kontruksi.jpeg`,
+                        "@id": app_url,
+                        "telephone": company.phone,
                         "address": {
                             "@type": "PostalAddress",
-                            "streetAddress": "Jl. Raya Utama", // These should be dynamic if possible
-                            "addressLocality": "Samarinda",
-                            "addressRegion": "Kalimantan Timur",
-                            "postalCode": "75111",
+                            "streetAddress": company.address,
+                            "addressLocality": "Brebes",
+                            "addressRegion": "Jawa Tengah",
+                            "postalCode": "52212",
                             "addressCountry": "ID"
                         },
                         "geo": {
                             "@type": "GeoCoordinates",
-                            "latitude": -0.5021,
-                            "longitude": 117.1536
+                            "latitude": -6.8774,
+                            "longitude": 109.0729
                         },
                         "openingHoursSpecification": {
                             "@type": "OpeningHoursSpecification",
@@ -213,7 +221,11 @@ export default function Welcome() {
                             ],
                             "opens": "08:00",
                             "closes": "17:00"
-                        }
+                        },
+                        "sameAs": [
+                            "https://www.facebook.com/jayakaryakontruksi",
+                            "https://www.instagram.com/jayakaryakontruksi"
+                        ]
                     })}
                 </script>
 

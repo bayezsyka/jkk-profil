@@ -1,11 +1,15 @@
-User-agent: Googlebot
-Allow: /
-Disallow: /admin
-Disallow: /login
-
+# Konfigurasi Standar SEO untuk PT Jaya Karya Kontruksi
+# Mengizinkan semua crawler untuk mengakses halaman publik
 User-agent: *
-Disallow: /admin
+Allow: /
+
+# Memblokir akses ke area sensitif, admin, dan API agar tidak terindeks
+Disallow: /admin/
+Disallow: /api/
 Disallow: /login
 Disallow: /register
 
-Sitemap: https://jkk-konstruksi.com/sitemap.xml
+# RUJUKAN SITEMAP
+# PERINGATAN: Pastikan untuk mengganti URL di bawah ini dengan domain asli Anda (misal: jayakaryakontruksi.com) 
+# saat melakukan deployment ke server production agar Google bisa menemukan sitemap dengan benar.
+Sitemap: https://[domain-anda.com]/sitemap.xml
