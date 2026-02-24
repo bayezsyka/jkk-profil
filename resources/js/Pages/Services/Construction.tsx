@@ -1,6 +1,7 @@
 import React from 'react';
 import PublicLayout from '@/Layouts/PublicLayout';
 import { useLanguage } from '@/hooks/useLanguage';
+import { Head } from '@inertiajs/react';
 import ServicePageHeader from '@/Components/ServicePageHeader';
 
 import { Project } from '@/Components/ProjectCard';
@@ -16,10 +17,16 @@ export default function Construction({ projects }: Props) {
     const latestProjects = projects.slice(0, 4);
 
     return (
-        <PublicLayout 
-            title={t('services.contractor.title')}
-            hidePageHeader
-        >
+        <>
+            <Head>
+                <title>{`${t('services.contractor.title')} - Jaya Karya Kontruksi`}</title>
+                <meta name="description" content="Layanan jasa konstruksi umum di Brebes. Spesialis pembangunan jalan, jembatan, gedung, dan infrastruktur dengan standar kualitas tinggi." />
+                <meta name="keywords" content="jasa konstruksi, kontraktor umum, bangun jalan, bangun jembatan, konstruksi gedung, brebes" />
+            </Head>
+            <PublicLayout 
+                title={t('services.contractor.title')}
+                hidePageHeader
+            >
             <ServicePageHeader
                 title={t('services.contractor.title')}
                 subtitle={t('services.contractor.desc')}
@@ -69,5 +76,6 @@ export default function Construction({ projects }: Props) {
                 </section>
             )}
         </PublicLayout>
+        </>
     );
 }

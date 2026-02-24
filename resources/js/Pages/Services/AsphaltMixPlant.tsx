@@ -30,8 +30,8 @@ export default function AsphaltMixPlant({ projects, asphaltPrices }: Props) {
     return (
         <>
             <Head>
-                <title>{`${t('services.asphalt.title')} | Produksi Aspal Hotmix Berkualitas`}</title>
-                <meta name="description" content="Layanan Asphalt Mix Plant (AMP) PT Jaya Karya Konstruksi. Menyediakan berbagai tipe aspal hotmix berkualitas tinggi untuk proyek pengaspalan jalan Anda." />
+                <title>{`${t('services.asphalt.title')} - Jaya Karya Kontruksi`}</title>
+                <meta name="description" content="Layanan Asphalt Mix Plant (AMP) di Brebes. Menyediakan berbagai tipe aspal hotmix berkualitas tinggi untuk proyek pengaspalan jalan Anda." />
                 <meta name="keywords" content="asphalt mix plant, aspal hotmix, harga aspal hotmix, jual aspal, pengaspalan jalan, kontraktor aspal, JKK AMP" />
             </Head>
             <PublicLayout 

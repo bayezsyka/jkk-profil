@@ -134,13 +134,13 @@ export default function Welcome() {
         <>
             <Head>
                 <title>Beranda</title>
-                <meta name="description" content="PT Jaya Karya Kontruksi (JKK) - Kontraktor spesialis konstruksi jalan, pengaspalan hotmix (AMP), dan penyedia beton ready mix berkualitas SNI di Kalimantan Timur. Hubungi kami untuk solusi konstruksi terpercaya." />
-                <meta name="keywords" content="jaya karya kontruksi, jkk, kontraktor jalan, aspal hotmix, ready mix, batching plant, pt jkk, konstruksi kalimantan" />
+                <meta name="description" content="PT Jaya Karya Kontruksi (JKK) - Perusahaan jasa konstruksi, penyedia asphalt mix plant (AMP), dan penyedia beton ready mix berkualitas di Brebes." />
+                <meta name="keywords" content="jaya karya kontruksi, jkk, kontraktor jalan, aspal hotmix, ready mix, batching plant, pt jkk, konstruksi brebes" />
                 
                 {/* Site Appearance */}
                 <meta property="og:site_name" content="Jaya Karya Kontruksi" />
                 <meta property="og:title" content="Jaya Karya Kontruksi | Kontraktor Jalan & Ready Mix" />
-                <meta property="og:description" content="Layanan konstruksi infrastruktur berkualitas tinggi, aspal hotmix, dan beton ready mix SNI di Kalimantan Timur." />
+                <meta property="og:description" content="Layanan jasa konstruksi, penyedia asphalt mix plant (AMP), dan penyedia beton ready mix berkualitas di Brebes." />
                 <meta property="og:url" content={app_url} />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content={`${app_url}/images/hero-kontruksi.jpeg`} />

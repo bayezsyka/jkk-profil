@@ -6,7 +6,7 @@
         "about_vision": "Vision & Mission",
         "about_structure": "Organization Structure",
         "about_certification": "Certifications",
-        "services": "Our Services",
+        "services": "Services",
         "services_construction": "Building Construction",
         "services_infrastructure": "Infrastructure",
         "services_renovation": "Renovation",
@@ -158,7 +158,7 @@
             "all": "All",
             "construction": "Construction",
             "batching_plant": "Batching Plant",
-            "asphalt_mixing_plant": "Asphalt Mixing Plant"
+            "asphalt_mixing_plant": "Asphalt Mix Plant"
         }
     },
     "articles": {
@@ -258,7 +258,7 @@
             }
         },
         "asphalt": {
-            "title": "Asphalt Mixing Plant",
+            "title": "Asphalt Mix Plant",
             "desc": "Quality hotmix asphalt production for road paving projects.",
             "page_desc": "High-quality hotmix asphalt production for road and infrastructure development.",
             "services_title": "Our Services",
