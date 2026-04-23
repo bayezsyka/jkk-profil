@@ -1,7 +1,8 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Navbar, Footer } from '@/Components/Navigation';
+import { PageProps } from '@/types';
 
 interface Article {
     id: number;
@@ -11,6 +12,7 @@ interface Article {
     excerpt: string;
     thumbnail: string;
     published_at: string;
+    updated_at: string;
     seo_title: string | null;
     seo_keywords: string | null;
     category: {
@@ -49,6 +51,18 @@ const ServiceIcon = ({ type }: { type: string }) => {
 
 export default function Show({ article, relatedArticles }: Props) {
     const { locale, t } = useLanguage();
+    const { app_url, current_url, localized_urls } = usePage<PageProps>().props;
+    const siteName = 'PT. Jaya Karya Kontruksi';
+    const siteUrl = app_url.replace(/\/$/, '');
+    const canonicalUrl = current_url;
+    const articleTitle = article.seo_title || article.title;
+    const articleDescription = (article.excerpt || article.content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()).slice(0, 160);
+    const articleKeywords = article.seo_keywords || `artikel konstruksi, ${article.title}, JKK blog, berita konstruksi, info batching plant, info AMP`;
+    const articleImage = article.thumbnail
+        ? new URL(article.thumbnail, `${siteUrl}/`).toString()
+        : `${siteUrl}/images/hero-kontruksi.jpeg`;
+    const shareText = encodeURIComponent(`${article.title} ${canonicalUrl}`);
+    const shareUrl = encodeURIComponent(canonicalUrl);
 
     const services = [
         {
@@ -77,29 +91,89 @@ export default function Show({ article, relatedArticles }: Props) {
     return (
         <>
             <Head>
-                <title>{`${article.seo_title || article.title} | Blog PT. Jaya Karya Kontruksi`}</title>
-                <meta name="description" content={article.excerpt || `${article.title}. Baca artikel selengkapnya di website resmi PT. Jaya Karya Kontruksi.`} />
-                <meta name="keywords" content={article.seo_keywords || `artikel konstruksi, ${article.title}, JKK blog, berita konstruksi, info batching plant, info AMP`} />
-                <meta property="og:title" content={article.seo_title || article.title} />
-                <meta property="og:description" content={article.excerpt} />
-                <meta property="og:image" content={article.thumbnail} />
+                <title>{`${articleTitle} | ${siteName}`}</title>
+                <meta name="description" content={articleDescription} />
+                <meta name="keywords" content={articleKeywords} />
+                <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+                <link rel="canonical" href={canonicalUrl} />
+                {Object.entries(localized_urls || {}).map(([hrefLang, url]) => (
+                    <link key={hrefLang} rel="alternate" hrefLang={hrefLang} href={url} />
+                ))}
+                {Object.keys(localized_urls || {}).length > 0 && (
+                    <link rel="alternate" hrefLang="x-default" href={localized_urls.id || canonicalUrl} />
+                )}
+                <meta property="og:site_name" content={siteName} />
+                <meta property="og:title" content={articleTitle} />
+                <meta property="og:description" content={articleDescription} />
+                <meta property="og:image" content={articleImage} />
+                <meta property="og:url" content={canonicalUrl} />
                 <meta property="og:type" content="article" />
+                <meta property="article:published_time" content={article.published_at} />
+                <meta property="article:modified_time" content={article.updated_at || article.published_at} />
+                <meta property="article:section" content={article.category.name} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={articleTitle} />
+                <meta name="twitter:description" content={articleDescription} />
+                <meta name="twitter:image" content={articleImage} />
                 <script 
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
                             "@type": "Article",
-                            "headline": article.seo_title || article.title,
-                            "description": article.excerpt,
-                            "image": article.thumbnail ? [article.thumbnail] : [],
+                            "@id": `${canonicalUrl}#article`,
+                            "mainEntityOfPage": canonicalUrl,
+                            "headline": articleTitle,
+                            "description": articleDescription,
+                            "image": [articleImage],
+                            "url": canonicalUrl,
+                            "inLanguage": locale === 'id' ? 'id-ID' : 'en-US',
                             "datePublished": article.published_at,
-                            "dateModified": article.published_at,
-                            "author": [{
+                            "dateModified": article.updated_at || article.published_at,
+                            "articleSection": article.category.name,
+                            "keywords": articleKeywords,
+                            "author": {
+                                "@type": "Person",
+                                "name": article.user?.name || t('footer.company')
+                            },
+                            "publisher": {
                                 "@type": "Organization",
-                                "name": article.user?.name || t('footer.company'),
-                                "url": "https://jkk-konstruksi.com"
-                            }]
+                                "name": siteName,
+                                "url": siteUrl,
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": `${siteUrl}/images/logo.webp`
+                                }
+                            }
+                        })
+                    }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": t('nav.home'),
+                                    "item": `${siteUrl}/${locale}`
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": t('nav.articles'),
+                                    "item": `${siteUrl}/${locale}/artikel`
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 3,
+                                    "name": article.title,
+                                    "item": canonicalUrl
+                                }
+                            ]
                         })
                     }}
                 />
@@ -229,7 +303,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                         </div>
                                         <div className="flex gap-3">
                                             <a 
-                                                href={`https://wa.me/?text=${encodeURIComponent(article.title + ' ' + window.location.href)}`}
+                                                href={`https://wa.me/?text=${shareText}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
@@ -239,7 +313,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                                 </svg>
                                             </a>
                                             <a 
-                                                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                                                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors"
@@ -249,7 +323,7 @@ export default function Show({ article, relatedArticles }: Props) {
                                                 </svg>
                                             </a>
                                             <a 
-                                                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(article.title)}`}
+                                                href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${encodeURIComponent(article.title)}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="w-10 h-10 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition-colors"

@@ -18,8 +18,13 @@ export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
     auth: {
-        user: User;
+        user: User | null;
     };
     company: Company;
     app_url: string;
+    locale: 'id' | 'en';
+    translations?: Record<string, unknown>;
+    current_path: string;
+    current_url: string;
+    localized_urls: Record<string, string>;
 };

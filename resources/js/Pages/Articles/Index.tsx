@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'; // Re-added imports explicitly just in case, though usually Layout/Inertia handles some
 import PublicLayout from '@/Layouts/PublicLayout';
-import { Head, Link, router } from '@inertiajs/react'; // Add router import
-import PageHeader from '@/Components/Common/PageHeader';
+import { Head, Link, router, usePage } from '@inertiajs/react'; // Add router import
 import { useLanguage } from '@/hooks/useLanguage';
+import { PageProps } from '@/types';
 
 interface Article {
     id: number;
@@ -48,8 +48,14 @@ interface Props {
 
 export default function Index({ articles, categories, filters }: Props) {
     const { t, locale } = useLanguage();
+    const { app_url, current_url } = usePage<PageProps>().props;
     const [search, setSearch] = useState(filters.search || '');
     const [selectedCategory, setSelectedCategory] = useState(filters.category || 'all');
+    const hasActiveFilters = Boolean((filters.search || '').trim() || (filters.category && filters.category !== 'all'));
+    const robotsContent = hasActiveFilters
+        ? 'noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+        : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1';
+    const articlesIndexUrl = new URL(route('articles.index', { locale }), `${app_url}/`).toString();
 
     // Debounce search
     useEffect(() => {
@@ -90,6 +96,39 @@ export default function Index({ articles, categories, filters }: Props) {
                 { label: t('nav.articles') }
             ]}
         >
+            <Head>
+                <meta
+                    name="description"
+                    content="Kumpulan artikel PT. Jaya Karya Kontruksi seputar jasa konstruksi, batching plant, AMP, dan proyek infrastruktur."
+                />
+                <meta
+                    name="keywords"
+                    content="artikel konstruksi, blog konstruksi, batching plant, asphalt mixing plant, ready mix, proyek infrastruktur"
+                />
+                <meta name="robots" content={robotsContent} />
+                <link rel="canonical" href={hasActiveFilters ? articlesIndexUrl : current_url} />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "CollectionPage",
+                            "name": t('nav.articles'),
+                            "url": hasActiveFilters ? articlesIndexUrl : current_url,
+                            "description": "Kumpulan artikel PT. Jaya Karya Kontruksi.",
+                            "mainEntity": {
+                                "@type": "ItemList",
+                                "itemListElement": articles.data.map((article, index) => ({
+                                    "@type": "ListItem",
+                                    "position": index + 1,
+                                    "url": new URL(route('articles.show', { locale, slug: article.slug }), `${app_url}/`).toString(),
+                                    "name": article.title
+                                }))
+                            }
+                        })
+                    }}
+                />
+            </Head>
             <div className="py-16 bg-gray-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     

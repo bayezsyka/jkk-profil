@@ -3,8 +3,11 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite"
+        "build": "npm run build:client && npm run build:ssr",
+        "build:client": "vite build",
+        "build:ssr": "vite build --ssr resources/js/ssr.tsx",
+        "dev": "vite",
+        "dev:ssr": "vite build --ssr resources/js/ssr.tsx --watch"
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",

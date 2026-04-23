@@ -33,6 +33,9 @@ class HandleInertiaRequests extends Middleware
     {
         $locale = App::getLocale();
         $translations = $this->getTranslations($locale);
+        $appUrl = $this->normalizeAppUrl((string) config('app.url'));
+        $currentPath = $request->getPathInfo() ?: '/';
+        $currentUrl = $this->buildAbsoluteUrl($appUrl, $currentPath, $request->getQueryString());
 
         return [
             ...parent::share($request),
@@ -40,9 +43,12 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'company' => config('company'),
-            'app_url' => config('app.url'),
+            'app_url' => $appUrl,
             'locale' => $locale,
             'translations' => $translations,
+            'current_path' => $currentPath,
+            'current_url' => $currentUrl,
+            'localized_urls' => $this->buildLocalizedUrls($appUrl, $currentPath, $request->getQueryString()),
         ];
     }
 
@@ -69,5 +75,45 @@ class HandleInertiaRequests extends Middleware
         }
 
         return [];
+    }
+
+    protected function normalizeAppUrl(string $url): string
+    {
+        $normalized = preg_replace('/^(https?:\/\/)www\./i', '$1', rtrim($url, '/'));
+
+        return $normalized ?: rtrim($url, '/');
+    }
+
+    protected function buildAbsoluteUrl(string $appUrl, string $path, ?string $queryString = null): string
+    {
+        $url = rtrim($appUrl, '/') . '/' . ltrim($path, '/');
+
+        if ($path === '/') {
+            $url = rtrim($appUrl, '/') . '/';
+        }
+
+        return $queryString ? "{$url}?{$queryString}" : $url;
+    }
+
+    protected function buildLocalizedUrls(string $appUrl, string $path, ?string $queryString = null): array
+    {
+        $segments = collect(explode('/', trim($path, '/')))
+            ->filter()
+            ->values();
+
+        if ($segments->isEmpty() || !in_array($segments->first(), ['id', 'en'], true)) {
+            return [];
+        }
+
+        return collect(['id', 'en'])
+            ->mapWithKeys(function (string $locale) use ($segments, $appUrl, $queryString) {
+                $localizedSegments = $segments->toArray();
+                $localizedSegments[0] = $locale;
+
+                $localizedPath = '/' . implode('/', $localizedSegments);
+
+                return [$locale => $this->buildAbsoluteUrl($appUrl, $localizedPath, $queryString)];
+            })
+            ->all();
     }
 }

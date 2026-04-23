@@ -49,7 +49,7 @@ export default function PublicLayout({
     ...rest
 }: PublicLayoutProps) {
     const { t } = useLanguage();
-    const { company, app_url } = usePage<PageProps>().props;
+    const { app_url, current_url, localized_urls } = usePage<PageProps>().props;
 
     const pageTitle = title || t('footer.company');
 
@@ -93,6 +93,7 @@ export default function PublicLayout({
             <Head>
                 <title>{pageTitle}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
                 {headerImage && (
                     <link rel="preload" as="image" href={headerImage} />
                 )}
@@ -100,8 +101,13 @@ export default function PublicLayout({
                     <link rel="preload" as="image" href="/images/header-bg.webp" />
                 )}
 
-                {/* Canonical URL to force Non-WWW preference in Search Engines */}
-                <link rel="canonical" href={app_url.replace('www.', '') + (typeof window !== 'undefined' ? window.location.pathname : '')} />
+                <link rel="canonical" href={current_url} />
+                {Object.entries(localized_urls || {}).map(([locale, url]) => (
+                    <link key={locale} rel="alternate" hrefLang={locale} href={url} />
+                ))}
+                {Object.keys(localized_urls || {}).length > 0 && (
+                    <link rel="alternate" hrefLang="x-default" href={localized_urls.id || current_url} />
+                )}
 
                 {/* Breadcrumb Structured Data */}
                 {effectiveBreadcrumbs.length > 0 && (
@@ -113,7 +119,11 @@ export default function PublicLayout({
                                 "@type": "ListItem",
                                 "position": index + 1,
                                 "name": crumb.label,
-                                "item": crumb.href ? (crumb.href.startsWith('http') ? crumb.href : `${app_url}${crumb.href}`) : undefined
+                                "item": crumb.href
+                                    ? (crumb.href.startsWith('http')
+                                        ? crumb.href
+                                        : new URL(crumb.href, `${app_url}/`).toString())
+                                    : undefined
                             }))
                         })}
                     </script>
