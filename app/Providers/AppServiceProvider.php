@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Throwable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,31 +29,27 @@ class AppServiceProvider extends ServiceProvider
         Vite::prefetch(concurrency: 3);
 
         View::composer('app', function ($view) {
-            $view->with('seo', $this->buildSeoPayload(request()));
+            try {
+                $view->with('seo', $this->buildSeoPayload(request()));
+            } catch (Throwable $e) {
+                report($e);
+                $view->with('seo', $this->defaultSeoPayload(request()));
+            }
         });
     }
 
     protected function buildSeoPayload(Request $request): array
     {
-        $appUrl = $this->normalizeUrl((string) config('app.url'));
-        $currentPath = $request->getPathInfo() ?: '/';
-        $currentUrl = $this->buildAbsoluteUrl($appUrl, $currentPath, $request->getQueryString());
+        $seo = $this->defaultSeoPayload($request);
+
+        if (!in_array($request->getMethod(), ['GET', 'HEAD'], true)) {
+            return $seo;
+        }
+
+        $appUrl = $seo['app_url'];
+        $currentUrl = $seo['canonical'];
         $locale = $request->route('locale') ?: App::getLocale();
         $companyName = 'PT. Jaya Karya Kontruksi';
-        $defaultDescription = 'PT Jaya Karya Kontruksi (JKK) - Perusahaan jasa konstruksi, penyedia asphalt mix plant (AMP), dan penyedia beton ready mix berkualitas di Brebes.';
-        $defaultKeywords = 'jaya karya kontruksi, jkk, kontraktor jalan, aspal hotmix, ready mix, batching plant, pt jkk, konstruksi brebes';
-
-        $seo = [
-            'lang' => str_replace('_', '-', App::getLocale()),
-            'title' => config('app.name', 'Jaya Karya Kontruksi'),
-            'description' => $defaultDescription,
-            'keywords' => $defaultKeywords,
-            'robots' => 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
-            'canonical' => $currentUrl,
-            'alternate_urls' => $this->buildLocalizedUrls($appUrl, $currentPath, $request->getQueryString()),
-            'meta' => [],
-            'schemas' => [],
-        ];
 
         $routeName = $request->route()?->getName();
 
@@ -167,6 +164,26 @@ class AppServiceProvider extends ServiceProvider
         }
 
         return $seo;
+    }
+
+    protected function defaultSeoPayload(Request $request): array
+    {
+        $appUrl = $this->normalizeUrl((string) config('app.url'));
+        $currentPath = $request->getPathInfo() ?: '/';
+        $currentUrl = $this->buildAbsoluteUrl($appUrl, $currentPath, $request->getQueryString());
+
+        return [
+            'app_url' => $appUrl,
+            'lang' => str_replace('_', '-', App::getLocale()),
+            'title' => config('app.name', 'Jaya Karya Kontruksi'),
+            'description' => 'PT Jaya Karya Kontruksi (JKK) - Perusahaan jasa konstruksi, penyedia asphalt mix plant (AMP), dan penyedia beton ready mix berkualitas di Brebes.',
+            'keywords' => 'jaya karya kontruksi, jkk, kontraktor jalan, aspal hotmix, ready mix, batching plant, pt jkk, konstruksi brebes',
+            'robots' => 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
+            'canonical' => $currentUrl,
+            'alternate_urls' => $this->buildLocalizedUrls($appUrl, $currentPath, $request->getQueryString()),
+            'meta' => [],
+            'schemas' => [],
+        ];
     }
 
     protected function buildLocalizedUrls(string $appUrl, string $path, ?string $queryString = null): array
