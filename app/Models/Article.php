@@ -17,15 +17,37 @@ class Article extends Model
     {
         static::creating(function ($article) {
             if (!$article->slug) {
-                $article->slug = Str::slug($article->title);
+                $article->slug = static::generateUniqueSlug($article->title);
             }
         });
 
         static::updating(function ($article) {
             if ($article->isDirty('title') && !$article->isDirty('slug')) {
-                $article->slug = Str::slug($article->title);
+                $article->slug = static::generateUniqueSlug($article->title, $article->id);
             }
         });
+    }
+
+    protected static function generateUniqueSlug(string $title, ?int $ignoreId = null): string
+    {
+        $baseSlug = Str::slug($title);
+
+        if ($baseSlug === '') {
+            $baseSlug = 'artikel';
+        }
+
+        $slug = $baseSlug;
+        $suffix = 2;
+
+        while (static::query()
+            ->when($ignoreId, fn (Builder $query) => $query->whereKeyNot($ignoreId))
+            ->where('slug', $slug)
+            ->exists()) {
+            $slug = "{$baseSlug}-{$suffix}";
+            $suffix++;
+        }
+
+        return $slug;
     }
 
     protected $fillable = [
